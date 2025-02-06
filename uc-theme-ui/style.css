@@ -48,7 +48,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--spec-occ-bg-color: #241547;
 	--spec-occ-border-color: #FFD700;
 	--spec-occ-header-font: "Palatino",serif;
-	--std-text-shadow: 1px 3px 14px #CCCCFF /*lavender blue*/;
+	--std-text-shadow: 1px 3px 14px var(--wp--preset--color--custom--gallery-font-color);
 	--std-white-font: #ddd; /*  buttons.css, header.css, index.css, source-library.css,   */
 	--index-font-color: rgb(255,255,255);
 	--gallery-font-color: #ccccff; /*lavender*/
@@ -58,11 +58,11 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--romantic-cocktails-font-color: #fff7e0;
 	--details-clr-bone-white: #f9f6ee;
 	--details-clr-alt-white: #b6b6b6;
-	--details-border: thick ridge #dedede;
+	--details-border: thick ridge var(--wp--preset--color--custom--details-clr-alt-white);
 	
 	
 	--index-bg-color: #241547;
-	--original-pink-border: 0.12em solid rgb(220, 105, 154);
+	--original-pink-border: 0.12em solid var(--wp--preset--color--custom--original-pink);
 	--original-pink: #dc699a;
 	--summertime-cocktails-bg-color: #452987; /* this doesn't seem right */
 	
@@ -74,7 +74,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 
 
 	--everyday-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/12/everyday-background.png') ;
-	--everyday-shadow: 1px 3px 7px #30c5f2;/*#FCE205;*/
+	--everyday-shadow: 1px 3px 7px var(--wp--preset--color--custom--everyday-border-color);
 	--everyday-font-color: #FCE205;
 
 
@@ -92,7 +92,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--f--ireplace-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/12/fireplace-background-new.png');
 	--fireplace-cocktails-border: medium solid black;
 	--fireplace-cocktails-font: #f2993a;
-	--fireplace-cocktails-shadow: 4px 1px 4px black;
+	--fireplace-cocktails-shadow: 4px 1px 4px #1f1f1f;
 
 	--fireplace-cocktails-shadow: 4px 1px 4px #1f1f1f;
 

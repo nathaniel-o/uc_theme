@@ -188,7 +188,26 @@
 	"styles": {
 		"color": {
 			"background": "rgb(36,21,71)",
-			"text": "white"
+			"text": "white",
+			"custom": {
+				"everyday-border-color": "#30c5f2",
+				"everyday-bg-color": "#12355c",
+				"spec-occ-bg-color": "#241547",
+				"spec-occ-border-color": "#FFD700",
+				"std-white-font": "#dddddd",
+				"index-font-color": "rgb(255,255,255)",
+				"gallery-font-color": "#ccccff",
+				"romantic-cocktails-bg-color": "#120b24",
+				"romantic-cocktails-font-color": "#fff7e0",
+				"details-clr-bone-white": "#f9f6ee",
+				"details-clr-alt-white": "#b6b6b6",
+				"index-bg-color": "#241547",
+				"original-pink": "#dc699a",
+				"summertime-cocktails-bg-color": "#452987",
+				"summertime-cocktails-border-color": "#1bf54e",
+				"everyday-font-color": "#FCE205",
+				"fireplace-cocktails-font": "#f2993a"
+			}
 		},
 		"spacing": {
 			"blockGap": "1.2rem",

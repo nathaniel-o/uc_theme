@@ -39,9 +39,9 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--an-bg-color: brown;
 	/*  example set value
 	background-color: var(--main-bg-color); */
-	--everyday-cocktails-border-color: #30c5f2;
-	--everyday-cocktails-btn-font: "Gill Sans MT", sans-serif; /* also figcaptions?  */
-	--everyday-cocktails-bg-color: #12355c;
+	--everyday-border-color: #30c5f2;
+	--everyday-btn-font: "Gill Sans MT", sans-serif; /* also figcaptions?  */
+	--everyday-bg-color: #12355c;
 	--default-transition: all 0.2s;
 	--baskerville-font: Libre Baskerville;
 	--baskerville-bold: Libre Baskerville Bold; /*  necessary?  */
@@ -60,14 +60,12 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--details-clr-alt-white: #b6b6b6;
 	--details-border: thick ridge #dedede;
 	
-	/*  APPEARS ONLY ONCE  */
+	
 	--index-bg-color: #241547;
 	--original-pink-border: 0.12em solid rgb(220, 105, 154);
 	--original-pink: #dc699a;
 	--summertime-cocktails-bg-color: #452987; /* this doesn't seem right */
-	/*
-	FINAL REVIEWED BELOW (in use by JS)
-	*/
+	
 	--summertime-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/04/summertime-background.png');
     --summertime-cocktails-bg-color: #452987;
 	--summertime-cocktails-border: medium solid #1bf54e;
@@ -75,9 +73,9 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--summertime-cocktails-border-color: #1bf54e;
 
 
-	--everyday-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/12/everyday-background.png') ;
-	--everyday-cocktails-shadow: 1px 3px 7px #30c5f2;/*#FCE205;*/
-	--everyday-cocktails-font-color: #FCE205;
+	--everyday-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/12/everyday-background.png') ;
+	--everyday-shadow: 1px 3px 7px #30c5f2;/*#FCE205;*/
+	--everyday-font-color: #FCE205;
 
 
 	--romantic-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/12/romantic-background.png') ;
@@ -1482,13 +1480,13 @@ a.fp-button-link:hover{
 			color: #b6b6b6;
 
 		}
-		.everyday-cocktails{
-			border: medium solid var(--everyday-cocktails-border-color);
+		.everyday{
+			border: medium solid var(--everyday-border-color);
 			position: relative;
 
 			}
 
-		.everyday-cocktails figcaption{
+		.everyday figcaption{
 			font-family: "Gill Sans MT", sans-serif; /*font works! Similar to domain.com*/
 			font-size: 160%; /*Make larger relative to its own container*/
 			font-weight: bolder;

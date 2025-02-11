@@ -130,6 +130,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 /*		GLOBAL STYLES		*/
 @media all{ 
 
+	
 
 
 	/* Make sure <figure> in Query Preview (Gallery Page) is not cut off */
@@ -189,6 +190,13 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		font-size: 1.1rem;
 	}    /*    Customize the search custom pattern  */ 
 
+
+	.wp-element-caption{
+
+		font-size: 1em; 
+		color: var(--details-clr-bone-white);
+
+	}
 
 
 
@@ -724,13 +732,7 @@ a.fp-button-link:hover{
         justify-content: space-between;}
 	/*DO NOT use height where flex: stretch: will do */
 	/*Made this flex so Margins would be respected*/
-	.vertUne, .vertDeux, .vertTrois{    display: flex; flex-direction: column; justify-content: space-evenly; align-content: space-between;    }
-		.vertUne{
-				margin: 2em 0 0 0;    }
-		.vertDeux{
-				margin: 6em 0 0 0;    }
-	.vertTrois{
-				margin: 12em 0 0 0;    }
+
 
 
 
@@ -742,8 +744,6 @@ a.fp-button-link:hover{
 		}
 
 		.quote{
-			font-size: 1.4vw;
-			line-height: 1.2vw;
 			font-weight: bold;
 			font-style: italic;
 
@@ -758,13 +758,15 @@ a.fp-button-link:hover{
 		}
 		.quoteThree{
 			display: block;
-			max-width: 400px;
 			height: auto;
-			margin: 7em auto;
+			margin: 3em auto;
 
-			/*font-size: 2.8vh;     Too Large?*/
-			text-shadow: 1px 3px 7px #dc699a; /*#CCCCFF*/
-			text-align: center;
+			font-size: 0.8rem;
+ 			text-align: center;
+			color: var(--std-white-font);
+
+			letter-spacing: 0.09em;
+			line-height: 1.2em;
 
 
 		}
@@ -978,17 +980,7 @@ a.fp-button-link:hover{
 
 	}
 
-	h2{ /*Quote 3 near bottom*/
-
-		font-size: 1.2vw;
-		text-align: center;
-		font-weight: normal;
-		font-style: italic;
-		margin: auto;
-		height: fit-viewport-keeping-aspect-ratio;
-		/*grid-row: auto / span 1;
-		grid-column: span 2;*/
-	}
+	
 
 	h3,h4,h5,h6{
 		text-align: center;
@@ -1234,8 +1226,8 @@ a.fp-button-link:hover{
 
 	}
 
-
-
+	
+	
 
 
 
@@ -1352,8 +1344,18 @@ a.fp-button-link:hover{
 		display: block;
 		margin: auto;
 		/*font-size: 2.8vh; */
-		text-shadow: 1px 3px 7px #dc699a; /*#CCCCFF*/
+/* 		text-shadow: 1px 3px 7px #dc699a; 
+ */		text-align: center;
+
+
+ 		font-size: 1.2em;
 		text-align: center;
+		font-weight: normal;
+		font-style: italic;
+		margin: auto;
+		height: fit-viewport-keeping-aspect-ratio;
+		/*grid-row: auto / span 1;
+		grid-column: span 2;*/
 
 		
 

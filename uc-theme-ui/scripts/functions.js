@@ -270,10 +270,11 @@
 					ucListenIteratively(allFigures);
 				}
 
-				
-				document.querySelector(".wp-block-search__button").addEventListener("click", (e) => {
-					ucAjaxCarousel(e);
-				});
+				if(document.querySelector(".wp-block-search__button")){
+					document.querySelector(".wp-block-search__button").addEventListener("click", (e) => {
+						ucAjaxCarousel(e);
+					});
+				}
 				
 			}); 
 				
@@ -430,7 +431,7 @@
 			links[index].innerText = "Seasonal Cocktails";
 		});
 
-		//console.log("Indexes of seasonal cocktail links:", matchingIndexes);
+		console.log("Indexes of seasonal cocktail links:", matchingIndexes);
 
 		
  	}

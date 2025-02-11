@@ -241,7 +241,7 @@ add_action('after_setup_theme', function() {
     function generate_single_slide($image, $index, $is_duplicate, $show_titles, $show_content) {
         // Get post meta data
         $post = get_post($image['id']);
-        $category = get_the_terms($image['id'], 'category');
+        $drinks = get_the_terms($image['id'], 'drinks');  // Changed from 'category' to 'drinks'
         $color = get_post_meta($image['id'], 'drink_color', true);
         $glass = get_post_meta($image['id'], 'drink_glass', true);
         $garnish = get_post_meta($image['id'], 'drink_garnish1', true);
@@ -266,7 +266,7 @@ add_action('after_setup_theme', function() {
             $html .= '<div class="slideshow-content">';
             $html .= '<h3><a href="' . get_permalink($image['id']) . '">' . esc_html($image['alt']) . '</a></h3>';
             $html .= '<ul class="wp-block-list">';
-            $html .= '<li><em>Category</em>: ' . esc_html($category ? $category[0]->name : 'Uncategorized') . '</li>';
+            $html .= '<li><em>Category</em>: ' . esc_html($drinks ? $drinks[0]->name : 'Uncategorized') . '</li>';
             $html .= '<li><em>Color</em>: ' . esc_html($color) . '</li>';
             $html .= '<li><em>Glass</em>: ' . esc_html($glass) . '</li>';
             $html .= '<li><em>Garnish</em>: ' . esc_html($garnish) . '</li>';

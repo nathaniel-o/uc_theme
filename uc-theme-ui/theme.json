@@ -662,7 +662,7 @@
 			},
 			"h2": {
 				"color": {
-					"text": "var(--everyday-border-color)" 
+					"text": "" 
 					},
 				"typography": {
 					"fontSize": "var:preset|font-size|x-large"

@@ -372,16 +372,70 @@
 
 
     /* 
-	*    Remove the silly 2 line SVG from WP header, 
-	*    instead use our hamburger (insert by CSS) 
+	*    Customize WP Header
 	*/
     function ucCustomizeWPHeader(){
 
-		var oldBurger = document.querySelector("body > div.wp-site-blocks > header > nav > button > svg");
+		
 
-		oldBurger.remove();
+		const theLogo = `<div class="wp-block-site-logo uc-extra-logo"><a href="http://localhost/wordpress/" class="custom-logo-link" rel="home"><img width="512" height="512" src="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x.jpg" class="custom-logo" alt="Untouched Cocktails" decoding="async" fetchpriority="high" srcset="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x.jpg 512w, http://localhost/wordpress/wp-content/uploads/2024/12/logo512x-300x300.jpg 300w, http://localhost/wordpress/wp-content/uploads/2024/12/logo512x-150x150.jpg 150w" sizes="(max-width: 512px) 100vw, 512px" data-attachment-id="2684" data-permalink="http://localhost/wordpress/logo512x/" data-orig-file="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x.jpg" data-orig-size="512,512" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="logo512x" data-image-description="" data-image-caption="" data-medium-file="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x-300x300.jpg" data-large-file="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x.jpg"></a></div>`;
 
+		const mobileNav = document.querySelector(".wp-block-navigation");
+
+		// Function to handle orientation changes
+		function handleOrientation(mediaQuery) {
+			if (!mediaQuery.matches) { // Portrait mode
+				// Check if logo already exists to prevent duplicates
+				if (!mobileNav.querySelector('.uc-extra-logo')) {
+					mobileNav.insertAdjacentHTML('afterbegin', theLogo);
+				}
+			} else { // Landscape mode
+				const extraLogo = mobileNav.querySelector('.uc-extra-logo');
+				if (extraLogo) {
+					extraLogo.remove();
+				}
+			}
+		}
+
+		// Create media query for landscape orientation
+		const landscapeQuery = window.matchMedia("(orientation: landscape)");
+		
+		// Initial check
+		handleOrientation(landscapeQuery);
+		
+		// Add listener for orientation changes
+		landscapeQuery.addEventListener('change', handleOrientation);
+
+		const links = Array.from(document.querySelectorAll(".wp-block-navigation-link"));
+		//console.log(links);
+
+		// Array of seasonal cocktail names to match
+		const seasonalNames = [
+			"Summertime Cocktails",
+			"Aurumnal Cocktails",
+			"Springtime Cocktails",
+			"Wintertime Cocktails"
+		];
+
+		// Find indexes of links containing any seasonal cocktail name
+		const matchingIndexes = links.reduce((acc, link, index) => {
+			if (seasonalNames.some(name => link.textContent.includes(name))) {
+				acc.push(index);
+			}
+			return acc;
+		}, []);
+
+		// Replace the .innerText of the links at the indexes with "Seasonal Cocktails"
+		matchingIndexes.forEach(index => {
+			links[index].innerText = "Seasonal Cocktails";
+		});
+
+		//console.log("Indexes of seasonal cocktail links:", matchingIndexes);
+
+		
  	}
+
+
 
 
 
@@ -402,7 +456,7 @@
 
 			/*  ON EVERY PAGE...  */
 			ucInsertBackground();
-			//ucCustomizeWPHeader();
+			ucCustomizeWPHeader();
 			//ucAddPaginationLeftArrowToCarousel();
 
 

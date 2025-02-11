@@ -1,0 +1,95 @@
+.romantic{
+	
+	/*
+	background: var(--romantic-bg-img);
+	
+	url("https://untouchedcocktails.com/wp-content/uploads/2023/12/romantic-background.png") round repeat; 
+	
+	background-color: var(--romantic-bg-color);
+
+	*/
+
+	
+	color: white; 
+	height: 100%;
+	margin: 0;
+
+}
+
+.romantic figure{
+
+	border-color: var(--romantic-border-color);
+	padding: 0;
+	border-style: inset; /*  keep?  */
+
+}
+
+.romantic figcaption{
+			
+	/*"The vertical-align CSS property sets vertical alignment of an inline, 
+	inline-block or table-cell box."*/
+	/*border: 1px solid #30c5f2;
+	text-align: center;*/
+
+/*Cream text w/ heart-shade shadow*/
+	color: var(--romantic-font-color);
+	/*to improve readability on like backgrounds*/
+	text-shadow: var(--romantic-text-shadow);
+
+/*Default behavior for Fireplace Captions
+position: absolute; */
+bottom: 12%;
+left: 4%;
+}
+
+
+
+
+
+/*////////////	LANDSCAPE / DESKTOP LAYOUT ////////////*/
+@container (orientation:landscape){
+	
+	/*Chili Citrus Sour BANNER outside Columns*/
+	#foto-une{ top: 4%; left: -15%;/*margin: 0 6%;*/ min-width: 45vw;	transform: rotate(-3deg);}
+	#foto-deux{	top: 8%;transform: rotate(5deg); }
+	#foto-trois{	top: 12%;transform:rotate(-4deg);		}
+	#foto-quatre{	top: 16%;transform: rotate(3deg);	}
+	#foto-cinq{	transform:rotate(5deg);	 left: 15%;	}
+	#foto-sixieme{	right: 30%; transform:rotate(-4deg);	}
+	#foto-sept{ transform: rotate(3deg); }
+	#foto-huit{ transform: rotate(-4deg);	}
+		
+}
+
+/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
+/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
+
+
+
+
+
+
+
+
+
+/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
+/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
+/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
+@container (orientation: portrait){
+
+		
+	#foto-une{ grid-row: 3 ; grid-column: 2; transform: rotate(3deg);}
+		
+	#foto-deux{	transform: rotate(-5deg); }
+	#foto-trois{	transform:rotate(4deg);		}
+	#foto-quatre{	transform: rotate(-3deg);	}
+	#foto-cinq{	transform:rotate(5deg);		}
+	#foto-sixieme{	transform:rotate(-4deg);	}
+	#foto-sept{ transform: rotate(3deg); }
+	#foto-huit{ transform: rotate(4deg);	}
+		
+
+
+}
+/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
+/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/

@@ -5,11 +5,153 @@
 
 
 <!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
-<main class="wp-block-group">
-    <!-- wp:post-content {"layout":{"inherit":true}} /-->
+<main class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
+    <div class="entry-content wp-block-post-content has-global-padding is-layout-constrained">
+        <div class="wp-block-group has-global-padding is-layout-constrained">
+            <figure class="pop-off">
+                <!-- wp:post-featured-image {"align":"wide"} /-->
+                
+                <!-- wp:heading {"level":1} -->
+                <h1 class="wp-block-heading"><!-- wp:post-title /--></h1>
+                <!-- /wp:heading -->
+                
+                <div class="tagged">
+                    <ul class="col1">
+                        <!-- wp:post-terms {"term":"category"} /-->
+                    </ul>
+                    <ul class="col2">
+                        <!-- wp:post-terms {"term":"post_tag"} /-->
+                    </ul>
+                </div>
+                
+                <!-- w  p:  post-content /-->
+                
+                <button class="close-button outside">X</button>
+            </figure>
+        </div>
+    </div>
 </main>
 <!-- /wp:group -->
+
+<!-- wp    :    post-content /-->
 
 
 
 <!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->
+
+<style>
+    @media (orientation: portrait) {
+        .pop-off {
+            width: 90vw;
+            height: auto;
+            min-height: fit-content;
+            margin: 2em auto;
+            padding: 1em;
+        }
+        
+        .pop-off img {
+            max-height: 50vh;
+            width: 100%;
+            object-fit: contain;
+        }
+        
+        .tagged {
+            flex-direction: column;
+        }
+    }
+
+    @media (orientation: landscape) {
+        .pop-off {
+            width: 55vw;
+            height: auto;
+            min-height: fit-content;
+            margin: 2em auto;
+            padding: 1em;
+        }
+        
+        .pop-off img {
+            max-height: 50vh;
+            width: 100%;
+            object-fit: contain;
+        }
+        
+        .tagged {
+            flex-direction: row;
+            padding: 1em;
+            gap: 1em;
+        }
+    }
+
+    @media all {
+        .pop-off {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 1.2em ridge var(--details-clr-bone-white);
+            border-radius: 8px;
+            z-index: 5;
+            position: relative;
+            overflow: visible;
+        }
+
+        .tagged {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: rgba(255, 243, 224, 0.95);
+            border-radius: 8px;
+            margin-top: 1em;
+            color: rgb(36,21,71);
+        }
+
+        .tagged ul {
+            margin: 0;
+            padding: 0 1em;
+            list-style: none;
+        }
+
+        .tagged li {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            font-family: "Gill Sans MT", sans-serif;
+            text-align: center;
+            
+        }
+
+        h1 {
+            color: #b8b5ff;
+            margin: 0.5em 0;
+            text-align: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: -5%;
+            right: -5%;
+            font-weight: 750;
+            font-size: 3rem;
+            background-color: transparent;
+            color: var(--details-clr-bone-white);
+            text-shadow: 1px 3px 7px #dc699a;
+            border: none;
+            z-index: 6;
+            cursor: pointer;
+        }
+
+        .wp-block-post-content {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .entry-content {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+</style>

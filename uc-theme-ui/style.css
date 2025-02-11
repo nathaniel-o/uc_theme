@@ -632,6 +632,7 @@ a.fp-button-link:hover{
 
 	}
 
+	/*  Media Queries for Header Links */
 	@media screen and (max-width: 700px){
 
 		.wp-block-pages-list__item, .wp-block-navigation ul li{
@@ -639,7 +640,6 @@ a.fp-button-link:hover{
 		}
 
 	}
-
 	@media screen and (min-width: 800px){
 
 		.wp-block-pages-list__item, .wp-block-navigation ul li{
@@ -1130,13 +1130,24 @@ a.fp-button-link:hover{
 	
 		justify-content: space-between;
 	
-		flex-direction: row-reverse; /* Place HAmburger at Right Side */
+		flex-direction: row; /* Place HAmburger at Left Side */
 		
 		
 	}
 
 	/*  The Hamburger Button  */
 	.wp-block-navigation__responsive-container-open{
+
+	}
+	
+	.wp-block-site-logo img{ /* Override defaults, again */ 
+		max-height: 4em;
+		width: auto;
+	}
+
+	#modal-1-content > ul > li:nth-child(1) > div{
+
+		display: block !important;
 
 	}
 

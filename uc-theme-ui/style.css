@@ -34,74 +34,66 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
    ALSO These Just Exist as WordPress Import Options    */
 
 /*  for CSS Variables    */
-:root{
-	/* example definition  */
-	--an-bg-color: brown;
-	/*  example set value
-	background-color: var(--main-bg-color); */
-	--everyday-border-color: #30c5f2;
-	--everyday-btn-font: "Gill Sans MT", sans-serif; /* also figcaptions?  */
-	--everyday-bg-color: #12355c;
-	--default-transition: all 0.2s;
-	--baskerville-font: Libre Baskerville;
-	--baskerville-bold: Libre Baskerville Bold; /*  necessary?  */
-	--spec-occ-bg-color: #241547;
-	--spec-occ-border-color: #FFD700;
-	--spec-occ-header-font: "Palatino",serif;
-	--std-text-shadow: 1px 3px 14px var(--wp--preset--color--custom--gallery-font-color);
-	--std-white-font: #ddd; /*  buttons.css, header.css, index.css, source-library.css,   */
-	--index-font-color: rgb(255,255,255);
-	--gallery-font-color: #ccccff; /*lavender*/
-	--gallery-border: 2em;
-	--romantic-cocktails-bg-color: #120b24;
-	--romantic-cocktails-caption-font: "Gill Sans MT", sans-serif;
-	--romantic-cocktails-font-color: #fff7e0;
-	--details-clr-bone-white: #f9f6ee;
-	--details-clr-alt-white: #b6b6b6;
-	--details-border: thick ridge var(--wp--preset--color--custom--details-clr-alt-white);
-	
-	
-	--index-bg-color: #241547;
-	--original-pink-border: 0.12em solid var(--wp--preset--color--custom--original-pink);
-	--original-pink: #dc699a;
-	--summertime-cocktails-bg-color: #452987; /* this doesn't seem right */
-	
-	--summertime-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/04/summertime-background.png');
+:root {
+    /* Colors */
+    /* Base Colors */
+    --std-white-font: #ddd;
+    --details-clr-bone-white: #f9f6ee;
+    --details-clr-alt-white: #b6b6b6;
+    --original-pink: #dc699a;
+    --gallery-font-color: #ccccff; /* lavender */
+    
+    /* Theme Colors */
+    --everyday-bg-color: #12355c;
+    --everyday-border-color: #30c5f2;
+    --everyday-font-color: #FCE205;
+    
+    --spec-occ-bg-color: #241547;
+    --spec-occ-border-color: #FFD700;
+    
+    --romantic-cocktails-bg-color: #120b24;
+    --romantic-cocktails-font-color: #fff7e0;
+    
     --summertime-cocktails-bg-color: #452987;
-	--summertime-cocktails-border: medium solid #1bf54e;
-	--summertime-cocktails-shadow: 1px 3px 7px #1bf54e;
-	--summertime-cocktails-border-color: #1bf54e;
-
-
-	--everyday-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/12/everyday-background.png') ;
-	--everyday-shadow: 1px 3px 7px var(--wp--preset--color--custom--everyday-border-color);
-	--everyday-font-color: #FCE205;
-
-
-	--romantic-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/12/romantic-background.png') ;
-	--romantic-cocktails-border: medium solid #cf3162;
-	--romantic-cocktails-shadow: 4px 1px 4px #980a4e;
-
-	--special-occasion-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/07/Special-Occasion-cocktail-with-shadow-shapes-mockup-1.png');
-	--spe--cial-occasion-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/04/specialoccasion-background.png');
-	--springtime-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/04/summertime-background.png');
-	--springtime-cocktails-shadow: 1px 3px 7px #1bf54e;
-
-
-	--fireplace-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/07/New-Fireplace-Cocktails-Mockup-with-cluster-kinderblocks-brown-background-1.png');
-	--f--ireplace-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2023/12/fireplace-background-new.png');
-	--fireplace-cocktails-border: medium solid black;
-	--fireplace-cocktails-font: #f2993a;
-	--fireplace-cocktails-shadow: 4px 1px 4px #1f1f1f;
-
-	--fireplace-cocktails-shadow: 4px 1px 4px #1f1f1f;
-
-	--std-border: 4px ridge rgb(1, 1, 1, 1);
-
-
-
-
-
+    --summertime-cocktails-border-color: #1bf54e;
+    
+    --fireplace-cocktails-font: #f2993a;
+    
+    --index-bg-color: #241547;
+    --index-font-color: rgb(255,255,255);
+    
+    /* Fonts */
+    --everyday-btn-font: "Gill Sans MT", sans-serif;
+    --spec-occ-header-font: "Palatino", serif;
+    --romantic-cocktails-caption-font: "Gill Sans MT", sans-serif;
+    --baskerville-font: "Libre Baskerville";
+    
+    /* Borders */
+    --gallery-border: 2em;
+    --std-border: 4px ridge rgb(1, 1, 1, 1);
+    --original-pink-border: 0.12em solid var(--original-pink);
+    --details-border: thick ridge var(--details-clr-alt-white);
+    --summertime-cocktails-border: medium solid var(--summertime-cocktails-border-color);
+    --romantic-cocktails-border: medium solid #cf3162;
+    --fireplace-cocktails-border: medium solid black;
+    
+    /* Shadows */
+    --std-text-shadow: 1px 3px 14px var(--gallery-font-color);
+    --summertime-cocktails-shadow: 1px 3px 7px var(--summertime-cocktails-border-color);
+    --everyday-shadow: 1px 3px 7px var(--everyday-border-color);
+    --romantic-cocktails-shadow: 4px 1px 4px #980a4e;
+    --fireplace-cocktails-shadow: 4px 1px 4px #1f1f1f;
+    
+    /* Background Images */
+    --everyday-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Everyday-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --romantic-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Romantic-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --special-occasion-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Special-Occasion-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --summertime-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --springtime-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --fireplace-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/New-Fireplace-Cocktails-Mockup-with-cluster-kinderblocks.pptx.png');
+    
+    /* Transitions */
+    --default-transition: all 0.2s;
 }
 
 /* combine buttons with WP */
@@ -400,8 +392,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	/*background-color: transparent; /*fixed timeline*/
 
 	box-sizing: border-box;
-    scrollbar-color: transparent transparent; /* thumb and track color */
-    scrollbar-width: 0px;
+    scrollbar-color: #dddddd transparent; /* thumb and track color */
 
 	-ms-overflow-style: none;
 
@@ -421,40 +412,12 @@ html{	/*obliges viewport size*/
 
 }
 
-body{	/* expands x and y to fit .image-gallery*/
-
-   /* overflow-x: hidden;	*/
-	min-width: 85%;
-	margin: 0 auto;
-	/*width: fit-content;*/
-	height: auto;
-
-	max-width: 100vw; /*1vw = 1% of viewport width*/
-
-
-	
-
-	overflow-x: scroll;
-
-}
 
 
 
   
 
-header{ /* from everyday.css  */
-	display: flex;
-	justify-content: center;
 
-	/*grid-column: 2 / -2;*/
-	/*font-size: 1.6em;*/
-	font-weight: bold;
-
-
-
-	
-
-}
 
 hr{
 	display:none;
@@ -665,9 +628,31 @@ a.fp-button-link:hover{
 		*/
 		padding: 0.6em;
 		margin: 0;
+		font-size: 0.75em;
 
 	}
 
+	@media screen and (max-width: 700px){
+
+		.wp-block-pages-list__item, .wp-block-navigation ul li{
+			font-size: 0.65em;
+		}
+
+	}
+
+	@media screen and (min-width: 800px){
+
+		.wp-block-pages-list__item, .wp-block-navigation ul li{
+			/* Both Selectors Tarket Header Links, 
+			*  latter needs overwritten  
+			*/
+			padding: 0.6em;
+			margin: 0;
+			font-size: 0.9em;
+	
+		}
+
+	}
 	/*
 	*    In order to display :hover bg effect over larger area than just a: 
 	*    ALSO works on Logo where below does not
@@ -682,7 +667,14 @@ a.fp-button-link:hover{
 		gap: 0 !important;	/* overwrite WP s.a.t.b.a.t. control spacing by margins */
 	}
 
+    
 
+	/* on post previews, overwrite WP default */
+	.wp-block-columns{
+		flex-wrap: nowrap !important;
+	}
+
+	
 	
 
 

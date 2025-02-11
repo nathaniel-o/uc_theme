@@ -20,7 +20,7 @@
 <h3> Make Evt Listen with AJAX </h3> 
 <!-- wp:jetpack/slideshow {"autoplay":true,"ids":[2765,2760,2753],"sizeSlug":"large"} -->
 
-<div class="wp-block-jetpack-slideshow aligncenter uc-slideshow hidden" data-autoplay="true" data-delay="3" data-effect="slide">
+<div class="wp-block-jetpack-slideshow aligncenter uc-slideshow hidden" data-autoplay="true" data-delay="3" data-effect="slide" data-slides="5">
     <div class="wp-block-jetpack-slideshow_container swiper-container">
         <ul class="wp-block-jetpack-slideshow_swiper-wrapper swiper-wrapper uc-swiper-list">
             <?php //echo generate_slideshow_slides($slideshow_images);  // The Reference Example 
@@ -33,11 +33,15 @@
             // Or using $_GET with sanitization
             //$search_term = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
 
+            if($search_term){
             // Then use it in your carousel
-            $filter_carousel=uc_filter_carousel($search_term, $drink_posts, 5, 0, 1, 1); //uses generate_slideshow_slides
+                $filter_carousel=uc_filter_carousel($search_term, $drink_posts, 5, 0, 1, 1); //uses generate_slideshow_slides
+            } else {
 
-            //error_log('filter_carousel: ' . print_r($filter_carousel, true));
+                $filter_carousel=uc_random_carousel($drink_posts, 5, 0, 1);
 
+            }
+            error_log('filter_carousel: ' . print_r($filter_carousel, true));
 
             echo $filter_carousel;
 
@@ -47,15 +51,15 @@
 
 
 
+        
         <!-- ... rest of slideshow controls ... -->
-            <a class="wp-block-jetpack-slideshow_button-prev swiper-button-prev swiper-button-white" role="button">
+        <a class="wp-block-jetpack-slideshow_button-prev swiper-button-prev swiper-button-white" role="button" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-3446d0c323a53100f">
             </a>
-            <a class="wp-block-jetpack-slideshow_button-next swiper-button-next swiper-button-white" role="button">
+            <a class="wp-block-jetpack-slideshow_button-next swiper-button-next swiper-button-white" role="button" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-3446d0c323a53100f">
             </a>
             <a aria-label="Pause Slideshow" class="wp-block-jetpack-slideshow_button-pause" role="button">
             </a>
-            <div class="wp-block-jetpack-slideshow_pagination swiper-pagination swiper-pagination-white">
-            </div>
+            <div class="wp-block-jetpack-slideshow_pagination swiper-pagination swiper-pagination-white swiper-pagination-custom"><button class="swiper-pagination-bullet swiper-pagination-bullet-active" tab-index="0" role="button" aria-label="Go to slide 1"></button></div>
     </div>
 <!-- /wp:jetpack/slideshow -->
 </div>

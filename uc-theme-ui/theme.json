@@ -619,7 +619,7 @@
 		"elements": {
 			"button": {
 				"color": {  
-					"background": "red",
+					"background": "var(--original-pink)",
 					"text": "#dc699a"
 				},
 				":focus": {

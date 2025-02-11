@@ -13,7 +13,7 @@
 				*/
 		function ucInsertBackground(){
 
-					let anPage = document.getElementsByClassName("wp-site-blocks");
+					let anPage = document.querySelector("body");
 
 					/*  
 					
@@ -30,7 +30,7 @@
 					
 					//anPage[0].style.backgroundImage = "var(--romantic-bg-img)";
 
-					anPage[0].style.backgroundImage =  bgVar  ;
+					anPage.style.backgroundImage =  bgVar  ;
 					//document.body.style.background = bgVar;
 					//console.log(anPage);
 
@@ -177,7 +177,61 @@
 				}
 			}
 
-			// Apply Carousel Click Evt Lstnr to an Array of Figures
+
+			function ucAjaxCarousel(e){
+
+				//console.log(e.target)
+				e.preventDefault(); //Stop page refresh
+
+				let searchValue = '';
+
+				// Check if event target is an image
+				if (e.target.tagName === 'IMG') {
+					// Find the closest parent with .post & .post-#### class
+					const postElement = e.target.closest('.post[class*="post-"]');
+					if (postElement) {
+						// Get the post title from within this element
+						searchValue = postElement.querySelector('.wp-block-post-title')?.textContent || 'Title not found';
+
+					}
+				}
+				// Check if event target is a button
+				else if (e.target.tagName === 'BUTTON') {
+					// Get search term from button's parent element
+					searchValue = e.target.closest('.search-container')?.querySelector('input')?.value || '';
+				}
+				
+
+				//  Make AJAX call to WordPress
+					fetch(`${window.location.origin}/wordpress/wp-admin/admin-ajax.php`, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: `action=filter_carousel&search_term=${encodeURIComponent(searchValue)}`
+					})
+					.then(response => response.text())
+					.then(html => {
+						// Update the carousel with the new HTML
+						const carousel = document.querySelector('.uc-swiper-list');
+						if (carousel) {
+							carousel.innerHTML = html;
+						}
+						console.log(carousel);
+
+						// Apply portrait/landscape classes to new figures
+						carousel.querySelectorAll('figure').forEach(figure => {
+							ucPortraitLandscape(figure.querySelector('img'), figure);
+						});
+						document.querySelector('.uc-slideshow').classList.toggle("hidden");
+					})
+					.catch(error => console.error('Error:', error));
+				
+			}
+
+
+
+			// Apply Click Evt Lstnr to an Array of Figures
 			function ucListenIteratively(anyFigureArray){  //  Repurposed to use AJAX & functions.php uc_filter_carousel
 
 				for(const figure of anyFigureArray){
@@ -186,59 +240,17 @@
 					//console.log(element);
 							element.addEventListener("click", 
 								(e) => {	
-									/*	Show clicked Drink (as Object	*/
-									//console.log( /*ucCreateModalFromDrink(*/ ucMatchSelection(e.target) );
-									//console.log(e.target.parentElement);
 									
-									//console.log( ucMatchSelection(e.target));
-									//let anFig = ucMatchSelection(e.target).ucShowDetails(); // NEED REVIEW 
+
+									ucAjaxCarousel(e);
 							
-									//console.log(e.target)
-									e.preventDefault(); //Stop page refresh
-									 
-									// Find the closest parent with .post & .post-#### class
-									 const postElement = e.target.closest('.post[class*="post-"]');
-									 //console.log(postElement);
-									 if (postElement) {
-										 // Get the post title from within this element
-										 const postTitle = postElement.querySelector('.wp-block-post-title')?.textContent || 'Title not found';
-										 (`Post Title: ${postTitle}`);
-
-										
-											// Make AJAX call to WordPress
-											fetch(`${window.location.origin}/wordpress/wp-admin/admin-ajax.php`, {
-												method: 'POST',
-												headers: {
-													'Content-Type': 'application/x-www-form-urlencoded',
-												},
-												body: `action=filter_carousel&search_term=${encodeURIComponent(postTitle)}`
-											})
-											.then(response => response.text())
-											.then(html => {
-												// Update the carousel with the new HTML
-												const carousel = document.querySelector('.uc-swiper-list');
-												if (carousel) {
-													carousel.innerHTML = html;
-												}
-												console.log(carousel);
-
-												 // Apply portrait/landscape classes to new figures
-												carousel.querySelectorAll('figure').forEach(figure => {
-													ucPortraitLandscape(figure.querySelector('img'), figure);
-												});
-												document.querySelector('.uc-slideshow').classList.toggle("hidden");
-											})
-											.catch(error => console.error('Error:', error));
-											
-
-
-
-
-									 }
+									
 
 								
 								})	}
 						);	};
+
+
 							
 			}
 
@@ -258,6 +270,10 @@
 					ucListenIteratively(allFigures);
 				}
 
+				
+				document.querySelector(".wp-block-search__button").addEventListener("click", (e) => {
+					ucAjaxCarousel(e);
+				});
 				
 			}); 
 				
@@ -326,21 +342,6 @@
 				
 			}  /* END findTallestChild */
 
-
-			function resizeCarousel(node){ //Resize all Carousels // Not in Use 
-
-				const lookHere = document.querySelectorAll('.carousel, .is-style-carousel');
-				console.log(lookHere);
-				
-				lookHere.forEach(carousel => {
-					const carouselHeight = findTallestChild(carousel) * 1.1;     // terrible fix 
-			
-					carousel.style.height = carouselHeight  + 'px';   
-					console.log(carousel.style.height);
-					console.log(carouselHeight); 
-			   
-				});
-			}
 	
 	
 	
@@ -356,76 +357,6 @@
 	
 
 
-
-	//	EIGHT:  Accept clicked e.target, return Drink Object	
-	function ucMatchSelection(clickTarget){
-		//console.log(clickTarget.parentElement.children[0].src); //OKAY
-	//	console.log("TEST");
-	//	console.log(clickTarget.parentElement.children[0].src);
-		//let i = 0;
-		for(Drink of DRINK_ARRAY){		
-			//console.log(i);
-			//console.log(Drink.src);	
-			if(Drink.src === clickTarget.parentElement.children[0].src){		
-				//console.log(Drink);  console.log("DrinkSource MATCH");
-				
-				return Drink; //returns Successful
-				}  	
-			else { //console.log("FAILURE"); 
-				}
-			
-		 }    return 1;	//return OUTSIDE for loop assures iteration
-	}
-
-
-	//    accepts a string, returns Array of Drinks w/ that string    
-	function ucMatchDrinks(anString){
-	
-	//console.log(anString);
-
-	let ucResults = [];
-	let searchTerm = anString.toLowerCase();
-	//let j = 0;/*count iterations only*/
-
-	/*    for each Drink...    */
-	for(Drink of DRINK_ARRAY){
-		//	console.log(j);/*count iterations only*/
-
-		/*    create new searchable tags Array property (include all property key:values as strings    */
-		let tags  = Object.keys(Drink).concat(Object.values(Drink));
-		//console.log(Drink.tags);
-	
-		/*    for each elements in tags...    */
-		for(let i = 0; i < tags.length ; i ++){
-
-				/*    Convert element b/c Obj v. Str. matters ?    */
-				let tagEntry = tags[i].toString();
-
-
-				
-
-				/*    IF tag matches && result Arr doesn't include Drink...    */
-				if(tagEntry.toLowerCase().includes(searchTerm) && ucResults.includes(Drink) === false){
-					//console.log("match");
-					//console.log(ucResults.length);
-					
-					ucResults.push(Drink);
-					
-
-				//console.log("RESULTS");
-				//console.log(ucResults);
-						
-				}    //		j++; /*count iterations only*/
-			}
-	}
-
-
-	 const theseResults =  ucResults; //Better Don't reassign Arrays,
-
-	 //console.log(theseResults);
-
-	return theseResults;
-    }
 
 
 	function getRandomInt(max) {
@@ -446,40 +377,11 @@
 	*/
     function ucCustomizeWPHeader(){
 
-	var oldBurger = document.querySelector("body > div.wp-site-blocks > header > nav > button > svg");
+		var oldBurger = document.querySelector("body > div.wp-site-blocks > header > nav > button > svg");
 
-	oldBurger.remove();
+		oldBurger.remove();
 
  	}
-
-	function ucAddPaginationLeftArrowToCarousel(){
-		// Find all Query blocks with carousel style
-		const carousels = document.querySelectorAll('.is-style-carousel.wp-block-query');
-		
-		if(carousels){
-			carousels.forEach(carousel => {
-				// Check if pagination container exists, if not create it
-				let paginationContainer = carousel.querySelector('.wp-block-query-pagination');
-				if (!paginationContainer) {
-					paginationContainer = document.createElement('div');
-					paginationContainer.className = 'wp-block-query-pagination';
-					carousel.appendChild(paginationContainer);
-				}
-				
-				// Create and insert previous button if it doesn't exist
-				if (!carousel.querySelector('.wp-block-query-pagination-previous')) {
-					const prevButton = document.createElement('a');
-					prevButton.href = '#last-post';
-					prevButton.className = 'wp-block-query-pagination-previous';
-					prevButton.setAttribute('data-slide', 'last');
-					prevButton.textContent = 'Previous Page';
-					
-					// Insert at the start of pagination container
-					paginationContainer.insertBefore(prevButton, paginationContainer.firstChild);
-				}
-			});
-		}
-	}
 
 
 
@@ -499,8 +401,10 @@
 			
 
 			/*  ON EVERY PAGE...  */
+			ucInsertBackground();
 			//ucCustomizeWPHeader();
 			//ucAddPaginationLeftArrowToCarousel();
+
 
 			/*    On Contact Page, Handle Form?  */
 			if(pageID.includes("contact")===true){
@@ -549,25 +453,10 @@
 				landscapeQuery.addEventListener('change', handleOrientation);
 			}
 
-			if(document.querySelector('.carousel')){ //great 
+			/* if(document.querySelector('.carousel')){ //great 
 				resizeCarousel();
-			}
+			} */
 
 			
 			
 		});
-
-		
-
-
-/*    ACTIONS : WHERE THE FUNCTIONS ARE CALLED     */
-    ////    ////    ////    ////
-       ////    ////    ////    ////
-/*    ACTIONS : WHERE THE FUNCTIONS ARE CALLED     */
-
-
-
-
-
-
- 

@@ -1285,3 +1285,127 @@ window.addEventListener("resize", (event) => {
 ////    ////    ////    ////
 ////    ////    ////    ////
 /*    ACTIONS : WHERE THE FUNCTIONS ARE CALLED     */
+
+
+
+
+
+	//	EIGHT:  Accept clicked e.target, return Drink Object	
+	function ucMatchSelection(clickTarget){
+		//console.log(clickTarget.parentElement.children[0].src); //OKAY
+	//	console.log("TEST");
+	//	console.log(clickTarget.parentElement.children[0].src);
+		//let i = 0;
+		for(Drink of DRINK_ARRAY){		
+			//console.log(i);
+			//console.log(Drink.src);	
+			if(Drink.src === clickTarget.parentElement.children[0].src){		
+				//console.log(Drink);  console.log("DrinkSource MATCH");
+				
+				return Drink; //returns Successful
+				}  	
+			else { //console.log("FAILURE"); 
+				}
+			
+		 }    return 1;	//return OUTSIDE for loop assures iteration
+	}
+
+
+	//    accepts a string, returns Array of Drinks w/ that string    
+	function ucMatchDrinks(anString){
+	
+	//console.log(anString);
+
+	let ucResults = [];
+	let searchTerm = anString.toLowerCase();
+	//let j = 0;/*count iterations only*/
+
+	/*    for each Drink...    */
+	for(Drink of DRINK_ARRAY){
+		//	console.log(j);/*count iterations only*/
+
+		/*    create new searchable tags Array property (include all property key:values as strings    */
+		let tags  = Object.keys(Drink).concat(Object.values(Drink));
+		//console.log(Drink.tags);
+	
+		/*    for each elements in tags...    */
+		for(let i = 0; i < tags.length ; i ++){
+
+				/*    Convert element b/c Obj v. Str. matters ?    */
+				let tagEntry = tags[i].toString();
+
+
+				
+
+				/*    IF tag matches && result Arr doesn't include Drink...    */
+				if(tagEntry.toLowerCase().includes(searchTerm) && ucResults.includes(Drink) === false){
+					//console.log("match");
+					//console.log(ucResults.length);
+					
+					ucResults.push(Drink);
+					
+
+				//console.log("RESULTS");
+				//console.log(ucResults);
+						
+				}    //		j++; /*count iterations only*/
+			}
+	}
+
+
+	 const theseResults =  ucResults; //Better Don't reassign Arrays,
+
+	 //console.log(theseResults);
+
+	return theseResults;
+    }
+
+	
+
+	function resizeCarousel(node){ //Resize all Carousels // Not in Use 
+
+		const lookHere = document.querySelectorAll('.carousel, .is-style-carousel');
+		console.log(lookHere);
+		
+		lookHere.forEach(carousel => {
+			const carouselHeight = findTallestChild(carousel) * 1.1;     // terrible fix 
+	
+			carousel.style.height = carouselHeight  + 'px';   
+			console.log(carousel.style.height);
+			console.log(carouselHeight); 
+	   
+		});
+	}
+
+	
+	function ucAddPaginationLeftArrowToCarousel(){
+		// Find all Query blocks with carousel style
+		const carousels = document.querySelectorAll('.is-style-carousel.wp-block-query');
+		
+		if(carousels){
+			carousels.forEach(carousel => {
+				// Check if pagination container exists, if not create it
+				let paginationContainer = carousel.querySelector('.wp-block-query-pagination');
+				if (!paginationContainer) {
+					paginationContainer = document.createElement('div');
+					paginationContainer.className = 'wp-block-query-pagination';
+					carousel.appendChild(paginationContainer);
+				}
+				
+				// Create and insert previous button if it doesn't exist
+				if (!carousel.querySelector('.wp-block-query-pagination-previous')) {
+					const prevButton = document.createElement('a');
+					prevButton.href = '#last-post';
+					prevButton.className = 'wp-block-query-pagination-previous';
+					prevButton.setAttribute('data-slide', 'last');
+					prevButton.textContent = 'Previous Page';
+					
+					// Insert at the start of pagination container
+					paginationContainer.insertBefore(prevButton, paginationContainer.firstChild);
+				}
+			});
+		}
+	}
+
+
+

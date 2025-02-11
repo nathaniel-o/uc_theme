@@ -1,0 +1,75 @@
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+
+<!-- HOME.HTML tries to OVERRIDE POST-CONTENT with POSTS, 
+      so parts need be added to the Template Directly! -->
+
+
+	  
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group">
+	<!-- wp:pattern {"slug":"uc-search-bar" } /-->
+
+    <!-- wp:pattern {"slug":"uc-slideshow"} /-->
+
+	 <!-- wp:query {"queryId":1,"query":{"perPage":50,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false}} -->
+	 <div class="wp-block-query">
+        <!-- wp:post-template {"layout":{"type":"grid","columnCount":1}} -->
+            <!-- wp:columns {"verticalAlignment":"center"} -->
+            <div class="wp-block-columns are-vertically-aligned-center">
+                <!-- wp:column {"width":"40%"} -->
+                <div class="wp-block-column" style="flex-basis:40%">
+                    <!-- wp:post-featured-image {"isLink":true,"width":"100%","height":"auto"} /-->
+                </div>
+                <!-- /wp:column -->
+
+                <!-- wp:column {"width":"60%"} -->
+                <div class="wp-block-column" style="flex-basis:60%">
+                    <!-- wp:post-title {"isLink":true,"fontSize":"x-large"} /-->
+                    <!-- wp:group {"className":"drink-metadata"} -->
+                    <div class="wp-block-group drink-metadata">
+                        <!-- wp:list -->
+                        <ul>
+                            <!-- wp:list-item -->
+                            <li><em>Category</em>: <!-- wp:post-terms {"term":"drinks"} /--></li>
+                            <!-- /wp:list-item -->
+                            <!-- wp:list-item -->
+                            <li><em>Color</em>: <!-- wp:post-custom-field {"key":"drink_color"} /--></li>
+                            <!-- /wp:list-item -->
+                            <!-- wp:list-item -->
+                            <li><em>Glass</em>: <!-- wp:post-custom-field {"key":"drink_glass"} /--></li>
+                            <!-- /wp:list-item -->
+                            <!-- wp:list-item -->
+                            <li><em>Garnish</em>: <!-- wp:post-custom-field {"key":"drink_garnish1"} /--></li>
+                            <!-- /wp:list-item -->
+                            <!-- wp:list-item -->
+                            <li><em>Base</em>: <!-- wp:post-custom-field {"key":"drink_base"} /--></li>
+                            <!-- /wp:list-item -->
+                            <!-- wp:list-item -->
+                            <li><em>Ice</em>: <!-- wp:post-custom-field {"key":"drink_ice"} /--></li>
+                            <!-- /wp:list-item -->
+                        </ul>
+                        <!-- /wp:list -->
+                    </div>
+                    <!-- /wp:group -->
+                    <!-- wp:read-more {"content":"Read More","style":{"spacing":{"margin":{"top":"1rem"}}}} /-->
+                    <!-- wp:post-date /-->
+                </div>
+                <!-- /wp:column -->
+            </div>
+            <!-- /wp:columns -->
+        <!-- /wp:post-template -->
+        
+        <!-- wp:query-pagination -->
+            <!-- wp:query-pagination-previous /-->
+            <!-- wp:query-pagination-numbers /-->
+            <!-- wp:query-pagination-next /-->
+        <!-- /wp:query-pagination -->
+    </div>
+    <!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->
+
+
+

@@ -662,7 +662,7 @@
 			},
 			"h2": {
 				"color": {
-					"text": "red" 
+					"text": "" 
 					},
 				"typography": {
 					"fontSize": "var:preset|font-size|x-large"

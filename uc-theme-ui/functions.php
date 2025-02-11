@@ -443,6 +443,75 @@ function uc_filter_carousel($srchStr, $drink_posts, $num_slides, $show_titles = 
     return generate_slideshow_slides($slideshow_images, $show_titles, $show_content);
 }
 
+// Generate metadata list for a post
+function uc_generate_metadata_list($post_id) {
+    $drinks = get_the_terms($post_id, 'drinks');
+    $color = get_post_meta($post_id, 'drink_color', true);
+    $glass = get_post_meta($post_id, 'drink_glass', true);
+    $garnish = get_post_meta($post_id, 'drink_garnish1', true);
+    $base = get_post_meta($post_id, 'drink_base', true);
+    $ice = get_post_meta($post_id, 'drink_ice', true);
+
+    $output = "<!-- wp:list -->\n<ul>";
+    
+    if ($drinks) {
+        $output .= sprintf("<li><em>Category</em>: %s</li>\n", esc_html($drinks[0]->name));
+    }
+    if ($color) {
+        $output .= sprintf("<li><em>Color</em>: %s</li>\n", esc_html($color));
+    }
+    if ($glass) {
+        $output .= sprintf("<li><em>Glass</em>: %s</li>\n", esc_html($glass));
+    }
+    if ($garnish) {
+        $output .= sprintf("<li><em>Garnish</em>: %s</li>\n", esc_html($garnish));
+    }
+    if ($base) {
+        $output .= sprintf("<li><em>Base</em>: %s</li>\n", esc_html($base));
+    }
+    if ($ice) {
+        $output .= sprintf("<li><em>Ice</em>: %s</li>\n", esc_html($ice));
+    }
+    
+    $output .= "</ul>\n<!-- /wp:list -->";
+    return $output;
+}
+
+// Update all drink post excerpts
+function uc_update_all_drink_excerpts() {
+    $drinks_query = new WP_Query(array(
+        'post_type' => 'post',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'drinks',
+                'operator' => 'EXISTS'
+            )
+        ),
+        'posts_per_page' => -1
+    ));
+
+    if ($drinks_query->have_posts()) {
+        while ($drinks_query->have_posts()) {
+            $drinks_query->the_post();
+            $post_id = get_the_ID();
+            $new_excerpt = uc_generate_metadata_list($post_id);
+            
+            wp_update_post(array(
+                'ID' => $post_id,
+                'post_excerpt' => $new_excerpt
+            ));
+        }
+        wp_reset_postdata();
+    }
+}
+
+// Uncomment the following line to update all excerpts, then comment it out again
+add_action('init', 'uc_update_all_drink_excerpts');
+
+
+
+
+
 
 
 

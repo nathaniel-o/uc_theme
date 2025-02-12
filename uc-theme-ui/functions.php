@@ -452,28 +452,27 @@ function uc_generate_metadata_list($post_id) {
     $base = get_post_meta($post_id, 'drink_base', true);
     $ice = get_post_meta($post_id, 'drink_ice', true);
 
-    $output = "<!-- wp:list -->\n<ul>";
+    $output = '';
     
     if ($drinks) {
-        $output .= sprintf("<li><em>Category</em>: %s</li>\n", esc_html($drinks[0]->name));
+        $output .= sprintf("Category: %s ", esc_html($drinks[0]->name));
     }
     if ($color) {
-        $output .= sprintf("<li><em>Color</em>: %s</li>\n", esc_html($color));
+        $output .= sprintf("Color: %s ", esc_html($color));
     }
     if ($glass) {
-        $output .= sprintf("<li><em>Glass</em>: %s</li>\n", esc_html($glass));
+        $output .= sprintf("Glass: %s ", esc_html($glass));
     }
     if ($garnish) {
-        $output .= sprintf("<li><em>Garnish</em>: %s</li>\n", esc_html($garnish));
+        $output .= sprintf("Garnish: %s ", esc_html($garnish));
     }
     if ($base) {
-        $output .= sprintf("<li><em>Base</em>: %s</li>\n", esc_html($base));
+        $output .= sprintf("Base: %s ", esc_html($base));
     }
     if ($ice) {
-        $output .= sprintf("<li><em>Ice</em>: %s</li>\n", esc_html($ice));
+        $output .= sprintf("Ice: %s", esc_html($ice));
     }
     
-    $output .= "</ul>\n<!-- /wp:list -->";
     return $output;
 }
 

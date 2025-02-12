@@ -445,6 +445,14 @@ function uc_filter_carousel($srchStr, $drink_posts, $num_slides, $show_titles = 
 
 // Generate metadata list for a post
 function uc_generate_metadata_list($post_id) {
+    $content = get_post_field('post_content', $post_id);
+    
+    // Find the <ul> list in the content
+    if (preg_match('/<ul>(.*?)<\/ul>/s', $content, $matches)) {
+        return $matches[0]; // Returns the full <ul> with its contents
+    }
+    
+    // Fallback to generating the list if not found in content
     $drinks = get_the_terms($post_id, 'drinks');
     $color = get_post_meta($post_id, 'drink_color', true);
     $glass = get_post_meta($post_id, 'drink_glass', true);
@@ -452,27 +460,28 @@ function uc_generate_metadata_list($post_id) {
     $base = get_post_meta($post_id, 'drink_base', true);
     $ice = get_post_meta($post_id, 'drink_ice', true);
 
-    $output = '';
+    $output = "<ul>\n";
     
     if ($drinks) {
-        $output .= sprintf("Category: %s ", esc_html($drinks[0]->name));
+        $output .= sprintf("<li><em>Category</em>: %s</li>\n", esc_html($drinks[0]->name));
     }
     if ($color) {
-        $output .= sprintf("Color: %s ", esc_html($color));
+        $output .= sprintf("<li><em>Color</em>: %s</li>\n", esc_html($color));
     }
     if ($glass) {
-        $output .= sprintf("Glass: %s ", esc_html($glass));
+        $output .= sprintf("<li><em>Glass</em>: %s</li>\n", esc_html($glass));
     }
     if ($garnish) {
-        $output .= sprintf("Garnish: %s ", esc_html($garnish));
+        $output .= sprintf("<li><em>Garnish</em>: %s</li>\n", esc_html($garnish));
     }
     if ($base) {
-        $output .= sprintf("Base: %s ", esc_html($base));
+        $output .= sprintf("<li><em>Base</em>: %s</li>\n", esc_html($base));
     }
     if ($ice) {
-        $output .= sprintf("Ice: %s", esc_html($ice));
+        $output .= sprintf("<li><em>Ice</em>: %s</li>\n", esc_html($ice));
     }
     
+    $output .= "</ul>";
     return $output;
 }
 

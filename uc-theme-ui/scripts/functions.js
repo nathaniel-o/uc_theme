@@ -26,7 +26,8 @@
 					//bgVar.concat('var(--');
 					bgVar = bgVar.concat(pageID);
 					bgVar = bgVar.concat("-bg-img)");
-						//	console.log(bgVar);  
+							console.log(bgVar);  
+
 					
 					//anPage[0].style.backgroundImage = "var(--romantic-bg-img)";
 
@@ -130,33 +131,48 @@
 			});
 
 
-			/*
-				Remove 3 digits of anString 
 
-				modifies original string
-				*/
 
-			function ucRemovePrefix(anString){ 
-					/*ACCEPTS tags[i] in .pop-off, column constructing for loop above*/
 
-					let ucStr = Array.from(anString);
-					//console.log(ucStr);
-					//console.log("Arr");
 
-					/*quick fix*/ 
-					ucStr.shift();
-					ucStr.shift(); ucStr.shift();
-
+			function updateImageLinks() {
+				// Find all figures with images and captions
+				const figures = document.querySelectorAll('figure.wp-block-image');
+				
+				figures.forEach(figure => {
+					const link = figure.querySelector('a');
+					const caption = figure.querySelector('figcaption');
 					
-					/*	join() excludes commas from array, unlike .toString()	*/
-					anString = ucStr.join("");
-					//console.log(anString);
-					//console.log("final");
-
-
-
-					return anString;
+					if (link && caption) {
+						// Get the href from the existing link
+						const href = link.getAttribute('href');
+						
+						// Create a new link that will wrap everything
+						const newLink = document.createElement('a');
+						newLink.href = href;
+						
+						// Move the image into the new link
+						const img = link.querySelector('img');
+						newLink.appendChild(img);
+						
+						// Move the figcaption into the new link
+						newLink.appendChild(caption);
+						
+						// Remove the old link
+						link.remove();
+						
+						// Add the new link to the figure
+						figure.appendChild(newLink);
+					}
+				});
 			}
+			
+			// Run when the DOM is fully loaded
+			document.addEventListener('DOMContentLoaded', updateImageLinks);
+
+
+
+			
 
 
 
@@ -515,3 +531,60 @@
 			
 			
 		});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		/*Remove 3 digits of anString 
+
+		modifies original string
+		*/
+
+	function ucRemovePrefix(anString){ 
+			/*ACCEPTS tags[i] in .pop-off, column constructing for loop above*/
+
+			let ucStr = Array.from(anString);
+			//console.log(ucStr);
+			//console.log("Arr");
+
+			/*quick fix*/ 
+			ucStr.shift();
+			ucStr.shift(); ucStr.shift();
+
+			
+			/*	join() excludes commas from array, unlike .toString()	*/
+			anString = ucStr.join("");
+			//console.log(anString);
+			//console.log("final");
+
+
+
+			return anString;
+	}

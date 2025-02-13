@@ -1,20 +1,5 @@
 <?php
 
-//add_theme_support( 'custom-logo' );
-
-#    SOME EXAMPLES 
-
-	#prints full URL to document
- 	// echo get_theme_file_uri('/scripts/functions.js'); 
-
-	#PRINT TO CONSOLE
-	//echo "<script>console.log('PAGE INFO:  ".  $uc_page_id  ."');</script>" ;
-	
-#    SOME EXAMPLES
-
-
-
-
 
 add_action( 'wp_enqueue_scripts', 'uc_enqueue_script' );
 add_action( 'wp_enqueue_scripts', 'uc_enqueue_styles'  );
@@ -42,16 +27,8 @@ function uc_enqueue_script(){
 
         #prints only /wordpress/page-slug/
 	        //echo $_SERVER['REQUEST_URI'];     
-
-	
-		
 		#     is the same as WP's  $uc_page_id
-
-
 }
-
-
-
 
 
 add_action( 'after_setup_theme', 'theme_support_setup' );
@@ -93,6 +70,8 @@ function uc_page_id() {
         
         // Remove 'wordpress/' from the beginning if it exists
         $slug = preg_replace('/^wordpress\//', '', $slug);
+        $slug = preg_replace('/^wordpress2\//', '', $slug); //  for both local copies
+
         
         // Set to 'home' if empty
         if (empty($slug)) {
@@ -107,63 +86,6 @@ function uc_page_id() {
 }
 add_action('init', 'uc_page_id');  
   #Must pass REFERENCE to a function, as a STRING to Hook
-
-
-
-
-# This Function is called by header.php, 
-function uc_dynamic_h1($uc_page_id){
-
-	//Begin string so concatenation works
-	$dynamic_h1 = "<h1>";
-
-
-	#  If title follows "____ Cocktails, one line format... 
-	if ($uc_page_id !== "home" && str_contains($uc_page_id, "gallery") == false && str_contains($uc_page_id, "contact") == false ){
-		//$dynamic_h1 .= "&#8203;~&nbsp; " . ucfirst($uc_page_id) . " ~ &#8203; " . "Cocktails </h1>";	
-		//$dynamic_h1 .=  ucfirst($uc_page_id) . " Cocktails</h1>" ;
-
-
-		if (str_contains($uc_page_id, "-cocktails")){
-
-			$page_bits = explode("-", $uc_page_id);  
-	
-			for($i = 0; $i < count($page_bits) ; $i++){
-				//echo "<pre>" . $i . $page_bits[$i] . "</pre>" ;
-				$dynamic_h1 .= " ";
-				$dynamic_h1 .= ucfirst($page_bits[$i]) ; 
-				
-			}
-			//echo "<pre> HELP:" . $dynamic_h1 . ": HELP</pre>" ;
-			
-	
-		}
-
-		$dynamic_h1 .= "</h1>";
-	} 
-
-	else {  #otherwise, complete first line
-		$dynamic_h1 .= " Untouched Cocktails</h1>";
-	}
-	
-	return $dynamic_h1;
-}
-
-function uc_dynamic_tagline($uc_page_id){
-
-	$dynamic_h1 = '<h1>';
-	#  Generate 2nd lines where <h1> is nonstandard
-	if (str_contains($uc_page_id, "gallery")){
-		$dynamic_h1 .= " ~ Gallery Page ~ </h1>";
-	}  else if (str_contains($uc_page_id, "contact")){
-        $dynamic_h1 .= "Learn More </h1>";
-	} else if (str_contains($uc_page_id, "home")){ 
-		$dynamic_h1 .= "Celebrating ~Every~ Occasion</h1>";
-	}
-
-
-	return $dynamic_h1;
-}
 
 
 
@@ -443,6 +365,11 @@ function uc_filter_carousel($srchStr, $drink_posts, $num_slides, $show_titles = 
     return generate_slideshow_slides($slideshow_images, $show_titles, $show_content);
 }
 
+
+
+
+
+
 // Generate metadata list for a post
 function uc_generate_metadata_list($post_id) {
     $content = get_post_field('post_content', $post_id);
@@ -514,12 +441,73 @@ function uc_update_all_drink_excerpts() {
 }
 
 // Uncomment the following line to update all excerpts, then comment it out again
-add_action('init', 'uc_update_all_drink_excerpts');
+//add_action('init', 'uc_update_all_drink_excerpts');
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+# This Function is Not in Use. 
+function uc_dynamic_h1($uc_page_id){
+
+	//Begin string so concatenation works
+	$dynamic_h1 = "<h1>";
+
+
+	#  If title follows "____ Cocktails, one line format... 
+	if ($uc_page_id !== "home" && str_contains($uc_page_id, "gallery") == false && str_contains($uc_page_id, "contact") == false ){
+		//$dynamic_h1 .= "&#8203;~&nbsp; " . ucfirst($uc_page_id) . " ~ &#8203; " . "Cocktails </h1>";	
+		//$dynamic_h1 .=  ucfirst($uc_page_id) . " Cocktails</h1>" ;
+
+
+		if (str_contains($uc_page_id, "-cocktails")){
+
+			$page_bits = explode("-", $uc_page_id);  
+	
+			for($i = 0; $i < count($page_bits) ; $i++){
+				//echo "<pre>" . $i . $page_bits[$i] . "</pre>" ;
+				$dynamic_h1 .= " ";
+				$dynamic_h1 .= ucfirst($page_bits[$i]) ; 
+				
+			}
+			//echo "<pre> HELP:" . $dynamic_h1 . ": HELP</pre>" ;
+			
+	
+		}
+
+		$dynamic_h1 .= "</h1>";
+	} 
+
+	else {  #otherwise, complete first line
+		$dynamic_h1 .= " Untouched Cocktails</h1>";
+	}
+	
+	return $dynamic_h1;
+}
+
+function uc_dynamic_tagline($uc_page_id){
+
+	$dynamic_h1 = '<h1>';
+	#  Generate 2nd lines where <h1> is nonstandard
+	if (str_contains($uc_page_id, "gallery")){
+		$dynamic_h1 .= " ~ Gallery Page ~ </h1>";
+	}  else if (str_contains($uc_page_id, "contact")){
+        $dynamic_h1 .= "Learn More </h1>";
+	} else if (str_contains($uc_page_id, "home")){ 
+		$dynamic_h1 .= "Celebrating ~Every~ Occasion</h1>";
+	}
+
+
+	return $dynamic_h1;
+}
 
 

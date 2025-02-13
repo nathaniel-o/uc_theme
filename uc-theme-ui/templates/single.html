@@ -5,26 +5,16 @@
 
 
 <!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
-<main class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained">
-    <div class="entry-content wp-block-post-content has-global-padding is-layout-constrained">
-        <div class="wp-block-group has-global-padding is-layout-constrained">
+<main class="wp-block-group has-global-padding">
+    <div class="entry-content wp-block-post-content has-global-padding">
+        <div class="wp-block-group has-global-padding">
             <figure class="pop-off">
-                <!-- wp:post-featured-image {"align":"wide"} /-->
                 
-                <!-- wp:heading {"level":1} -->
-                <h1 class="wp-block-heading"><!-- wp:post-title /--></h1>
-                <!-- /wp:heading -->
+               
+                    <!-- wp:post-content {} /-->
+           
                 
-                <div class="tagged">
-                    <ul class="col1">
-                        <!-- wp:post-terms {"term":"category"} /-->
-                    </ul>
-                    <ul class="col2">
-                        <!-- wp:post-terms {"term":"post_tag"} /-->
-                    </ul>
-                </div>
                 
-                <!-- w  p:  post-content /-->
                 
                 <button class="close-button outside">X</button>
             </figure>
@@ -33,7 +23,7 @@
 </main>
 <!-- /wp:group -->
 
-<!-- wp    :    post-content /-->
+<!--  w  p  :  p  ost-content /-->
 
 
 
@@ -41,6 +31,14 @@
 
 <style>
     @media (orientation: portrait) {
+
+        /* The Post Titles on Sinle.html*/
+        .wp-block-media-text__content > h1.wp-block-heading{
+            font-size: 1.5em;
+            text-wrap: balance;
+            align-self: center;
+        }
+
         .pop-off {
             width: 90vw;
             height: auto;
@@ -61,8 +59,20 @@
     }
 
     @media (orientation: landscape) {
+
+        .wp-block-media-text{
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* The Post Titles on Sinle.html*/
+        .wp-block-media-text__content > h1.wp-block-heading{
+            font-size: 1.5em;
+            text-wrap: nowrap;
+            width: 100%;
+        }
         .pop-off {
-            width: 55vw;
+            min-width: 55vw;
             height: auto;
             min-height: fit-content;
             margin: 2em auto;
@@ -123,6 +133,13 @@
             color: #b8b5ff;
             margin: 0.5em 0;
             text-align: center;
+        }
+
+        .wp-block-media-text__content{
+        
+            background-color: var(--details-clr-bone-white);
+            color: black; 
+            border-radius: 8px;
         }
 
         .close-button {

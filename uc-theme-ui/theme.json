@@ -657,7 +657,17 @@
 			},
 			"h1": {
 				"typography": {
-					"fontSize": "var:preset|font-size|xx-large"
+					"fontSize": "var:preset|font-size|xx-large",
+					"textAlign": "center"
+				},
+				"color": {
+					"text": "#b8b5ff"
+				},
+				"spacing": {
+					"margin": {
+						"top": "0.5em",
+						"bottom": "0.5em"
+					}
 				}
 			},
 			"h2": {

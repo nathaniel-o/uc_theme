@@ -95,7 +95,6 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
     /* Transitions */
     --default-transition: all 0.2s;
 }
-
 /* combine buttons with WP */
 :root :where(.wp-element-button, .wp-block-button__link), .std-button{
 
@@ -126,6 +125,10 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 
 
 
+
+
+
+
 /*		GLOBAL STYLES		*/
 /*		GLOBAL STYLES		*/
 @media all{ 
@@ -141,81 +144,162 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	}
 
 
+	.pop-off {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: rgba(0, 0, 0, 0.9);
+		border: 1.2em ridge var(--details-clr-bone-white);
+		border-radius: 8px;
+		z-index: 5;
+		position: relative;
+		overflow: visible;
+	}
 
-.wp-block-jetpack-slideshow_swiper-wrapper {
-    /* Add these to ensure proper centering */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+	.tagged {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		background-color: rgba(255, 243, 224, 0.95);
+		border-radius: 8px;
+		margin-top: 1em;
+		color: rgb(36,21,71);
+	}
 
-.wp-block-jetpack-slideshow_slide {
-    /* Ensure slides are centered */
-    display: flex !important; /* Override any Swiper defaults */
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
+	.tagged ul {
+		margin: 0;
+		padding: 0 1em;
+		list-style: none;
+	}
 
-.wp-block-jetpack-slideshow_slide figure {
-    /* Center the figure content */
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    padding: 1em;
-    margin: 0;
-}
+	.tagged li {
+		font-size: 1.2rem;
+		line-height: 1.4;
+		font-family: "Gill Sans MT", sans-serif;
+		text-align: center;
+		
+	}
 
-.wp-block-jetpack-slideshow_slide img {
-    /* Ensure images are centered */
-    margin: 0 auto;
-    object-fit: contain;
-}
+	
 
-.wp-block-jetpack-slideshow_slide figcaption {
-    /* Center captions and remove extra spacing */
-    width: 100%;
-    margin: 0;
-    padding: 1em 0;
-    text-align: center;
-}
+	.wp-block-media-text{
 
-/* Base styles for images in both carousel and gallery */
-.wp-block-post-featured-image figure,
-.wp-block-jetpack-slideshow_slide figure {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1em; /* Space between image and content */
-}
+		gap: 1em; /* Space between image and content */
 
-/* Portrait images */
-.portrait {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1em; /* Space between image and content */
-}
+	}
 
-/* Landscape images */
-.landscape {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1em; /* Space between image and content */
-}
+	.wp-block-media-text__content{
+	
+		background-color: var(--details-clr-bone-white);
+		color: black; 
+		border-radius: 8px;
+	}
+
+	.close-button {
+		position: absolute;
+		top: -5%;
+		right: -5%;
+		font-weight: 750;
+		font-size: 3rem;
+		background-color: transparent;
+		color: var(--details-clr-bone-white);
+		text-shadow: 1px 3px 7px #dc699a;
+		border: none;
+		z-index: 6;
+		cursor: pointer;
+	}
+
+	.wp-block-post-content {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.entry-content {
+		margin: 0;
+		padding: 0;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+
+
+	.wp-block-jetpack-slideshow_swiper-wrapper {
+		/* Add these to ensure proper centering */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.wp-block-jetpack-slideshow_slide {
+		/* Ensure slides are centered */
+		display: flex !important; /* Override any Swiper defaults */
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.wp-block-jetpack-slideshow_slide figure {
+		/* Center the figure content */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		height: 100%;
+		padding: 1em;
+		margin: 0;
+	}
+
+	.wp-block-jetpack-slideshow_slide img {
+		/* Ensure images are centered */
+		margin: 0 auto;
+		object-fit: contain;
+	}
+
+	.wp-block-jetpack-slideshow_slide figcaption {
+		/* Center captions and remove extra spacing */
+		width: 100%;
+		margin: 0;
+		padding: 1em 0;
+		text-align: center;
+	}
+
+	/* Base styles for images in both carousel and gallery */
+	.wp-block-post-featured-image figure,
+	.wp-block-jetpack-slideshow_slide figure {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 1em; /* Space between image and content */
+	}
+
+	/* Portrait images */
+	.portrait {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1em; /* Space between image and content */
+	}
+
+	/* Landscape images */
+	.landscape {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1em; /* Space between image and content */
+	}
 
 /* Specific adjustments for gallery grid */
 .wp-block-post-template.is-flex-container figure {
@@ -732,6 +816,38 @@ a.fp-button-link:hover{
 @media screen and (orientation: landscape){
 
 
+	.wp-block-media-text{
+		display: flex;
+		flex-direction: row;
+
+	}
+
+	/* The Post Titles on Sinle.html*/
+	.wp-block-media-text__content > h1.wp-block-heading{
+		font-size: 1.5em;
+		text-wrap: nowrap;
+		width: 100%;
+	}
+	.pop-off {
+		min-width: 55vw;
+		height: auto;
+		min-height: fit-content;
+		margin: 2em auto;
+		padding: 1em;
+	}
+	
+	.pop-off img {
+		max-height: 50vh;
+		width: 100%;
+		object-fit: contain;
+	}
+	
+	.tagged {
+		flex-direction: row;
+		padding: 1em;
+		gap: 1em;
+	}
+
 	.vertUne{ padding: 1em 0 0 0;}
 	.vertDeux{ padding: 3em 0 0 0; }
 	.vertTrois{ padding: 9em 0 0 0; }
@@ -811,6 +927,8 @@ a.fp-button-link:hover{
 	.wp-block-columns{
 		flex-wrap: nowrap !important;
 	}
+
+
 
 	
 	
@@ -1222,9 +1340,41 @@ a.fp-button-link:hover{
 
 
 
+
+
 /*		MOBILE STYLES		*/
 /*		MOBILE STYLES		*/
 @media (orientation:portrait){
+	
+	/* The Post Titles on Sinle.html*/
+	.wp-block-media-text__content > h1.wp-block-heading{
+		font-size: 1.5em;
+		text-wrap: balance;
+		align-self: center;
+	}
+
+	.pop-off {
+		width: 90vw;
+		height: auto;
+		min-height: fit-content;
+		margin: 2em auto;
+		padding: 1em;
+	}
+	
+	.pop-off img {
+		max-height: 50vh;
+		width: 100%;
+		object-fit: contain;
+	}
+	
+	.tagged {
+		flex-direction: column;
+	}
+
+
+
+	
+	
 	body > div.wp-site-blocks > header > div{  /*  The WP Block Group which wraps Nav  */
 	min-width: 85%; /* Okay */ 
 	/*flex-grow: 1; Too Wide, would require set parent width too  */
@@ -1898,6 +2048,25 @@ a.fp-button-link:hover{
 }
 /*    END SPECIAL CASES    */
 /*    END SPECIAL CASES    */
+
+.drink-metadata-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.drink-metadata-list li {
+    margin-bottom: 0.5em;
+    padding-left: 1.5em;
+    position: relative;
+}
+
+.drink-metadata-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: currentColor;
+}
 
 
 

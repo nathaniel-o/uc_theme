@@ -91,10 +91,13 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
     --summertime-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
     --springtime-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
     --fireplace-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/New-Fireplace-Cocktails-Mockup-with-cluster-kinderblocks.pptx.png');
-    
-    /* Transitions */
+	--winter-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Winter-Cocktails-Pages-mockup.pptx-1.png');
+    --autumnal-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Autumnal-Cocktails-Pages-mockup.pptx-1.png');
+		
+	/* Transitions */
     --default-transition: all 0.2s;
 }
+
 /* combine buttons with WP */
 :root :where(.wp-element-button, .wp-block-button__link), .std-button{
 
@@ -134,6 +137,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 @media all{ 
 
 
+	nav{ min-width: 80vw; }
 	a{ 
 		text-decoration: none;
 	}
@@ -154,6 +158,31 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		z-index: 5;
 		position: relative;
 		overflow: visible;
+	}
+
+	.pop-off .wp-block-media-text {
+		display: flex;
+		width: 100%;
+		gap: 2em;
+	}
+
+	.pop-off .wp-block-media-text__media {
+		flex: 0 0 40%;
+		max-width: 50%;
+	}
+
+	.pop-off .wp-block-media-text__content {
+		flex: 1 1 60%; /* grow shrink basis */
+		min-width: 0; /* Allows content to shrink below its minimum content size */
+		padding: 1em;
+	}
+
+
+	
+	.pop-off img {
+		width: 100%;
+		height: auto;
+		object-fit: contain;
 	}
 
 	.tagged {
@@ -180,7 +209,14 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		
 	}
 
-	
+	.wp-block-group{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.subheads{
+		margin: 0;
+	}
 
 	.wp-block-media-text{
 
@@ -193,7 +229,15 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		background-color: var(--details-clr-bone-white);
 		color: black; 
 		border-radius: 8px;
+
 	}
+
+	.wp-block-list{
+
+		font-size: 1em;
+
+	}
+
 
 	.close-button {
 		position: absolute;
@@ -300,6 +344,9 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		align-items: center;
 		gap: 1em; /* Space between image and content */
 	}
+
+	/*  Space between Query Loop posts' entries  */ 
+	li.wp-block-post{  margin: 4em 0; }
 
 /* Specific adjustments for gallery grid */
 .wp-block-post-template.is-flex-container figure {
@@ -824,7 +871,7 @@ a.fp-button-link:hover{
 
 	/* The Post Titles on Sinle.html*/
 	.wp-block-media-text__content > h1.wp-block-heading{
-		font-size: 1.5em;
+		font-size: 1.25em;
 		text-wrap: nowrap;
 		width: 100%;
 	}
@@ -992,7 +1039,7 @@ a.fp-button-link:hover{
 		}
 
 		.quote{
-			font-weight: bold;
+			/* font-weight: bold; */
 			font-style: italic;
 
 
@@ -1342,17 +1389,14 @@ a.fp-button-link:hover{
 
 
 
+
+
+
 /*		MOBILE STYLES		*/
 /*		MOBILE STYLES		*/
 @media (orientation:portrait){
 	
-	/* The Post Titles on Sinle.html*/
-	.wp-block-media-text__content > h1.wp-block-heading{
-		font-size: 1.5em;
-		text-wrap: balance;
-		align-self: center;
-	}
-
+	
 	.pop-off {
 		width: 90vw;
 		height: auto;
@@ -1367,6 +1411,15 @@ a.fp-button-link:hover{
 		object-fit: contain;
 	}
 	
+	.pop-off .wp-block-media-text {
+		flex-direction: column;
+	}
+	
+	.pop-off .wp-block-media-text__media {
+		flex: 0 0 auto;
+		max-width: 100%;
+	}
+
 	.tagged {
 		flex-direction: column;
 	}

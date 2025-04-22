@@ -36,6 +36,7 @@
 
 	#action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); 
      
+	$body = '';
 
 	#$whereDo = htmlspecialchars($_SERVER["PHP_SELF"]); 
 

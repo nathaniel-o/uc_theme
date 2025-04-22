@@ -41,7 +41,7 @@
                 $filter_carousel=uc_random_carousel($drink_posts, 5, 0, 1);
 
             }
-            error_log('filter_carousel: ' . print_r($filter_carousel, true));
+            //error_log('filter_carousel: ' . print_r($filter_carousel, true));
 
             echo $filter_carousel;
 

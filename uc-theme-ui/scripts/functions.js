@@ -97,16 +97,19 @@
 				let drinkImage = anImage;
 				let figure = anFigure;	
 				//console.log('Image src:', drinkImage.src);
-				
 				//console.log('Image complete:', drinkImage.complete);		
-				if (drinkImage.complete) {
-					// Image is already loaded, process immediately
-					//console.log(drinkImage.naturalHeight);
-					//console.log(drinkImage.naturalWidth);
-					processImageDimensions();
-				} else {
-					// Image is not loaded yet, wait for load event
-					drinkImage.onload = processImageDimensions;
+
+				if(!figure.classList.contains("pop-off")){ //Ignore the pop-off figure which contains media & text > figure (Single Pages)
+					if (drinkImage.complete) {
+						// Image is already loaded, process immediately
+						//console.log(drinkImage.naturalHeight);
+						//console.log(drinkImage.naturalWidth);
+						processImageDimensions();
+					} else {
+						// Image is not loaded yet, wait for load event
+						drinkImage.onload = processImageDimensions;
+					}
+
 				}
 						
 				function processImageDimensions() {
@@ -125,7 +128,12 @@
 			}
 			document.addEventListener("DOMContentLoaded", (event) => {
 				// Query Selector to affect Gallery Pages' Query Body only. 
-				document.querySelectorAll('.wp-block-post-featured-image').forEach(figure => {
+				/* document.querySelectorAll('.wp-block-post-featured-image').forEach(figure => {
+					ucPortraitLandscape(figure.querySelector('img'), figure);
+				}); */
+
+				/* the logo isn't a figure by default  */ 
+				document.querySelectorAll('figure').forEach(figure => {
 					ucPortraitLandscape(figure.querySelector('img'), figure);
 				});
 			});
@@ -386,31 +394,19 @@
 
 
 
-
-
-    /* 
-	*    Customize WP Header
-	*/
-    function ucCustomizeWPHeader(){
-
-		
-
-		const theLogo = `<div class="wp-block-site-logo uc-extra-logo"><a href="http://localhost/wordpress/" class="custom-logo-link" rel="home"><img width="512" height="512" src="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x.jpg" class="custom-logo" alt="Untouched Cocktails" decoding="async" fetchpriority="high" srcset="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x.jpg 512w, http://localhost/wordpress/wp-content/uploads/2024/12/logo512x-300x300.jpg 300w, http://localhost/wordpress/wp-content/uploads/2024/12/logo512x-150x150.jpg 150w" sizes="(max-width: 512px) 100vw, 512px" data-attachment-id="2684" data-permalink="http://localhost/wordpress/logo512x/" data-orig-file="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x.jpg" data-orig-size="512,512" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="logo512x" data-image-description="" data-image-caption="" data-medium-file="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x-300x300.jpg" data-large-file="http://localhost/wordpress/wp-content/uploads/2024/12/logo512x.jpg"></a></div>`;
-
-		const mobileNav = document.querySelector(".wp-block-navigation");
-
+/**
+ * Creates an orientation handler that executes different callbacks for portrait/landscape
+ * @param {Function} portraitCallback - Function to execute in portrait mode
+ * @param {Function} landscapeCallback - Function to execute in landscape mode
+ * @returns {Function} Cleanup function to remove event listener
+ */
+	function createOrientationHandler(portraitCallback, landscapeCallback) {
 		// Function to handle orientation changes
 		function handleOrientation(mediaQuery) {
-			if (!mediaQuery.matches) { // Portrait mode
-				// Check if logo already exists to prevent duplicates
-				if (!mobileNav.querySelector('.uc-extra-logo')) {
-					mobileNav.insertAdjacentHTML('afterbegin', theLogo);
-				}
-			} else { // Landscape mode
-				const extraLogo = mobileNav.querySelector('.uc-extra-logo');
-				if (extraLogo) {
-					extraLogo.remove();
-				}
+			if (mediaQuery.matches) { // Landscape mode
+				landscapeCallback();
+			} else { // Portrait mode
+				portraitCallback();
 			}
 		}
 
@@ -422,6 +418,68 @@
 		
 		// Add listener for orientation changes
 		landscapeQuery.addEventListener('change', handleOrientation);
+
+		// Return cleanup function
+		return () => landscapeQuery.removeEventListener('change', handleOrientation);
+	}
+
+	function ucStylePopOff(){
+		const popoff = document.querySelector(".wp-block-media-text");
+		const theFig = document.querySelector(".pop-off figure");
+		console.log(theFig);
+
+		if (theFig) {
+			if (theFig.classList.contains("landscape")) {
+				// For landscape images, always use column layout
+				popoff.style.flexDirection = "column";
+			} else if (theFig.classList.contains("portrait")) {
+				createOrientationHandler(
+					// Portrait screen orientation callback
+					() => {
+						popoff.style.flexDirection = "column";
+					},
+					// Landscape screen orientation callback
+					() => {
+						popoff.style.flexDirection = "row";
+					}
+				);
+			}
+		}
+	}
+	document.addEventListener("DOMContentLoaded", (event) => {
+		ucStylePopOff();
+	});
+
+
+
+    /* 
+	*    Customize WP Header
+	*/
+    function ucCustomizeWPHeader() {
+		const theLogo = `<div class="wp-block-site-logo uc-extra-logo"><a href="untouchedcocktails.com" class="custom-logo-link" rel="home"><img width="512" height="512" src="http://untouchedcocktails.com/wp-content/uploads/2024/12/logo512x.jpg" class="custom-logo" alt="Untouched Cocktails" decoding="async" fetchpriority="high" srcset="http://untouchedcocktails.com/wp-content/uploads/2024/12/logo512x.jpg 512w, http://untouchedcocktails.com/wp-content/uploads/2024/12/logo512x-300x300.jpg 300w, http://untouchedcocktails.com/wp-content/uploads/2024/12/logo512x-150x150.jpg 150w" sizes="(max-width: 512px) 100vw, 512px" data-attachment-id="2684" data-permalink="http://localhost/wordpress/logo512x/" data-orig-file="http://untouchedcocktails.com/wp-content/uploads/2024/12/logo512x.jpg" data-orig-size="512,512" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="logo512x" data-image-description="" data-image-caption="" data-medium-file="http://untouchedcocktails.com/wp-content/uploads/2024/12/logo512x-300x300.jpg" data-large-file="http://untouchedcocktails.com/wp-content/uploads/2024/12/logo512x.jpg"></a></div>`;
+		const mobileNav = document.querySelector(".wp-block-navigation");
+	
+		createOrientationHandler(
+			// Portrait callback
+			() => {
+				if (!mobileNav.querySelector('.uc-extra-logo')) {
+					mobileNav.insertAdjacentHTML('afterbegin', theLogo);
+				}
+			},
+			// Landscape callback
+			() => {
+				const extraLogo = mobileNav.querySelector('.uc-extra-logo');
+				if (extraLogo) {
+					extraLogo.remove();
+				}
+			}
+		);
+
+
+
+
+
+
 
 		const links = Array.from(document.querySelectorAll(".wp-block-navigation-link"));
 		//console.log(links);
@@ -588,3 +646,4 @@
 
 			return anString;
 	}
+

@@ -17,6 +17,14 @@ function uc_enqueue_styles(){
 		'https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css',
 		array()
 	);
+	
+	// Add custom CSS for rotated images
+	wp_add_inline_style('uc-theme-slug', '
+		img.rotate-90 { transform: rotate(90deg); }
+		img.rotate-180 { transform: rotate(180deg); }
+		img.rotate-270 { transform: rotate(270deg); }
+		img.rotate-custom { transform: rotate(var(--rotation-angle)); }
+	');
 }
 function uc_enqueue_script(){
 	wp_enqueue_script(
@@ -518,6 +526,8 @@ function uc_dynamic_tagline($uc_page_id){
 
 	return $dynamic_h1;
 }
+
+
 
 
 

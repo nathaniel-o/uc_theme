@@ -123,10 +123,64 @@ function handle_filter_carousel() {
 
 
 
-// DEBUGGING: Add this to see if patterns are being registered
-add_action('init', function() {
-    #//error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
+add_action('wp_head', function() {
+    # FOR DEBUG //error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
+    testingBackgrounds(); 
+
 });
+
+function testingBackgrounds(){
+
+    if(is_single() ){
+        $post_id = get_the_ID();
+        echo '<script>console.log("Current Post ID: ' . esc_js($post_id) . '");</script>';
+
+        // Check if post has drinks taxonomy
+        $taxonomies = get_object_taxonomies('post');
+        if (in_array('drinks', $taxonomies)) {
+            $terms = wp_get_post_terms($post_id, 'drinks');
+            if (!empty($terms) && !is_wp_error($terms)) {
+                echo '<script>console.log("Post has Drinks taxonomy terms: ' . esc_js(implode(', ', wp_list_pluck($terms, 'name'))) . '");</script>';
+            }
+
+            // Map taxonomy terms to background image variables
+            $term_to_bg_map = array(
+                'Everyday Cocktails' => 'everyday-cocktails-bg-img',
+                'Romantic Cocktails' => 'romantic-cocktails-bg-img', 
+                'Special Occasion Cocktails' => 'special-occasion-cocktails-bg-img',
+                'Summertime Cocktails' => 'summertime-cocktails-bg-img',
+                'Springtime Cocktails' => 'springtime-cocktails-bg-img',
+                'Fireplace Cocktails' => 'fireplace-cocktails-bg-img',
+                'Wintertime Cocktails' => 'winter-cocktails-bg-img',
+                'Autumnal Cocktails' => 'autumnal-cocktails-bg-img'
+            );
+
+            foreach ($terms as $term) {
+                if (isset($term_to_bg_map[$term->name])) {
+                    $bg_var = $term_to_bg_map[$term->name];
+/*                     echo '<script>console.log("Background variable for ' . esc_js($term->name) . ': var(--' . esc_js($bg_var) . ')");</script>';
+ */                    /*  Insert the Background Image for Drink Posts  */ 
+                    echo '<script>var drinkBg = "var(--' . esc_js($bg_var) . ')";</script>';
+                    echo '<script>ucInsertDrinkPostsBg(drinkBg);</script>';
+                }
+                /* else {
+                    echo '<script>console.log("No background variable found for ' . esc_js($term->name) . '");</script>';
+                } */
+            }
+        }
+    } /*  end IF is_single()  */
+    
+    else {
+        /* DOM Listener here, whereas for posts it's contained in JS function ucInsertDrinkPostsBg()s */ 
+        echo '<script>document.addEventListener("DOMContentLoaded", () => {ucInsertTierOneBg();});</script>';
+    }
+    
+
+    
+
+
+}
+
 
 
 
@@ -467,7 +521,7 @@ function uc_clear_all_drink_excerpts() {
 }
 
 // Uncomment the following line to run once, then comment it out again
-add_action('init', 'uc_clear_all_drink_excerpts');
+//add_action('init', 'uc_clear_all_drink_excerpts');
 
 
 
@@ -522,7 +576,6 @@ function uc_dynamic_tagline($uc_page_id){
 	} else if (str_contains($uc_page_id, "home")){ 
 		$dynamic_h1 .= "Celebrating ~Every~ Occasion</h1>";
 	}
-
 
 	return $dynamic_h1;
 }

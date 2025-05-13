@@ -4,20 +4,15 @@
 *
 */
 
-		/*    PRE_LOAD FUNCTIONS : CALLED BY OLD HEADER.PHP    
-				////    ////    ////    ////    ////     */
+		
 
-		/*
-					MODIFIES <div="wp-site-blocks".style.backgroundImage using 
-					scoped pageID
-				*/
-		function ucInsertBackground(){
+	/*
+		MODIFIES <div="wp-site-blocks".style.backgroundImage using 
+		scoped pageID
+	*/
+	function ucInsertTierOneBg(){
 
 					let anPage = document.querySelector("body");
-
-					/*  
-					
-					*/
 					
 					/* WORKS with single quotes in CSS URL variables!! &&
 						ALSO with String.concat() NOT string += approach 
@@ -27,17 +22,37 @@
 					bgVar = bgVar.concat(pageID);
 					bgVar = bgVar.concat("-bg-img)");
 							console.log(bgVar);  
-
 					
 					//anPage[0].style.backgroundImage = "var(--romantic-bg-img)";
-
 					anPage.style.backgroundImage =  bgVar  ;
 					//document.body.style.background = bgVar;
 					//console.log(anPage);
+	}
+	function ucInsertDrinkPostsBg(bgVar){
 
+		let anPage = document.querySelector("body");
+		
+		if (!anPage) {
+			console.warn("Body element not found, retrying after DOM load");
+			document.addEventListener("DOMContentLoaded", () => {
+				anPage = document.querySelector("body");
+				if (anPage) {
+					console.log(bgVar);
+					console.log(anPage);
+					anPage.style.backgroundImage = bgVar;
+				}
+			});
+			return;
 		}
+		
+		console.log(bgVar);
+		console.log(anPage);
+		//anPage.style.backgroundImage = bgVar;
+	}
 
-		function ucColorH1(){
+
+
+	function ucColorH1(){
 
 					//console.log("test again");
 
@@ -79,12 +94,7 @@
 					//console.log(headings);
 
 
-		}
-
-
-
-		        ////    ////    ////    ////     ////
-		/*    PRE_LOAD FUNCTIONS : CALLED BY OLD HEADER.PHP    */
+	}
 
 
 
@@ -529,9 +539,10 @@
 			//console.log("Resources Loaded");
 			
 
-			/*  ON EVERY PAGE...  */
-			ucInsertBackground();
-			ucCustomizeWPHeader();
+			
+/* 			ucInsertTierOneBg();
+			ucInsertDrinkPostsBg(); */
+ 			ucCustomizeWPHeader();
 			//ucAddPaginationLeftArrowToCarousel();
 
 

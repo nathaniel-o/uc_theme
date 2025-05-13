@@ -863,13 +863,21 @@ a.fp-button-link:hover{
 @media screen and (orientation: landscape){
 
 
+	body.single {
+		background-repeat: repeat;
+		background-size: contain;
+	}
+	body.page{
+        background-size: cover;  /* not the best for wintertime background  */ 
+	}
 	.wp-block-media-text{
 		display: flex;
 		flex-direction: row;
 
 	}
+	
 
-	/* The Post Titles on Sinle.html*/
+	/* The Post Titles on Single.html*/
 	.wp-block-media-text__content > h1.wp-block-heading{
 		font-size: 1.25em;
 		text-wrap: nowrap;

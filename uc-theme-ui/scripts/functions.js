@@ -109,7 +109,12 @@
 				//console.log('Image src:', drinkImage.src);
 				//console.log('Image complete:', drinkImage.complete);		
 
-				if(!figure.classList.contains("pop-off")){ //Ignore the pop-off figure which contains media & text > figure (Single Pages)
+
+				/*
+				*  Ignore the pop-off figure which contains media & text > figure (Single Pages)
+				*  Ignore the Gallery Block's figure which contains multiple figures 
+				*/
+				if(!figure.classList.contains("pop-off") && !figure.classList.contains("wp-block-gallery")){ 
 					if (drinkImage.complete) {
 						// Image is already loaded, process immediately
 						//console.log(drinkImage.naturalHeight);

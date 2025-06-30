@@ -76,9 +76,9 @@ function uc_page_id() {
         // Get current URL path and remove leading/trailing slashes
         $slug = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         
-        // Remove 'wordpress/' from the beginning if it exists
-        $slug = preg_replace('/^wordpress\//', '', $slug);
-        $slug = preg_replace('/^wordpress2\//', '', $slug); //  for both local copies
+        
+        // Remove any backslash and all preceding characters i.e. the wordpress-folder/ prefix. 
+        $slug = preg_replace('/^.*\//', '', $slug);
 
         
         // Set to 'home' if empty
@@ -125,20 +125,39 @@ function handle_filter_carousel() {
 
 add_action('wp_head', function() {
     # FOR DEBUG //error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
-    testingBackgrounds(); 
+    echo dom_content_loaded(testing_backgrounds(), 0, 0);    //    Pass JS backgrounds function into DOMContent Evt Lstnr
 
 });
 
-function testingBackgrounds(){
+/*
+* Wrapper function that applies DOMContentLoaded event listener to testing_backgrounds output
+*/
+function dom_content_loaded($your_function, $another, $more) {
+    $background_script = $your_function;
+    
+    // If there's no script output, return empty
+    if (empty($background_script)) {
+        return '';
+    }
+    
+    // Wrap in DOMContentLoaded event listener
+    return '<script>document.addEventListener("DOMContentLoaded", function() { ' . $background_script . ' });</script>';
+}
 
-    if(is_single() ){
-        $post_id = get_the_ID();
+/*
+*    Based on page type, 
+*/
+function testing_backgrounds(){
+    $script_output = '';
+
+    if(is_single() ){    //    If the page is a single post 
+        $post_id = get_the_ID();    //    Get the ID #### of the post
         echo '<script>console.log("Current Post ID: ' . esc_js($post_id) . '");</script>';
 
         // Check if post has drinks taxonomy
         $taxonomies = get_object_taxonomies('post');
         if (in_array('drinks', $taxonomies)) {
-            $terms = wp_get_post_terms($post_id, 'drinks');
+            $terms = wp_get_post_terms($post_id, 'drinks');    //    Get the Drink Categor(ies) 
             if (!empty($terms) && !is_wp_error($terms)) {
                 echo '<script>console.log("Post has Drinks taxonomy terms: ' . esc_js(implode(', ', wp_list_pluck($terms, 'name'))) . '");</script>';
             }
@@ -158,10 +177,10 @@ function testingBackgrounds(){
             foreach ($terms as $term) {
                 if (isset($term_to_bg_map[$term->name])) {
                     $bg_var = $term_to_bg_map[$term->name];
-/*                     echo '<script>console.log("Background variable for ' . esc_js($term->name) . ': var(--' . esc_js($bg_var) . ')");</script>';
- */                    /*  Insert the Background Image for Drink Posts  */ 
-                    echo '<script>var drinkBg = "var(--' . esc_js($bg_var) . ')";</script>';
-                    echo '<script>ucInsertDrinkPostsBg(drinkBg);</script>';
+                     echo '<script>console.log("Background variable for ' . esc_js($term->name) . ': var(--' . esc_js($bg_var) . ')");</script>';
+                    
+                    //  Output for Single Posts 
+                    $script_output =  'var drinkBg = "var(--' . esc_js($bg_var) . ')"; ucInsertDrinkPostsBg(drinkBg);';
                 }
                 /* else {
                     echo '<script>console.log("No background variable found for ' . esc_js($term->name) . '");</script>';
@@ -172,13 +191,12 @@ function testingBackgrounds(){
     
     else {
         /* DOM Listener here, whereas for posts it's contained in JS function ucInsertDrinkPostsBg()s */ 
-        echo '<script>document.addEventListener("DOMContentLoaded", () => {ucInsertTierOneBg();});</script>';
+        $script_output = 'ucInsertTierOneBg();';
     }
     
 
+    return $script_output;
     
-
-
 }
 
 

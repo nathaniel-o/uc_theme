@@ -6,6 +6,11 @@
 
 		
 
+
+	function styleImagesByPageID(){
+		
+	}
+
 	/*
 		MODIFIES <div="wp-site-blocks".style.backgroundImage using 
 		scoped pageID
@@ -21,7 +26,7 @@
 					//bgVar.concat('var(--');
 					bgVar = bgVar.concat(pageID);
 					bgVar = bgVar.concat("-bg-img)");
-							console.log(bgVar);  
+					console.log(bgVar);  
 					
 					//anPage[0].style.backgroundImage = "var(--romantic-bg-img)";
 					anPage.style.backgroundImage =  bgVar  ;
@@ -30,24 +35,50 @@
 	}
 	function ucInsertDrinkPostsBg(bgVar){
 
+
 		let anPage = document.querySelector("body");
 		
-		if (!anPage) {
+		if (!anPage) {  // Check DOM is loaded
 			console.warn("Body element not found, retrying after DOM load");
 			document.addEventListener("DOMContentLoaded", () => {
 				anPage = document.querySelector("body");
 				if (anPage) {
-					console.log(bgVar);
-					console.log(anPage);
+					//console.log(bgVar);
+					//console.log(anPage);
 					anPage.style.backgroundImage = bgVar;
 				}
 			});
 			return;
 		}
 		
-		console.log(bgVar);
-		console.log(anPage);
 		//anPage.style.backgroundImage = bgVar;
+
+		
+
+		if (bgVar) {
+			document.body.style.backgroundImage = bgVar;
+		}
+		//console.log(bgVar);
+		//console.log(anPage);
+
+
+	
+	}
+
+	function ucInsertBackgrounds() {  // Combine both above.
+		//  Handle background for tier one pages 
+		if (!document.body.classList.contains('single-post')) {
+			console.log("not single-post");
+			ucInsertTierOneBg();
+		}
+		// Handle background for single post pages
+		if (document.body.classList.contains('single-post')) {
+
+			console.log("single-post");
+			ucInsertDrinkPostsBg(); // Probably not working due bgVar undefined 
+			
+		}
+		
 	}
 
 
@@ -101,9 +132,9 @@
 		/*    MISC. HELPER FUNCTIONS    
 		    ////    ////    ////    ////    */ 
 			
-			//  Add CSS class to figure based on dimensions of img (on load) 
+		//  Add CSS class to figure based on dimensions of img (on load) 
 			//  Repurposed from Drink.ucConvertDrinkToFigure(), to Be Used Everywhere. 
-			function ucPortraitLandscape(anImage, anFigure){
+		function ucPortraitLandscape(anImage, anFigure){
 				let drinkImage = anImage;
 				let figure = anFigure;	
 				//console.log('Image src:', drinkImage.src);
@@ -140,8 +171,8 @@
 					} 
 				}
 
-			}
-			document.addEventListener("DOMContentLoaded", (event) => {
+		}
+		document.addEventListener("DOMContentLoaded", (event) => {
 				// Query Selector to affect Gallery Pages' Query Body only. 
 				/* document.querySelectorAll('.wp-block-post-featured-image').forEach(figure => {
 					ucPortraitLandscape(figure.querySelector('img'), figure);
@@ -151,7 +182,7 @@
 				document.querySelectorAll('figure').forEach(figure => {
 					ucPortraitLandscape(figure.querySelector('img'), figure);
 				});
-			});
+		});
 
 
 
@@ -409,39 +440,12 @@
 
 
 
-/**
- * Creates an orientation handler that executes different callbacks for portrait/landscape
- * @param {Function} portraitCallback - Function to execute in portrait mode
- * @param {Function} landscapeCallback - Function to execute in landscape mode
- * @returns {Function} Cleanup function to remove event listener
- */
-	function createOrientationHandler(portraitCallback, landscapeCallback) {
-		// Function to handle orientation changes
-		function handleOrientation(mediaQuery) {
-			if (mediaQuery.matches) { // Landscape mode
-				landscapeCallback();
-			} else { // Portrait mode
-				portraitCallback();
-			}
-		}
 
-		// Create media query for landscape orientation
-		const landscapeQuery = window.matchMedia("(orientation: landscape)");
-		
-		// Initial check
-		handleOrientation(landscapeQuery);
-		
-		// Add listener for orientation changes
-		landscapeQuery.addEventListener('change', handleOrientation);
-
-		// Return cleanup function
-		return () => landscapeQuery.removeEventListener('change', handleOrientation);
-	}
 
 	function ucStylePopOff(){
 		const popoff = document.querySelector(".wp-block-media-text");
 		const theFig = document.querySelector(".pop-off figure");
-		console.log(theFig);
+		//console.log(theFig);
 
 		if (theFig) {
 			if (theFig.classList.contains("landscape")) {
@@ -466,7 +470,34 @@
 	});
 
 
+	/**
+	 * Creates an orientation handler that executes different callbacks for portrait/landscape
+	 * @param {Function} portraitCallback - Function to execute in portrait mode
+	 * @param {Function} landscapeCallback - Function to execute in landscape mode
+	 * @returns {Function} Cleanup function to remove event listener
+	 */
+	function createOrientationHandler(portraitCallback, landscapeCallback) {
+		// Function to handle orientation changes
+		function handleOrientation(mediaQuery) {
+			if (mediaQuery.matches) { // Landscape mode
+				landscapeCallback();
+			} else { // Portrait mode
+				portraitCallback();
+			}
+		}
 
+		// Create media query for landscape orientation
+		const landscapeQuery = window.matchMedia("(orientation: landscape)");
+		
+		// Initial check
+		handleOrientation(landscapeQuery);
+		
+		// Add listener for orientation changes
+		landscapeQuery.addEventListener('change', handleOrientation);
+
+		// Return cleanup function
+		return () => landscapeQuery.removeEventListener('change', handleOrientation);
+	}
     /* 
 	*    Customize WP Header
 	*/
@@ -544,9 +575,7 @@
 			//console.log("Resources Loaded");
 			
 
-			
-/* 			ucInsertTierOneBg();
-			ucInsertDrinkPostsBg(); */
+
  			ucCustomizeWPHeader();
 			//ucAddPaginationLeftArrowToCarousel();
 

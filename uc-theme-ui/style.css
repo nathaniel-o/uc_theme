@@ -21,17 +21,21 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 
 
 @import url(styles/timeline.css);
-@import url(styles/summertime.css); /*   ALSO Spring Time    */
-@import url(styles/everyday.css); /* still Grid layout    */
-@import url(styles/special-occasion.css);
 @import url(styles/romantic.css);
 @import url(styles/fireplace.css);
 
-/*Define your font by linking to files as per https://www.geeksforgeeks.org/how-to-include-a-font-ttf-using-css/
-@font-face{	font-family: Libre Baskerville Regular;		src: url(styles/LibreBaskerville-Regular.ttf);	}
-@font-face{	font-family: Libre Baskerville Bold;	src: url(styles/LibreBaskerville-Bold.ttf);	}
-@font-face{	font-family: Libre Baskerville Italic;	src: url(styles/LibreBaskerville-Italic.ttf);	}
-   ALSO These Just Exist as WordPress Import Options    */
+/* 
+*    TODO : Summertime font color missing Variable. Currently defaults to #fff    
+*    TODO : Winter needs ALL Variables. As winter-bg-color not wintertime-etc-etc.  
+*	 TODO : Autumnal Page is rough Query Loop ; needs All Variables 
+*    TODO : Saffron Honey Gin & Tonic Post needs Featured Image
+*    TODO : Springtime has no custom font color. 
+*
+*
+*/
+
+
+
 
 /*  for CSS Variables    */
 :root {
@@ -43,15 +47,17 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 
 	/*  Everyday  */
     --everyday-bg-color: #12355c;
-    --everyday-border-color: #30c5f2;
+	--everyday-accent-color: #30c5f2;
+	--everyday-font-color: #FCE205;
+
+	--everyday-border: medium solid var(--everyday-accent-color);
     --everyday-btn-font: "Gill Sans MT", sans-serif;
-    --everyday-font-color: #FCE205;
-    --everyday-shadow: 1px 3px 7px var(--everyday-border-color);
+    --everyday-shadow: 1px 3px 7px var(--everyday-accent-color);
 
 	/*  Fireplace  */
-    --fireplace-cocktails-border: medium solid black;
-    --fireplace-cocktails-font: #f2993a;
-    --fireplace-cocktails-shadow: 4px 1px 4px #1f1f1f;
+    --fireplace-border: medium solid black;
+    --fireplace-font: #f2993a;
+    --fireplace-shadow: 4px 1px 4px #1f1f1f;
 
 	/*  Home Page & Gallery  */
     --gallery-border: 2em;
@@ -60,16 +66,19 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
     --original-pink-border: 0.12em solid var(--original-pink);
 
 	/*  Romantic  */
-    --romantic-cocktails-bg-color: #120b24;
-    --romantic-cocktails-border: medium solid #cf3162;
-    --romantic-cocktails-caption-font: "Gill Sans MT", sans-serif;
-    --romantic-cocktails-font-color: #fff7e0;
-    --romantic-cocktails-shadow: 4px 1px 4px #980a4e;
+    --romantic-bg-color:#980a4e; /* #120b24; */
+	--romantic-accent-color: #cf3162;
+    --romantic-border: medium solid var(--romantic-accent-color);
+    --romantic-caption-font: "Gill Sans MT", sans-serif;
+    --romantic-font-color: #fff7e0;
+    --romantic-shadow: 4px 1px 4px var(--romantic-bg-color);
 
 	/*  Special Occasion  */
-    --spec-occ-bg-color: #241547;
-    --spec-occ-border-color: #FFD700;
-    --spec-occ-header-font: "Palatino", serif;
+    --special-occasion-bg-color: #241547; 
+	--special-occasion-accent-color: #FFD700;
+    --special-occasion-border: medium solid var(--special-occasion-accent-color);
+    --special-occasion-header-font: "Palatino", serif;
+	
 
 	/* Defaults */
 	--std-transition: var(--std-transition);
@@ -87,20 +96,23 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--std-bg-color: #241547;
 
 	/*  Summertime  */
-    --summertime-cocktails-bg-color: #452987;
-    --summertime-cocktails-border: medium solid var(--summertime-cocktails-border-color);
-    --summertime-cocktails-border-color: #1bf54e;
-    --summertime-cocktails-shadow: 1px 3px 7px var(--summertime-cocktails-border-color);
+    --summertime-bg-color: #452987;
+    --summertime-border: medium solid var(--summertime-accent-color);
+    --summertime-accent-color: #1bf54e;
+    --summertime-shadow: 1px 3px 7px var(--summertime-accent-color);
+
+	/*  Winter  */
+
     
     /* Background Images */
-    --everyday-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Everyday-cocktail-with-shadow-shapes-mockup.pptx.png');
-    --romantic-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Romantic-cocktail-with-shadow-shapes-mockup.pptx.png');
-    --special-occasion-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Special-Occasion-cocktail-with-shadow-shapes-mockup.pptx.png');
-    --summertime-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
-    --springtime-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
-    --fireplace-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/New-Fireplace-Cocktails-Mockup-with-cluster-kinderblocks.pptx.png');
-	--winter-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Winter-Cocktails-Pages-mockup.pptx-1.png');
-    --autumnal-cocktails-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Autumnal-Cocktails-Pages-mockup.pptx-1.png');
+    --everyday-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Everyday-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --romantic-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Romantic-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --special-occasion-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Special-Occasion-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --summertime-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --springtime-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
+    --fireplace-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/New-Fireplace-Cocktails-Mockup-with-cluster-kinderblocks.pptx.png');
+	--winter-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Winter-Cocktails-Pages-mockup.pptx-1.png');
+    --autumnal-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Autumnal-Cocktails-Pages-mockup.pptx-1.png');
 		
 	
 }
@@ -142,6 +154,12 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 /*		GLOBAL STYLES		*/
 /*		GLOBAL STYLES		*/
 @media all{ 
+
+	.wp-block-columns{ margin: 5%;	} /* stop columns from 100% width */
+
+
+
+
 
 
 	nav{ min-width: 80vw; }
@@ -270,10 +288,14 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		padding: 0;
 	}
 
+	/*  Fix Weird Spacing on Springtime Query Loop. Not sure why this div exists w/i Post Template.  */
+	.wp-block-spacer{ display: none; }
+
 	img {
 		max-width: 100%;
 		height: auto;
 	}
+
 
 
 
@@ -352,8 +374,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		gap: 1em; /* Space between image and content */
 	}
 
-	/*  Space between Query Loop posts' entries  */ 
-	li.wp-block-post{  margin: 4em 0; }
+	
 
 /* Specific adjustments for gallery grid */
 .wp-block-post-template.is-flex-container figure {
@@ -413,7 +434,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	.wp-block-column figure.wp-block-post-featured-image {
 		margin: 0; /* Remove default figure margins */
 		width: 100%;
-		height: 300px;
+		height: auto;
 		position: relative; /* For proper image positioning */
 	}
 	
@@ -872,8 +893,8 @@ a.fp-button-link:hover{
 
 	body {
 		background-repeat: repeat;
-		background-size: contain;
-	}
+/* 		background-size: contain;
+ */	}
 	
 	.wp-block-media-text{
 		display: flex;
@@ -981,7 +1002,12 @@ a.fp-button-link:hover{
 		gap: 0 !important;	/* overwrite WP s.a.t.b.a.t. control spacing by margins */
 	}
 
-    
+    /*
+	* In order to stop Navigation logo taking it's own line . 
+	*/
+	.wp-block-navigation__responsive-container .wp-block-navigation__responsive-container-content{
+		flex-wrap: nowrap;
+	}
 
 	/* on post previews, overwrite WP default */
 	.wp-block-columns{
@@ -1741,7 +1767,7 @@ a.fp-button-link:hover{
 
 		.summertime-cocktails{
 
-			border: var(--summertime-cocktails-border);
+			border: var(--summertime-border);
 			border-radius: 0;
 
 			position: relative;
@@ -1780,7 +1806,7 @@ a.fp-button-link:hover{
 
 
 		.fireplace-cocktails{
-			border: var(--fireplace-cocktails-border);
+			border: var(--fireplace-border);
 			position: relative;
 
 		    margin: 2vh auto;
@@ -1803,7 +1829,7 @@ a.fp-button-link:hover{
 
 		}
 		.everyday{
-			border: medium solid var(--everyday-border-color);
+			
 			position: relative;
 
 			}
@@ -2138,3 +2164,352 @@ a.fp-button-link:hover{
 
 
 
+
+
+
+
+
+
+
+/*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
+/*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
+@container (orientation:landscape){
+
+	.special-occasion .everyday figure{
+
+		float: left;
+		position: relative;
+		justify-content: center;
+		align-content: center;
+		
+		margin: 0;
+		
+		padding: 8px;
+	}
+
+	.special-occasion figcaption{
+		font-family: "Gill Sans MT", sans-serif; /*font works! Similar to domain.com*/
+			/*"The vertical-align CSS property sets vertical alignment of an inline, 
+			inline-block or table-cell box."*/
+			/*border: 1px solid #30c5f2;
+			text-align: center;*/
+		font-size: 140%; /*Make larger relative to its own container*/
+		font-weight: bolder;
+		/*Position abolute relative to portrait or landscape*/
+		line-height: 3.6vh;
+		/*to improve readability on like backgrounds*/
+		text-shadow: 4px 1px 4px black;
+		/* offset x, offset y, blur radius, color */
+		/*Default behavior for Fireplace Captions*/
+		position: absolute; 
+		top: -1rem;
+		left: -2rem;
+
+		/* override .everyday figcaption  */
+		bottom: auto;
+		/*  override figcaption  */
+		padding: 0;
+		
+		color: var(--spec-occ-border-color);
+		background-color: var(--spec-occ-bg-color);
+
+		white-space: nowrap;  
+
+		height: fit-content;
+		
+		}
+	 	
+
+
+
+
+
+
+
+
+	/*Generic Shell for buttons to reach container borders*/
+	/*///////BUTTON TO BE SAME "ROSE" COLOR AS RIBBON*/
+	.spec-occ-button{
+		display: flex;
+		
+		grid-row-start: 2; 
+		width: 100%;
+		justify-content: center;
+		
+
+		
+	}  
+	.spec-occ-button a{
+	color: var(--spec-occ-border-color);
+		border-color: var(--spec-occ-border-color); }
+
+
+
+	#foto-une{	margin: 6%}
+	#foto-deux{	right: -35%; margin: 6%;	}
+	#foto-trois{	width: 28vw; margin: 6%;}
+	#foto-quatre{	width: 33vw; top: 10%;	margin: 6%;	}
+	
+	#foto-cinq{		width: 28vw; right: -20%; margin: 2% 2% 20% 2%;	}
+	#foto-sixieme{	margin: 24% 2% 2% 2%; }
+	#foto-sept{	left: -24%;	top: 3%;}
+	
+	#foto-huit{		margin: 15% 0 0 0; max-width: 32vw; right: -25%;	}
+
+
+
+
+
+	
+
+}
+/*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
+/*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
+
+
+
+
+
+
+/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
+/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
+/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
+@container (orientation:portrait){
+
+	 /*https://www.youtube.com/watch?v=Y9rHsdCxU8Q*/
+	.container{
+		  max-width: 100vw; /*1vw = 1% of viewport width*/
+		  max-height: 600vh; 
+		  padding: 0; 
+		  box-sizing: border-box;
+		  /*right-side buffer for scroll bar*/
+		  /*also replace padding-right: for scroll bar*/
+			margin: 0 8px 0 4px;
+			font-family: "Libre Baskerville", serif;
+			/*Set Grid with */
+			display: grid ; 
+			grid-template-columns: 1% 96vw 1%;
+			grid-template-rows: auto auto auto auto auto;
+			/*ANS: auto-sizing vs. fixed- sizing parameters (1fr is auto, 10px is fixed)*/
+			/*grid: auto-flow dense / 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr;*/
+			gap: 2px;    }
+		
+		
+		
+	.spec-occ-button{
+		display: flex;
+		
+		grid-row: auto; 
+		width: 100%;
+		justify-content: center;
+		margin: 8% 0;
+	
+	}
+
+	
+	/*Use Figure & Figcaption for img div and caption div*/
+	.special-occasion figure{   
+		
+		max-width: 96vw;
+		min-height: fit-content; /*TAKEN from size of only landscape photo*/
+		height: auto; /* this prevents containers of infinite length*/
+		width: auto;
+		
+		/*padding: 8px;*/
+		position: relative;
+		
+		margin: 12% 1%;
+	}
+
+
+	
+
+/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
+/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
+
+
+
+
+/*/////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////*/
+/*/////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////*/
+@media screen and (orientation: landscape){
+
+
+	#vertUne, #vertDeux, #vertTrois{    /*    DELETED from SpringTime    */
+		
+		margin: 0;
+		padding: 4%;
+
+		
+	}
+
+	
+
+
+	.ete figure{ /*    be more specific    */
+	/*		fixes captions for some reason   */
+	position: relative; 
+
+		transform:translate(-50%,-50%);
+		top: 50%;
+		left: 50%;
+		
+	}    
+	.printemps figure{
+
+		position: absolute;
+		}
+	
+	.printemps #foto-une{    left: 12%; top: -5%;   }
+	/*transform: rotate & tranform: translate must be declared at same time in most specific context    */
+	/*    ALSO left: affects size when squeezing against right-side    */
+	.printemps #foto-deux{    top: 25%; left: 75%;  transform: translate(-50%, -50%) rotate(20deg); 	}
+	.printemps #foto-trois{	top: 85%;   left: 12%;    }
+	.printemps #foto-quatre{	top: 55%;    left: 65%; z-index: 1;}
+	.printemps #foto-cinq{		top: 215%;    left: 12%;    }
+	.printemps #foto-sixieme{	top: 130%;	left: 65%;    }
+	.printemps #foto-sept{	top: 160%;    left: 15%;}
+	.printemps #foto-huit{	    top: 190%;    left:60%;    }
+	.printemps #foto-neuf{    top: 250%;    left: 50%; }
+
+
+	.summertime .ete #foto-une{  }
+	/*transform: rotate & tranform: translate must be declared at same time in most specific context    */
+	.summertime .ete #foto-deux{  /* transform: translate(-50%, -50%) rotate(20deg);*/ 	}
+	.summertime .ete #foto-trois{	    }
+	.summertime .ete #foto-quatre{	 z-index: 1;}
+	.summertime .ete #foto-cinq{		    }
+	.summertime .ete #foto-sixieme{	   }
+	.summertime .ete #foto-sept{	}
+	.summertime .ete #foto-huit{	      }
+	.summertime .ete #foto-neuf{    }
+
+
+} /*END*/
+/*    /////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////    */
+
+
+
+
+
+
+
+
+
+/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
+/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
+@container (orientation: portrait){
+
+		
+
+		
+	/*
+	.everyday-vertUne, .everyday-vertDeux, .everyday-vertTrois{
+		grid-column: 2 / span 1; 
+		
+		grid-row: auto;
+	}
+	.everyday-vertUne{
+		padding: 5%;
+		
+	}
+	.everyday-vertDeux{
+		display: inline-grid;
+	} 
+	
+#foto-everyday-une{ grid-row: 3 ; grid-column: 2; transform: rotate(3deg);}
+#chili{	top: -25%; left: 35%;		}
+#foto-everyday-deux{	transform: rotate(-5deg); }
+#foto-everyday-trois{	transform:rotate(4deg);		}
+#foto-everyday-quatre{	transform: rotate(-3deg);	}
+#foto-everyday-cinq{	transform:rotate(5deg);		}
+#foto-everyday-sixieme{		transform:rotate(-4deg);	}
+#foto-everyday-sept{	 transform: rotate(3deg); }
+	*/
+	
+		
+}
+/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
+/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
+/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
+
+/*  this container query Excludes Landscape rules 
+for design-system  */
+
+
+
+
+
+@media all and (orientation: landscape){
+
+		/*https://www.youtube.com/watch?v=Y9rHsdCxU8Q*/
+		.everyday{
+			max-height: 300vh; /*lengthening did not aut-add more columns, content likely interfering*/
+			padding: 10px;
+			margin-right: 2px;
+			/*Set Grid with right-side buffer for scroll bar*/
+			grid-template-columns: 5vw 1fr 1fr 1fr 1fr 1fr 1fr 5vw;
+	}
+
+		.everyday-vertUne{
+			padding: 15%;
+			grid-column: 2 / span 3;
+			grid-row: 4;
+			
+		}
+		.everyday-vertDeux{
+			
+			display: inline-grid; /*  ?  THIS HELPS containers not to overlap figure classes (as w/ button)*/
+			grid-column: 5 / span 3;
+			padding: 15%;
+			grid-row: 4;
+		}
+		
+
+
+
+			
+			.everyday figcaption{
+				font-family: "Gill Sans MT", sans-serif; /*font works! Similar to domain.com*/
+				color: white;
+				white-space: normal;
+				
+				text-align: left;
+				bottom: 4%;
+				left: 2%;
+			}
+	
+	
+	/*Chili Citrus Sour BANNER outside Columns*/
+	#foto-everyday-une{ grid-row: 3 ; grid-column: 2 / span 6; max-width: 90vw; margin: 0 6%;	transform: rotate(3deg);}
+	#foto-everyday-deux{	transform: rotate(-5deg); }
+	#foto-everyday-trois{	transform:rotate(4deg);		}
+	#foto-everyday-quatre{	transform: rotate(-3deg);	}
+	#foto-everyday-cinq{	transform:rotate(5deg);		}
+	#foto-everyday-sixieme{	transform:rotate(-4deg);	}
+	#foto-everyday-sept{		transform: rotate(3 deg)};	
+
+}
+
+
+
+/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
+/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/

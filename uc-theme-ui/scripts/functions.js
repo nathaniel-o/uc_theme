@@ -1,14 +1,51 @@
-/* 
+/*
+*   Functions wrapped in DOM listener by functions.php :   
+*		ucInsertTierOneBg / ucInsertDrinkPostsBg (as testing_backgrounds) , 
+*		styleImagesByPageID , 
 *
-*    DRINK FUNCTIONS BACKUP in drinks.js - Not In Use after 17 Dec 2024
 *
 */
 
+	function styleImagesByPageID(variableID) {
 		
+		if(pageID.includes("springtime")){
+			variableID = "summertime";
+		}  //  (Else variableID = pageID as passed in functions.php)
 
 
-	function styleImagesByPageID(){
-		
+		// Compose variable names
+		const borderVar = `var(--${variableID}-border)`;
+		const fontColorVar = `var(--${variableID}-font-color)`;
+		const shadowVar = `var(--${variableID}-shadow)`;
+
+		/* console.log(borderVar);
+		console.log(fontColorVar);
+		console.log(shadowVar); */
+
+		// Get all images within .entry-content
+		const entryContent = document.querySelector('.entry-content');
+		if (!entryContent) {    //  If no entry-content, no action. 
+			return;
+		}
+	
+		const images = entryContent.querySelectorAll('img');
+
+		images.forEach(img => {
+			// 1. Apply border variable
+			img.style.border = borderVar;
+
+/* 			console.log(img);
+ */
+			// 2 & 3. If image is in a figure with figcaption, style the caption
+			const figure = img.closest('figure');
+			if (figure) {
+				const caption = figure.querySelector('figcaption');
+				if (caption) {
+					caption.style.color = fontColorVar;
+					caption.style.textShadow = shadowVar;
+				}
+			}
+		});
 	}
 
 	/*

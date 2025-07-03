@@ -80,6 +80,9 @@ function uc_page_id() {
         // Remove any backslash and all preceding characters i.e. the wordpress-folder/ prefix. 
         $slug = preg_replace('/^.*\//', '', $slug);
 
+        //  Finally, remove the trailing -cocktails if exists (due simplified CSS vars)
+        $slug = preg_replace('/-cocktails$/', '', $slug);
+
         
         // Set to 'home' if empty
         if (empty($slug)) {
@@ -125,7 +128,7 @@ function handle_filter_carousel() {
 
 add_action('wp_head', function() {
     # FOR DEBUG //error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
-    echo dom_content_loaded(testing_backgrounds(), 0, 0);    //    Pass JS backgrounds function into DOMContent Evt Lstnr
+    echo dom_content_loaded(testing_backgrounds(), 'styleImagesByPageID(pageID)', 0);    //    Pass JS backgrounds function into DOMContent Evt Lstnr
 
 });
 
@@ -134,6 +137,14 @@ add_action('wp_head', function() {
 */
 function dom_content_loaded($your_function, $another, $more) {
     $background_script = $your_function;
+
+    if ($another != 0) {
+        $background_script .= $another;
+    }
+
+    if ($more != 0) {
+        $background_script .= $more;
+    }
     
     // If there's no script output, return empty
     if (empty($background_script)) {

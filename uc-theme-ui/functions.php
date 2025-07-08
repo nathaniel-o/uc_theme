@@ -18,12 +18,14 @@ function uc_enqueue_styles(){
 		array()
 	);
 	
-	// Add custom CSS for rotated images
-	wp_add_inline_style('uc-theme-slug', '
+	// Add custom CSS for rotated images - not sure what this does since removing inline click effects @ images randomizer 
+	wp_add_inline_style('uc-theme-slug', ' 
 		img.rotate-90 { transform: rotate(90deg); }
 		img.rotate-180 { transform: rotate(180deg); }
 		img.rotate-270 { transform: rotate(270deg); }
 		img.rotate-custom { transform: rotate(var(--rotation-angle)); }
+		
+		
 	');
 }
 function uc_enqueue_script(){
@@ -120,6 +122,145 @@ function handle_filter_carousel() {
     wp_die(); // Required for proper AJAX response
 }
 
+// Add AJAX handler for image randomization
+add_action('wp_ajax_randomize_image', 'handle_randomize_image');
+add_action('wp_ajax_nopriv_randomize_image', 'handle_randomize_image');
+
+function handle_randomize_image() {
+    error_log('handle_randomize_image called');
+    error_log('POST data: ' . print_r($_POST, true));
+    
+    $current_id = isset($_POST['current_id']) ? sanitize_text_field($_POST['current_id']) : '';
+    error_log('Current ID: ' . $current_id);
+    
+    // Define category IDs
+    $category_ids = array('AU', 'SO', 'SU', 'SP', 'FP', 'EV', 'RO', 'WI');
+    
+    // Parse current image title for category ID
+    $current_category = '';
+    if (!empty($current_id)) {
+        $current_attachment = get_post($current_id);
+        if ($current_attachment) {
+            $current_title = $current_attachment->post_title;
+            foreach ($category_ids as $id) {
+                if (strpos($current_title, $id) !== false) {
+                    $current_category = $id;
+                    error_log('Found current category: ' . $current_category);
+                    break;
+                }
+            }
+        }
+    }
+    
+    // Build query args
+    $args = array(
+        'post_type' => 'attachment',
+        'post_mime_type' => 'image',
+        'post_status' => 'inherit',
+        'posts_per_page' => 1,
+        'orderby' => 'rand',
+        'exclude' => array($current_id) // Exclude current image if provided
+    );
+    
+    // If we found a category, filter by it
+    if (!empty($current_category)) {
+        // Get all images and filter by title content
+        $all_attachments = get_posts(array(
+            'post_type' => 'attachment',
+            'post_mime_type' => 'image',
+            'post_status' => 'inherit',
+            'posts_per_page' => -1,
+            'exclude' => array($current_id)
+        ));
+        
+        // Filter attachments that contain the category ID
+        $filtered_attachments = array();
+        foreach ($all_attachments as $attachment) {
+            if (strpos($attachment->post_title, $current_category) !== false) {
+                $filtered_attachments[] = $attachment;
+            }
+        }
+        
+        if (!empty($filtered_attachments)) {
+            $random_attachment = array($filtered_attachments[array_rand($filtered_attachments)]);
+            error_log('Found ' . count($filtered_attachments) . ' images with category ' . $current_category);
+        } else {
+            error_log('No images found with category ' . $current_category . ', trying without category filter');
+            $random_attachment = get_posts($args);
+        }
+    } else {
+        $random_attachment = get_posts($args);
+    }
+    
+    if (empty($random_attachment)) {
+        wp_send_json_error(array('message' => 'No images found in Media Library'));
+        return;
+    }
+    
+    $attachment = $random_attachment[0];
+    $attachment_id = $attachment->ID;
+    
+    // Get attachment data
+    $attachment_data = wp_get_attachment_image_src($attachment_id, 'large');
+    $attachment_metadata = wp_get_attachment_metadata($attachment_id);
+    
+    // Get responsive image data
+    $image_srcset = wp_get_attachment_image_srcset($attachment_id);
+    $image_sizes = wp_get_attachment_image_sizes($attachment_id);
+    
+    // Get caption and format it properly
+    $caption = wp_get_attachment_caption($attachment_id);
+    if (empty($caption)) {
+        // If no caption, use the attachment title
+        $caption = $attachment->post_title;
+        // Normalize the title by:
+        // 1. Replace hyphens and underscores with spaces
+        // 2. Remove numbers and special characters
+        // 3. Remove file extensions
+        // 4. Clean up extra spaces
+        // 5. Remove 'T2' anywhere it exists
+        // 6. Remove anything after underscore
+        $normalized_title = $attachment->post_title;
+        $normalized_title = preg_replace('/_\w+.*$/', '', $normalized_title); // Remove anything after underscore
+        $normalized_title = str_replace(['-', '_'], ' ', $normalized_title); // Replace - and _ with space
+        $normalized_title = preg_replace('/[\d\-_]+$/', '', $normalized_title); // Remove trailing numbers and separators
+        $normalized_title = preg_replace('/\.\w+$/', '', $normalized_title); // Remove file extension
+        $normalized_title = preg_replace('/\s+/', ' ', $normalized_title); // Clean up multiple spaces
+        $normalized_title = str_replace('T2', '', $normalized_title); // Remove 'T2' anywhere
+        $normalized_title = preg_replace('/\s+/', ' ', $normalized_title); // Clean up multiple spaces again
+        $normalized_title = trim($normalized_title); // Remove leading/trailing spaces
+        
+        
+
+        $caption = $normalized_title;
+
+    }
+    
+    // Debug logging
+    error_log('Randomizing image - Attachment ID: ' . $attachment_id . ', Title: ' . $attachment->post_title . ', URL: ' . $attachment_data[0]);
+    
+    // Prepare the response with all WordPress image attributes
+    $image_data = array(
+        'id' => $attachment_id,
+        'title' => $attachment->post_title,
+        'src' => $attachment_data[0],
+        'alt' => get_post_meta($attachment_id, '_wp_attachment_image_alt', true) ?: $attachment->post_title,
+        'attachment_id' => $attachment_id,
+        'srcset' => $image_srcset,
+        'sizes' => $image_sizes,
+        'data_orig_file' => $attachment_data[0],
+        'data_orig_size' => $attachment_data[1] . ',' . $attachment_data[2],
+        'data_image_title' => $attachment->post_title,
+        'data_image_caption' => $caption,
+        'data_medium_file' => wp_get_attachment_image_url($attachment_id, 'medium'),
+        'data_large_file' => wp_get_attachment_image_url($attachment_id, 'large')
+    );
+    
+    error_log('Sending image data: ' . print_r($image_data, true));
+    
+    wp_send_json_success(array('image' => $image_data));
+}
+
 
 
 
@@ -128,8 +269,9 @@ function handle_filter_carousel() {
 
 add_action('wp_head', function() {
     # FOR DEBUG //error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
-    echo dom_content_loaded(testing_backgrounds(), 'styleImagesByPageID(pageID)', 0);    //    Pass JS backgrounds function into DOMContent Evt Lstnr
+    echo dom_content_loaded(testing_backgrounds(), 'styleImagesByPageID(pageID);', 'ucSetupImageRandomization;' );    //    Pass JS backgrounds function into DOMContent Evt Lstnr
 
+    
 });
 
 /*
@@ -469,6 +611,7 @@ function uc_filter_carousel($srchStr, $drink_posts, $num_slides, $show_titles = 
 
 // Allow HTML in excerpts
 remove_filter('get_the_excerpt', 'wp_strip_all_tags');
+
 
 
 

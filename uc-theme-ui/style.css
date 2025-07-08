@@ -25,12 +25,12 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 @import url(styles/fireplace.css);
 
 /* 
-*    TODO : Summertime font color missing Variable. Currently defaults to #fff    
+*      
 *    TODO : Winter needs ALL Variables. As winter-bg-color not wintertime-etc-etc.  
 *	 TODO : Autumnal Page is rough Query Loop ; needs All Variables 
 *    TODO : Saffron Honey Gin & Tonic Post needs Featured Image
-*    TODO : Springtime has no custom font color. 
-*
+*    TODO :  
+*    TODO : Special-Occasion different Heading Font? 
 *
 */
 
@@ -55,9 +55,12 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
     --everyday-shadow: 1px 3px 7px var(--everyday-accent-color);
 
 	/*  Fireplace  */
-    --fireplace-border: medium solid black;
-    --fireplace-font: #f2993a;
-    --fireplace-shadow: 4px 1px 4px #1f1f1f;
+    --fireplace-border: medium solid var(--fireplace-accent-color);
+    --fireplace-font-color: #f2993a;
+    --fireplace-shadow: 4px 1px 4px var(--fireplace-bg-color);
+
+	--fireplace-accent-color: black;
+	
 
 	/*  Home Page & Gallery  */
     --gallery-border: 2em;
@@ -90,10 +93,10 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
    
 	/*  Why are these two different?  */ 
 	--std-white-font: #dddddd;
-	--std-font-color: rgb(255,255,255);
-
+	--std-font-color: #ffffff;
 
 	--std-bg-color: #241547;
+
 
 	/*  Summertime  */
     --summertime-bg-color: #452987;
@@ -2164,15 +2167,6 @@ a.fp-button-link:hover{
 
 
 
-
-
-
-
-
-
-
-/*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
-/*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
 @container (orientation:landscape){
 
 	.special-occasion .everyday figure{
@@ -2255,25 +2249,10 @@ a.fp-button-link:hover{
 	#foto-sept{	left: -24%;	top: 3%;}
 	
 	#foto-huit{		margin: 15% 0 0 0; max-width: 32vw; right: -25%;	}
-
-
-
-
-
 	
 
 }
-/*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
-/*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
 
-
-
-
-
-
-/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
-/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
-/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
 @container (orientation:portrait){
 
 	 /*https://www.youtube.com/watch?v=Y9rHsdCxU8Q*/
@@ -2321,17 +2300,6 @@ a.fp-button-link:hover{
 		margin: 12% 1%;
 	}
 
-
-	
-
-/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
-/*//////////////////	MOBILE / PORTRAIT LAYOUT	///////////////////////*/
-
-
-
-
-/*/////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////*/
-/*/////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////*/
 @media screen and (orientation: landscape){
 
 
@@ -2342,9 +2310,6 @@ a.fp-button-link:hover{
 
 		
 	}
-
-	
-
 
 	.ete figure{ /*    be more specific    */
 	/*		fixes captions for some reason   */
@@ -2386,73 +2351,12 @@ a.fp-button-link:hover{
 
 
 } /*END*/
-/*    /////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////    */
 
 
 
 
 
 
-
-
-
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-@container (orientation: portrait){
-
-		
-
-		
-	/*
-	.everyday-vertUne, .everyday-vertDeux, .everyday-vertTrois{
-		grid-column: 2 / span 1; 
-		
-		grid-row: auto;
-	}
-	.everyday-vertUne{
-		padding: 5%;
-		
-	}
-	.everyday-vertDeux{
-		display: inline-grid;
-	} 
-	
-#foto-everyday-une{ grid-row: 3 ; grid-column: 2; transform: rotate(3deg);}
-#chili{	top: -25%; left: 35%;		}
-#foto-everyday-deux{	transform: rotate(-5deg); }
-#foto-everyday-trois{	transform:rotate(4deg);		}
-#foto-everyday-quatre{	transform: rotate(-3deg);	}
-#foto-everyday-cinq{	transform:rotate(5deg);		}
-#foto-everyday-sixieme{		transform:rotate(-4deg);	}
-#foto-everyday-sept{	 transform: rotate(3deg); }
-	*/
-	
-		
-}
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
-/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
-
-/*  this container query Excludes Landscape rules 
-for design-system  */
 
 
 
@@ -2510,6 +2414,3 @@ for design-system  */
 }
 
 
-
-/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
-/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/

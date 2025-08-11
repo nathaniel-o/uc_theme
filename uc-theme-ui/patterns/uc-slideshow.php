@@ -4,6 +4,9 @@
  * Slug: uc-slideshow
  * Categories: Featured
 */
+
+// Include the cocktail-images plugin functions
+require_once WP_PLUGIN_DIR . '/cocktail-images/includes/functions.php';
 ?>
 <!-- Pattern code goes here. -->
  

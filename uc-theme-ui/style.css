@@ -24,15 +24,6 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 @import url(styles/romantic.css);
 @import url(styles/fireplace.css);
 
-/* 
-*      
-*    TODO : Winter needs ALL Variables. As winter-bg-color not wintertime-etc-etc.  
-*	 TODO : Autumnal Page is rough Query Loop ; needs All Variables 
-*    TODO : Saffron Honey Gin & Tonic Post needs Featured Image
-*    TODO :  
-*    TODO : Special-Occasion different Heading Font? 
-*
-*/
 
 
 
@@ -2409,8 +2400,6 @@ a.fp-button-link:hover{
 	#foto-everyday-quatre{	transform: rotate(-3deg);	}
 	#foto-everyday-cinq{	transform:rotate(5deg);		}
 	#foto-everyday-sixieme{	transform:rotate(-4deg);	}
-	#foto-everyday-sept{		transform: rotate(3 deg)};	
+	#foto-everyday-sept{		transform: rotate(3deg);	}
 
 }
-
-

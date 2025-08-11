@@ -7,7 +7,7 @@
 			"core/image": {
 				"lightbox": {
 					"enabled": false,
-					"allowEditing": true
+					"allowEditing": false
 				}
 			}
 		},

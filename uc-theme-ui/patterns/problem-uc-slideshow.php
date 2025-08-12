@@ -6,7 +6,7 @@
 */
 
 // Include the cocktail-images plugin functions
-require_once WP_PLUGIN_DIR . '/cocktail-images/includes/functions.php';
+//require_once WP_PLUGIN_DIR . '/cocktail-images/includes/functions.php';
 ?>
 <!-- Pattern code goes here. -->
  
@@ -15,10 +15,6 @@ require_once WP_PLUGIN_DIR . '/cocktail-images/includes/functions.php';
 
 
 
-
-
-
-<!-- Pattern code goes here. -->
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <h3> Make Evt Listen with AJAX </h3> 
 <!-- wp:jetpack/slideshow {"autoplay":true,"ids":[2765,2760,2753],"sizeSlug":"large"} -->

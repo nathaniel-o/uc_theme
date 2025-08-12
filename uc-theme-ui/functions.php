@@ -228,9 +228,6 @@ add_action('after_setup_theme', function() {
 
 <?php
 
-
-
-
 // Uncomment the following line to update all excerpts, then comment it out again
 //add_action('init', 'uc_update_all_drink_excerpts');
 

@@ -20,9 +20,9 @@
         </figure>
         
         <div class="wp-block-media-text__content">
-            <!-- wp:heading {"level":1} -->
+            <!-- w-p-:-h-e-a-d-i-n-g- --{-"-l-e-v-e-l-"-:1-}- - - ->
             <h1>Drink Name</h1>
-            <!-- /wp:heading -->
+            <! - - -/-w-p-:-h-ea-d-i-n-g- -->
 
             <!-- wp:list -->
             <ul>

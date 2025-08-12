@@ -23,7 +23,9 @@
     <div class="wp-block-jetpack-slideshow_container swiper-container">
         <ul class="wp-block-jetpack-slideshow_swiper-wrapper swiper-wrapper uc-swiper-list">
             <?php //echo generate_slideshow_slides($slideshow_images);  // The Reference Example 
-
+/* 
+THESE FUNCTION CALLS ARE BUSTED BECAUSE THEY MOVED TO PLUGIN LAND
+RELOCATE THIS WHOLE BLOCK OR ELSE BE THOROUGH - REQUIRE ONCE STATEMENT BROKE LIVE SITE  ! 
             $drink_posts = uc_get_drinks();
             
             // Get search term using get_search_query()
@@ -43,7 +45,7 @@
             //error_log('filter_carousel: ' . print_r($filter_carousel, true));
 
             echo $filter_carousel;
-
+ */
             ?>  
             <!-- THE PRIOR EXAMPLE: ?php echo uc_filter_carousel('mar', $drink_posts, 3, 0, 1); ?--> 
         </ul>

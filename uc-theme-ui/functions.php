@@ -18,14 +18,12 @@ function uc_enqueue_styles(){
 		array()
 	);
 	
-	// Add custom CSS for rotated images - not sure what this does since removing inline click effects @ images randomizer 
-	wp_add_inline_style('uc-theme-slug', ' 
+	// Add custom CSS for rotated images
+	wp_add_inline_style('uc-theme-slug', '
 		img.rotate-90 { transform: rotate(90deg); }
 		img.rotate-180 { transform: rotate(180deg); }
 		img.rotate-270 { transform: rotate(270deg); }
 		img.rotate-custom { transform: rotate(var(--rotation-angle)); }
-		
-		
 	');
 }
 function uc_enqueue_script(){
@@ -100,11 +98,38 @@ function uc_page_id() {
 add_action('init', 'uc_page_id');  
   #Must pass REFERENCE to a function, as a STRING to Hook
 
+
+
+
+
+// Add AJAX handler for filter_carousel
+add_action('wp_ajax_filter_carousel', 'handle_filter_carousel');
+add_action('wp_ajax_nopriv_filter_carousel', 'handle_filter_carousel');
+
+function handle_filter_carousel() {
+    $search_term = isset($_POST['search_term']) ? sanitize_text_field($_POST['search_term']) : '';
+    
+    // Get drink posts
+    $drink_posts = uc_get_drinks();
+     
+    // Generate carousel HTML
+	$filtered_carousel = uc_filter_carousel($search_term, $drink_posts, 5, 0, 1, 1);
+    echo $filtered_carousel;
+
+   # //error_log($filtered_carousel);
+    wp_die(); // Required for proper AJAX response
+}
+
+
+
+
+
+
+
 add_action('wp_head', function() {
     # FOR DEBUG //error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
-    echo dom_content_loaded(testing_backgrounds(), 'styleImagesByPageID(pageID);', 0 );    //    Pass JS backgrounds function into DOMContent Evt Lstnr
+    echo dom_content_loaded(testing_backgrounds(), 'styleImagesByPageID(pageID)', 0);    //    Pass JS backgrounds function into DOMContent Evt Lstnr
 
-    
 });
 
 /*
@@ -185,6 +210,9 @@ function testing_backgrounds(){
     
 }
 
+
+
+
 add_action('after_setup_theme', function() {
     add_theme_support('post-thumbnails');  //forget what this does
     add_theme_support('wp-block-styles');  //forget what this does
@@ -192,8 +220,44 @@ add_action('after_setup_theme', function() {
 	add_theme_support('custom-logo');
 });
 
-// Allow HTML in excerpts  ?? ? ? 
-//remove_filter('get_the_excerpt', 'wp_strip_all_tags');
+
+
+?>
+
+
+
+<?php
+
+
+
+
+// Uncomment the following line to update all excerpts, then comment it out again
+//add_action('init', 'uc_update_all_drink_excerpts');
+
+// Clear all drink post excerpts
+function uc_clear_all_drink_excerpts() {
+    $drinks_query = uc_drink_query();
+
+    if ($drinks_query->have_posts()) {
+        while ($drinks_query->have_posts()) {
+            $drinks_query->the_post();
+            $post_id = get_the_ID();
+            
+            wp_update_post(array(
+                'ID' => $post_id,
+                'post_excerpt' => ''  // Set excerpt to empty string
+            ));
+        }
+        wp_reset_postdata();
+    }
+}
+
+// Uncomment the following line to run once, then comment it out again
+//add_action('init', 'uc_clear_all_drink_excerpts');
+
+
+
+
 
 # This Function is Not in Use. 
 function uc_dynamic_h1($uc_page_id){
@@ -248,145 +312,10 @@ function uc_dynamic_tagline($uc_page_id){
 	return $dynamic_h1;
 }
 
-// Customize WordPress Core Lightbox to show titles
-function uc_customize_lightbox_overlay() {
-    // Remove the default lightbox overlay
-    remove_action('wp_footer', 'block_core_image_print_lightbox_overlay');
-    
-    // Add our custom lightbox overlay
-    add_action('wp_footer', 'uc_custom_lightbox_overlay');
-}
-add_action('init', 'uc_customize_lightbox_overlay');
-
-function uc_custom_lightbox_overlay() {
-    $close_button_label = esc_attr__('Close');
-
-    // Get theme colors
-    $background_color   = '#fff';
-    $close_button_color = '#000';
-    if (wp_theme_has_theme_json()) {
-        $global_styles_color = wp_get_global_styles(array('color'));
-        if (!empty($global_styles_color['background'])) {
-            $background_color = esc_attr($global_styles_color['background']);
-        }
-        if (!empty($global_styles_color['text'])) {
-            $close_button_color = esc_attr($global_styles_color['text']);
-        }
-    }
-
-    echo <<<HTML
-        <div
-            class="wp-lightbox-overlay zoom"
-            data-wp-interactive="core/image"
-            data-wp-context='{}'
-            data-wp-bind--role="state.roleAttribute"
-            data-wp-bind--aria-label="state.currentImage.ariaLabel"
-            data-wp-bind--aria-modal="state.ariaModal"
-            data-wp-class--active="state.overlayEnabled"
-            data-wp-class--show-closing-animation="state.showClosingAnimation"
-            data-wp-watch="callbacks.setOverlayFocus"
-            data-wp-on--keydown="actions.handleKeydown"
-            data-wp-on-async--touchstart="actions.handleTouchStart"
-            data-wp-on--touchmove="actions.handleTouchMove"
-            data-wp-on-async--touchend="actions.handleTouchEnd"
-            data-wp-on-async--click="actions.hideLightbox"
-            data-wp-on-async-window--resize="callbacks.setOverlayStyles"
-            data-wp-on-async-window--scroll="actions.handleScroll"
-            data-wp-bind--style="state.overlayStyles"
-            tabindex="-1"
-            >
-                <button type="button" aria-label="$close_button_label" style="fill: $close_button_color" class="close-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="m13.06 12 6.47-6.47-1.06-1.06L12 10.94 5.53 4.47 4.47 5.53 10.94 12l-6.47 6.47 1.06 1.06L13.06 12Z"></path></svg>
-                </button>
-                <div class="lightbox-image-container">
-                    <figure data-wp-bind--class="state.currentImage.figureClassNames" data-wp-bind--style="state.figureStyles">
-                        <img data-wp-bind--alt="state.currentImage.alt" data-wp-bind--class="state.currentImage.imgClassNames" data-wp-bind--style="state.imgStyles" data-wp-bind--src="state.currentImage.currentSrc">
-                        <figcaption class="lightbox-caption" data-wp-text="state.currentImage.alt"></figcaption>
-                    </figure>
-                </div>
-                <div class="lightbox-image-container">
-                    <figure data-wp-bind--class="state.currentImage.figureClassNames" data-wp-bind--style="state.figureStyles">
-                        <img data-wp-bind--alt="state.currentImage.alt" data-wp-bind--class="state.currentImage.imgClassNames" data-wp-bind--style="state.imgStyles" data-wp-bind--src="state.enlargedSrc">
-                        <figcaption class="lightbox-caption" data-wp-text="state.currentImage.alt"></figcaption>
-                    </figure>
-                </div>
-                <div class="scrim" style="background-color: $background_color" aria-hidden="true"></div>
-        </div>
-HTML;
-}
-
-// Add custom CSS to style the lightbox captions
-function uc_add_lightbox_caption_styles() {
-    echo '<style>
-        /* Show captions in lightbox */
-        .wp-lightbox-overlay .wp-block-image figcaption {
-            display: block !important;
-        }
-        
-        /* Style the lightbox captions */
-        .wp-lightbox-overlay .lightbox-caption {
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            margin-top: 10px;
-            border-radius: 4px;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-        
-        /* Ensure caption doesn\'t interfere with image positioning */
-        .wp-lightbox-overlay .wp-block-image {
-            flex-direction: column;
-        }
-    </style>';
-}
-add_action('wp_head', 'uc_add_lightbox_caption_styles');
 
 
 
-/**
- * Update all drink post excerpts
- */
-function uc_update_all_drink_excerpts() {
-    $drinks_query = uc_drink_query();
 
-    if ($drinks_query->have_posts()) {
-        while ($drinks_query->have_posts()) {
-            $drinks_query->the_post();
-            $post_id = get_the_ID();
-            $new_excerpt = uc_generate_metadata_list($post_id);
-            
-            wp_update_post(array(
-                'ID' => $post_id,
-                'post_excerpt' => $new_excerpt
-            ));
-        }
-        wp_reset_postdata();
-    }
-}
-
-/**
- * Clear all drink post excerpts
- */
-function uc_clear_all_drink_excerpts() {
-    $drinks_query = uc_drink_query();
-
-    if ($drinks_query->have_posts()) {
-        while ($drinks_query->have_posts()) {
-            $drinks_query->the_post();
-            $post_id = get_the_ID();
-            
-            wp_update_post(array(
-                'ID' => $post_id,
-                'post_excerpt' => ''  // Set excerpt to empty string
-            ));
-        }
-        wp_reset_postdata();
-    }
-}
-
-?>
 
 
 

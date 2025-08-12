@@ -20,9 +20,9 @@
         </figure>
         
         <div class="wp-block-media-text__content">
-            <!-- w  p : h eading {"level":1} -  ->
+            <!-- wp:heading {"level":1} -->
             <h1>Drink Name</h1>
-            <! - - / w p : h e ading -->
+            <!-- /wp:heading -->
 
             <!-- wp:list -->
             <ul>

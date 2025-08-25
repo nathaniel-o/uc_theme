@@ -362,7 +362,8 @@
 			},
 			"core/image": {
 				"lightbox": {
-					"allowEditing": true
+					"enabled": false,
+					"allowEditing": false
 				}
 			},
 			"core/post-comments-form": {

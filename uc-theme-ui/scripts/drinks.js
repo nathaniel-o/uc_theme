@@ -41,7 +41,7 @@ class Drink{
 		
 		
 
-			ucPortraitLandscape(anFigure.children[0], anFigure);
+			// Image orientation detection now handled by drinks-plugin
 			//console.log("IMAGES ASSIGNED");
 
 		
@@ -342,21 +342,8 @@ class Drink{
 		/*    MISC. HELPER FUNCTIONS    
 		    ////    ////    ////    ////    */ 
 			
-			//  Add CSS class to figure based on dimensions of img (on load) 
-			//  Called by Drink.ucConvertDrinkToFigure()
-			function ucPortraitLandscape(anImage, anFigure){
-				let drinkImage = anImage;
-				let figure = anFigure;	
-				drinkImage.onload = () => {
-					if(drinkImage.naturalHeight > drinkImage.naturalWidth){
-						figure.classList.add("portrait");
-						//console.log("portrait");
-					} else if (drinkImage.naturalHeight < drinkImage.naturalWidth){
-						figure.classList.add("landscape");
-						//console.log("landscape");
-					} 
-				}
-	}
+			// Image orientation detection moved to drinks-plugin
+			// Function ucPortraitLandscape has been refactored and moved to the drinks plugin
 	/*
 		Remove 3 digits of anString 
 		modifies original string

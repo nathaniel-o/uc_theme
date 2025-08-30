@@ -169,57 +169,9 @@
 		/*    MISC. HELPER FUNCTIONS    
 		    ////    ////    ////    ////    */ 
 			
-		//  Add CSS class to figure based on dimensions of img (on load) 
-			//  Repurposed from Drink.ucConvertDrinkToFigure(), to Be Used Everywhere. 
-		function ucPortraitLandscape(anImage, anFigure){
-				let drinkImage = anImage;
-				let figure = anFigure;	
-				//console.log('Image src:', drinkImage.src);
-				//console.log('Image complete:', drinkImage.complete);		
-
-
-				/*
-				*  Ignore the pop-off figure which contains media & text > figure (Single Pages)
-				*  Ignore the Gallery Block's figure which contains multiple figures 
-				*/
-				if(!figure.classList.contains("pop-off") && !figure.classList.contains("wp-block-gallery")){ 
-					if (drinkImage.complete) {
-						// Image is already loaded, process immediately
-						//console.log(drinkImage.naturalHeight);
-						//console.log(drinkImage.naturalWidth);
-						processImageDimensions();
-					} else {
-						// Image is not loaded yet, wait for load event
-						drinkImage.onload = processImageDimensions;
-					}
-
-				}
-						
-				function processImageDimensions() {
-					//console.log(drinkImage.naturalHeight);
-					//console.log(drinkImage.naturalWidth);
-					if(drinkImage.naturalHeight > drinkImage.naturalWidth){
-						figure.classList.add("portrait");
-						//console.log("portrait");
-
-					} else if (drinkImage.naturalHeight < drinkImage.naturalWidth){
-						figure.classList.add("landscape");
-						//console.log("landscape");
-					} 
-				}
-
-		}
-		document.addEventListener("DOMContentLoaded", (event) => {
-				// Query Selector to affect Gallery Pages' Query Body only. 
-				/* document.querySelectorAll('.wp-block-post-featured-image').forEach(figure => {
-					ucPortraitLandscape(figure.querySelector('img'), figure);
-				}); */
-
-				/* the logo isn't a figure by default  */ 
-				document.querySelectorAll('figure').forEach(figure => {
-					ucPortraitLandscape(figure.querySelector('img'), figure);
-				});
-		});
+		//  Image orientation detection moved to drinks-plugin
+		//  Function ucPortraitLandscape has been refactored and moved to the drinks plugin
+		//  for better integration with WordPress Image blocks
 
 
 
@@ -326,10 +278,8 @@
 						}
 						console.log(carousel);
 
-						// Apply portrait/landscape classes to new figures
-						carousel.querySelectorAll('figure').forEach(figure => {
-							ucPortraitLandscape(figure.querySelector('img'), figure);
-						});
+						// Portrait/landscape classes are now handled by drinks-plugin
+						// Image orientation detection is automatic
 						document.querySelector('.uc-slideshow').classList.toggle("hidden");
 					})
 					.catch(error => console.error('Error:', error));

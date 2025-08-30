@@ -588,7 +588,7 @@ figure{ /*Center most pictures('s containers)*/
 }
 img{
 	/*	Keep Aspect Ratio	*/
-	width: 100%;
+	width: auto;
 	height: auto;
 	max-width: 100%; /*this helps fill parent containers. */
 	margin: auto;  /*	center <img in <figure	*/

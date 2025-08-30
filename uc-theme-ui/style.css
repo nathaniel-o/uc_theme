@@ -264,19 +264,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	}
 
 
-	.close-button {
-		position: absolute;
-		top: -5%;
-		right: -5%;
-		font-weight: 750;
-		font-size: 3rem;
-		background-color: transparent;
-		color: var(--details-clr-bone-white);
-		text-shadow: 1px 3px 7px #dc699a;
-		border: none;
-		z-index: 6;
-		cursor: pointer;
-	}
+
 
 	.wp-block-post-content {
 		width: 100%;
@@ -299,125 +287,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 
 
 
-	.wp-block-jetpack-slideshow_swiper-wrapper {
-		/* Add these to ensure proper centering */
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
 
-	.wp-block-jetpack-slideshow_slide {
-		/* Ensure slides are centered */
-		display: flex !important; /* Override any Swiper defaults */
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		margin: 0;
-		padding: 0;
-	}
-
-	.wp-block-jetpack-slideshow_slide figure {
-		/* Center the figure content */
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		width: 100%;
-		height: 100%;
-		padding: 1em;
-		margin: 0;
-	}
-
-	.wp-block-jetpack-slideshow_slide img {
-		/* Ensure images are centered */
-		margin: 0 auto;
-		object-fit: contain;
-	}
-
-	.wp-block-jetpack-slideshow_slide figcaption {
-		/* Center captions and remove extra spacing */
-		width: 100%;
-		margin: 0;
-		padding: 1em 0;
-		text-align: center;
-	}
-
-	/* Base styles for images in both carousel and gallery */
-	.wp-block-post-featured-image figure,
-	.wp-block-jetpack-slideshow_slide figure {
-		width: 100%;
-		height: 100%;
-		margin: 0;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		gap: 1em; /* Space between image and content */
-	}
-
-	/* Portrait images */
-	.portrait {
-		width: 100%;
-		height: auto;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1em; /* Space between image and content */
-	}
-
-	/* Landscape images */
-	.landscape {
-		width: 100%;
-		height: auto;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1em; /* Space between image and content */
-	}
-
-	
-
-/* Specific adjustments for gallery grid */
-.wp-block-post-template.is-flex-container figure {
-    aspect-ratio: 1; /* Square containers */
-    padding: 1em;
-}
-
-/* Specific adjustments for carousel */
-.wp-block-jetpack-slideshow_slide {
-    aspect-ratio: 16/9; /* Standard slideshow ratio */
-    padding: 2em;
-}
-
-/* Image styles */
-.wp-block-jetpack-slideshow_image {
-    max-height: 60%; /* Leave room for content */
-    width: auto;
-    object-fit: contain;
-}
-
-/* Content div styles */
-.slideshow-content {
-    max-height: 35%; /* Ensure content doesn't push image out */
-    width: 100%;
-    overflow-y: none; /* Scroll if content is too long */
-    padding: 0.5em;
-}
-
-/* Content text styles */
-.slideshow-content h3 {
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    margin: 0 0 0.5em 0;
-}
-
-.slideshow-content ul {
-    font-size: clamp(0.8rem, 1.5vw, 1rem);
-    margin: 0;
-    padding-left: 1.2em;
-}
-
-.slideshow-content li {
-    margin-bottom: 0.2em;
-}
 
 
 
@@ -585,26 +455,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	}
 
 
-	.close-button{
-		position: absolute;
-		font-weight: 750;
-		font-size: 3rem;
-		background-color: rgba(0,0,0,0);;
-		color:  var(--details-clr-bone-white);
-		text-shadow: 1px 3px 7px #dc699a; /*#CCCCFF*/
-		border-width: 0; /*remove default "texture" */
-		z-index: auto;
-		isolation: isolate;
-	}
 
-	.outside{
-		top: -5%;
-		right: -5%;
-	}
-	.inside{
-		top: 5%;
-		right: 5%;
-	}
 
 
 	.image-gallery{
@@ -909,25 +760,7 @@ a.fp-button-link:hover{
 		text-wrap: nowrap;
 		width: 100%;
 	}
-	.pop-off {
-		min-width: 55vw;
-		height: auto;
-		min-height: fit-content;
-		margin: 2em auto;
-		padding: 1em;
-	}
-	
-	.pop-off img {
-		max-height: 50vh;
-		width: 100%;
-		object-fit: contain;
-	}
-	
-	.tagged {
-		flex-direction: row;
-		padding: 1em;
-		gap: 1em;
-	}
+
 
 	.vertUne{ padding: 1em 0 0 0;}
 	.vertDeux{ padding: 3em 0 0 0; }
@@ -1289,8 +1122,7 @@ a.fp-button-link:hover{
 	/*		CONTACT FORM		*/
 
 
-	.close-button:hover{	cursor:pointer;	}
-	.close-button:active{	cursor: pointer;	}
+
 
 
 
@@ -1436,32 +1268,7 @@ a.fp-button-link:hover{
 @media (orientation:portrait){
 	
 	
-	.pop-off {
-		width: 90vw;
-		height: auto;
-		min-height: fit-content;
-		margin: 2em auto;
-		padding: 1em;
-	}
-	
-	.pop-off img {
-		max-height: 50vh;
-		width: 100%;
-		object-fit: contain;
-	}
-	
-	.pop-off .wp-block-media-text {
-		flex-direction: column;
-	}
-	
-	.pop-off .wp-block-media-text__media {
-		flex: 0 0 auto;
-		max-width: 100%;
-	}
 
-	.tagged {
-		flex-direction: column;
-	}
 
 
 
@@ -2171,6 +1978,7 @@ a.fp-button-link:hover{
 
 
 
+
 /*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
 /*////////////////	DESKTOP / LANDSCAPE LAYOUT	/////////////////////////*/
 @container (orientation:landscape){
@@ -2396,120 +2204,14 @@ a.fp-button-link:hover{
 
 
 
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-@container (orientation: portrait){
 
-		
 
-		
-	/*
-	.everyday-vertUne, .everyday-vertDeux, .everyday-vertTrois{
-		grid-column: 2 / span 1; 
-		
-		grid-row: auto;
-	}
-	.everyday-vertUne{
-		padding: 5%;
-		
-	}
-	.everyday-vertDeux{
-		display: inline-grid;
-	} 
-	
-#foto-everyday-une{ grid-row: 3 ; grid-column: 2; transform: rotate(3deg);}
-#chili{	top: -25%; left: 35%;		}
-#foto-everyday-deux{	transform: rotate(-5deg); }
-#foto-everyday-trois{	transform:rotate(4deg);		}
-#foto-everyday-quatre{	transform: rotate(-3deg);	}
-#foto-everyday-cinq{	transform:rotate(5deg);		}
-#foto-everyday-sixieme{		transform:rotate(-4deg);	}
-#foto-everyday-sept{	 transform: rotate(3deg); }
-	*/
-	
-		
+
+
+
+
+
+
+/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
+/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
 }
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
-/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
-
-/*  this container query Excludes Landscape rules 
-for design-system  */
-
-
-
-
-
-@media all and (orientation: landscape){
-
-		/*https://www.youtube.com/watch?v=Y9rHsdCxU8Q*/
-		.everyday{
-			max-height: 300vh; /*lengthening did not aut-add more columns, content likely interfering*/
-			padding: 10px;
-			margin-right: 2px;
-			/*Set Grid with right-side buffer for scroll bar*/
-			grid-template-columns: 5vw 1fr 1fr 1fr 1fr 1fr 1fr 5vw;
-	}
-
-		.everyday-vertUne{
-			padding: 15%;
-			grid-column: 2 / span 3;
-			grid-row: 4;
-			
-		}
-		.everyday-vertDeux{
-			
-			display: inline-grid; /*  ?  THIS HELPS containers not to overlap figure classes (as w/ button)*/
-			grid-column: 5 / span 3;
-			padding: 15%;
-			grid-row: 4;
-		}
-		
-
-
-
-			
-			.everyday figcaption{
-				font-family: "Gill Sans MT", sans-serif; /*font works! Similar to domain.com*/
-				color: white;
-				white-space: normal;
-				
-				text-align: left;
-				bottom: 4%;
-				left: 2%;
-			}
-	
-	
-	/*Chili Citrus Sour BANNER outside Columns*/
-	#foto-everyday-une{ grid-row: 3 ; grid-column: 2 / span 6; max-width: 90vw; margin: 0 6%;	transform: rotate(3deg);}
-	#foto-everyday-deux{	transform: rotate(-5deg); }
-	#foto-everyday-trois{	transform:rotate(4deg);		}
-	#foto-everyday-quatre{	transform: rotate(-3deg);	}
-	#foto-everyday-cinq{	transform:rotate(5deg);		}
-	#foto-everyday-sixieme{	transform:rotate(-4deg);	}
-	#foto-everyday-sept{		transform: rotate(3 deg)};	
-
-}
-
-
-
-/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
-/*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/

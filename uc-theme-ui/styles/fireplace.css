@@ -1,36 +1,14 @@
 
 
-
 /*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
 /*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
 /*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
 
-@media (orientation: portrait){
-	
+@media (orientation: portrait){ 	
 
-/*Custom ID's for custom placements in desktop*/
-	/*IF TOP doesn't work, use margin-top*/
-
-	/*Star Anise Margarita*
-	#foto-une{ } 
-	/*Holiday Punch*
-	#foto-deux{  	} 
-	/*Martini*
-	#foto-trois{ }
-	/*Eggnog Martini*
-	#foto-quatre{	}
-	/*Cranberry Sidecar*
-	#foto-cinq{	 }
-	/*Fruity Old Fashioned*
-	#foto-sixieme{		}
-	/*Ported Sweet Manhattan*
-	#foto-sept{	} 	
-	
-	
 	.fp-vertUne{	grid-row: 3 / span 1; grid-column: 2;	} 
 	.fp-vertDeux{	grid-row: 4 / span 1; grid-column: 2;	}
 	.fp-vertTrois{	grid-row: 5 / span 1; grid-column: 2;	}*/
-		 
 
 }
 
@@ -38,40 +16,16 @@
 /*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
 /*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
 @container (orientation: landscape){
 
-	
-
 	 /*https://www.youtube.com/watch?v=Y9rHsdCxU8Q*/
 	.image-gallery{
-		 
-		  
-		  
+
 		  max-width: 100vw; /*1vw = 1% of viewport width*/
-		  
-		  
-		  
-			
-			
-			
-			
-		  
+
 	 }
 	 .fireplace{
 	    /*Set Grid with right-side buffer for scroll bar*/
@@ -88,8 +42,7 @@
 			position: relative;
 
 	 }
-	 
-	 
+
 	 /*Column format same as Home Page*/
 	 .fp-vertUne{
 			grid-column: 2 / span 2;
@@ -113,12 +66,6 @@
 								height: auto;
 								grid-row: 3; 
 		} 
-		
-
-
-
-
-
 
 	figcaption{
 	
@@ -133,8 +80,7 @@
 		/*to improve readability on like backgrounds*/
 		text-shadow: 4px 1px 4px black;
 		/* offset x, offset y, blur radius, color */
-		
-		
+
 		/*Default behavior for Fireplace Captions*/
 		position: absolute; 
 		bottom: 8%;
@@ -157,12 +103,9 @@
 	#foto-sixieme{	bottom: -20%; right: 0;	}
 	/*Ported Sweet Manhattan*/
 	#foto-sept{	right: 42%; margin-top: 100%; width: 35vw;} 
-	
-
 
 /*FIX the space beneath img saved for reconfig <figcaption>*/
 /*https://www.tutorialrepublic.com/faq/how-to-remove-white-space-under-an-image-using-css.php*/
-
 
 	.portrait{
 		border: medium solid black;
@@ -203,8 +146,7 @@
 		bottom: 8%;
 		right: 8%;
 	} 
-	
-	
+
 /*Custom figcaptions for each drink, to align captions accordingly
 	.s-a-caption{
 		
@@ -227,7 +169,6 @@
 			text-align: end;
 			
 		}	
-	
 
 /*
 	.martini-caption{	
@@ -247,10 +188,6 @@
 			right: 4%;
 			
 		} */	/*Custom figcaptions for each drink, to align captions accordingly*/
-
-
-
-
 
 /*END DESKTOP LAYOUT*/
 }

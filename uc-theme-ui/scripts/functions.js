@@ -322,16 +322,16 @@
 					});
 				} */
 
-				const allFigures = document.querySelectorAll(".portrait, .landscape");
+				/* const allFigures = document.querySelectorAll(".portrait, .landscape");
 				if(allFigures.length > 0){
 					ucListenIteratively(allFigures);
-				}
+				} */
 
-				if(document.querySelector(".wp-block-search__button")){
+				/* if(document.querySelector(".wp-block-search__button")){
 					document.querySelector(".wp-block-search__button").addEventListener("click", (e) => {
 						ucAjaxCarousel(e);
 					});
-				}
+				} */
 				
 			}); 
 				

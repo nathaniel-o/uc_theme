@@ -7,7 +7,6 @@
 
 	/*TEST INSERT MOST CSS FROM WEBSITE https://www.w3schools.com/howto/howto_css_timeline.asp*/
 
-
     .timeCo{ /* Parent Container    */
 			
         grid-column: 2 / span 1;
@@ -18,8 +17,6 @@
         font-weight: 800;
         
         background-color: #CCCCFF;
-        
-        
 
     }				
 
@@ -125,11 +122,9 @@
                   
                   /*A timeline entry for p class = */
                           .memory, .h5{
-                              
-                              
+
                               color: blue;
-                                          
-                              
+
                           }	
                           .h5{	font-size: 5.4vw; text-align: start; margin: 1vw 0 0 0;	}	
                           
@@ -147,26 +142,19 @@
 			
 			grid-column: 2 / span 6;
 			grid-row: 4;
-			
-			
+
 			/*Pasted TEMP
 			background-color: #474e5d;*/
 			font-family: "Libre Baskerville" ; 
 			font-weight: 800;
 			
 			background-color: #CCCCFF;
-			
-			
-	
+
 		}
 
         /*//////    TIMELINE   PARTS //////*/
 /*//////    TIMELINE   PARTS //////*/
 	/*TEST INSERT MOST CSS FROM WEBSITE https://www.w3schools.com/howto/howto_css_timeline.asp*/
-
-					
-
-											
 
 					/* The actual timeline (the vertical ruler) */
 	.ruler {
@@ -194,8 +182,7 @@
           width: 370%;
             /*Make narrow horizontally*/
           max-height: 6px;
-        
-          
+
           background-color: #ff9f55;  /*Orange*/
           /*These two lines to move line down from from top*/
           top: 50%;
@@ -297,8 +284,7 @@
                             border-width: 10px 0 10px 10px;
                             border-color: transparent transparent transparent #fff7e0;
                             /*THIS setup points Right*/
-                            
-                            
+
                             /*Point DOWN?*/
                             border-width: 10px 0 10px 10px;
                             border-color: transparent transparent transparent #fff7e0;
@@ -336,12 +322,10 @@
                             /*WHY is this BOX not respecting dimensions of parents? */
                             /*BECAUSE parents are pos: relative as TOP or BOTTOM containers*/
                             height: 100%;
-                            
-                            
+
                             min-width: 200px; /*this line just to fit February 2023*/
                             width: auto;
-                            
-                            
+
                             box-sizing: content-box;
                                                 
                           }	
@@ -349,12 +333,9 @@
   
   /*A timeline entry for p class = */
           .memory, .h5{
-              
-              
+
               color: blue;
-              
-              
-              
+
           }	.h5{	font-size: 2.4vw; text-align: start; margin: 1vw 0 0 0;	}	.memory{ font-size: 1.9vh; font-weight: 400; text-align: center;}
   /*//////    TIMELINE   PARTS //////*/
   /*//////    TIMELINE   PARTS 	//////*/

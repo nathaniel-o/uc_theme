@@ -1,7 +1,5 @@
 
 
-
-
 /*////GLOBAL STYLES///*/
 * {
   box-sizing: border-box;
@@ -14,25 +12,6 @@ body {
 }
 /*////GLOBAL STYLES///*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*//////DESKTOP EXAMPLE HEREIN/////////////////////////*/
 /*//////DESKTOP EXAMPLE HEREIN/////////////////////////*/
 /*//////DESKTOP EXAMPLE HEREIN/////////////////////////*/
@@ -40,8 +19,7 @@ body {
 /*//////DESKTOP EXAMPLE HEREIN/////////////////////////*/
 /*//////DESKTOP EXAMPLE HEREIN/////////////////////////*/
 @media (orientation: landscape) {
-	
-	
+
 	/* The actual timeline (the vertical ruler) */
 	.ruler {
 	  
@@ -49,8 +27,7 @@ body {
 	  position: relative;
 	  margin: 0 auto;
 	  height: 75vh;
-	  
-	  
+
 	}
 
 	/* The actual timeline (the vertical ruler) */
@@ -170,8 +147,7 @@ body {
 						  border-width: 10px 0 10px 10px;
 						  border-color: transparent transparent transparent #fff7e0;
 						  /*THIS setup points Right*/
-						  
-						  
+
 						  /*Point DOWN?*/
 						  border-width: 10px 0 10px 10px;
 						  border-color: transparent transparent transparent #fff7e0;
@@ -209,23 +185,13 @@ body {
 						  /*WHY is this BOX not respecting dimensions of parents? */
 						  /*BECAUSE parents are pos: relative as TOP or BOTTOM containers*/
 						  height: 80%;
-						  
-						  
+
 						  min-width: 200px; /*this line just to fit February 2023*/
 						  width: auto;
-						  
-						  
+
 						  box-sizing: content-box;
 						  					
 						}	.content p{	text-align: center; font-size: 11px;	}
-						
-						.content h5{
-							
-							
-							
-						}
-						
-						
 
 }
 /*//////DESKTOP EXAMPLE HEREIN/////////////////////////*/
@@ -234,57 +200,6 @@ body {
 /*//////DESKTOP EXAMPLE HEREIN/////////////////////////*/
 /*//////DESKTOP EXAMPLE HEREIN/////////////////////////*/
 /*//////DESKTOP EXAMPLE HEREIN/////////////////////////*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*/////////////    MOBILE LAYOUT    //////*/
 /*/////////////    MOBILE LAYOUT    //////*/
@@ -295,12 +210,8 @@ body {
 /*/////////////    MOBILE LAYOUR    //////*/
 
 @media (orientation: portrait) {
-	
 
 	/*TEST INSERT MOST CSS FROM WEBSITE https://www.w3schools.com/howto/howto_css_timeline.asp*/
-
-
-									
 
 					/* The actual timeline (the vertical ruler) */
 					.ruler {
@@ -404,16 +315,11 @@ body {
 
 /*A timeline entry for p class = */
 		.memory, h5{
-			
-			
-			color: blue;
-			
-			
-			
-		}	h5{	font-size: 5.4vw; text-align: start; margin: 1vw 0 0 0;	}	.memory{ font-size: 3vw; font-weight: 400; text-align: center;}
-		
 
-	
+			color: blue;
+
+		}	h5{	font-size: 5.4vw; text-align: start; margin: 1vw 0 0 0;	}	.memory{ font-size: 3vw; font-weight: 400; text-align: center;}
+
 }
 /*/////////////    MOBILE LAYOUR    //////*/
 /*/////////////    MOBILE LAYOUR    //////*/

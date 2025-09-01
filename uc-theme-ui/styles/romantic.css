@@ -9,7 +9,6 @@
 
 	*/
 
-	
 	color: white; 
 	height: 100%;
 	margin: 0;
@@ -42,10 +41,6 @@ bottom: 12%;
 left: 4%;
 }
 
-
-
-
-
 /*////////////	LANDSCAPE / DESKTOP LAYOUT ////////////*/
 @container (orientation:landscape){
 	
@@ -64,20 +59,11 @@ left: 4%;
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
 
-
-
-
-
-
-
-
-
 /*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
 /*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
 /*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
 @container (orientation: portrait){
 
-		
 	#foto-une{ grid-row: 3 ; grid-column: 2; transform: rotate(3deg);}
 		
 	#foto-deux{	transform: rotate(-5deg); }
@@ -87,8 +73,6 @@ left: 4%;
 	#foto-sixieme{	transform:rotate(-4deg);	}
 	#foto-sept{ transform: rotate(3deg); }
 	#foto-huit{ transform: rotate(4deg);	}
-		
-
 
 }
 /*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/

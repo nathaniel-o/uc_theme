@@ -9,8 +9,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-content: space-between;
-	
-	
+
 }
 
 img{
@@ -50,14 +49,8 @@ figcaption{
 	margin: auto;
 }
 
-
-
-
-
-
 @media(orientation: portrait){
-	
-	
+
 	figure{
 		
 		display:none; 
@@ -88,6 +81,5 @@ figcaption{
 		height: auto;
 		margin: 5% auto;
 	}
-	
-	
+
 }

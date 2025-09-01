@@ -17,7 +17,6 @@
 	
 }
 
-
 *{		/*Apply to All Elements*/
 	
 	box-sizing: border-box;
@@ -46,7 +45,6 @@ body{	/* expands x and y to fit .image-gallery*/
 	margin: 0;
 }
 
-
 figure{ /*Center most pictures('s containers)*/
 	margin: auto;
 }
@@ -65,8 +63,7 @@ figure{ /*Center most pictures('s containers)*/
 	align-content: space-between;
 	
 	/*position: relative;*/
-	
-	
+
 }
 
 .pop-off{ /*detailsPane*/
@@ -79,14 +76,12 @@ figure{ /*Center most pictures('s containers)*/
 	max-height: 85%;
 	max-width: 85%;
 
-
 	/*default style*/
 	padding: 0;
 	margin: 0;
 	background-color: rgba(255,255,255,0); 
 	border: thick ridge rgba(222, 222, 222, 1.0); /*#C0C0C0*/
 
-	
 	/*position: sticky sets isolation:isolate automatically
 	position: sticky;*/
 	
@@ -99,7 +94,6 @@ figure{ /*Center most pictures('s containers)*/
 	/*climb the Z ladder*/
 	z-index: 2;
 
-	
 } .pop-off figure{ margin-top: 0;/*remove default 5% (exists on <figures to improve page spacing*/}
 
 /*Pop-out Caption ID*/
@@ -114,9 +108,6 @@ figure{ /*Center most pictures('s containers)*/
 }
 
 /*PASTE FROM DETAILS EXAMPLE*/
-
-
-
 
 /*rgb(26,21,51, .8); midnight blue*/
 .subheads{ 
@@ -142,10 +133,6 @@ figure{ /*Center most pictures('s containers)*/
 	
 }
 
-
-
-
-	
 /*#pane p{
 	
 	color: blue;
@@ -162,8 +149,7 @@ figure{ /*Center most pictures('s containers)*/
 	
 	display: flex;
 	justify-content: space-between;
-	
-	
+
 }
 
 /*TO CLEAR floated items (Add background color to "tagged"*/
@@ -172,7 +158,6 @@ figure{ /*Center most pictures('s containers)*/
 	display: table;
 	clear: both;
 }
-
 
 /*
 .tagged ul li{
@@ -185,10 +170,6 @@ figure{ /*Center most pictures('s containers)*/
 /*PASTE FROM DETAILS EXAMPLE*/
 /*PASTE FROM DETAILS EXAMPLE*/
 /*PASTE FROM DETAILS EXAMPLE*/
-
-
-
-
 
 /*		SCROLLING TEXT BOX		*/
 				#scroll-container {
@@ -231,14 +212,9 @@ figure{ /*Center most pictures('s containers)*/
 					-webkit-transform: translateX(-80%);
 					transform: translateX(-80%);
 				  }
-		
-
-
 
 				}
 /*		SCROLLING TEXT BOX		*/
-		
-
 
 }		
 /*		END Global Styles?! 		*/
@@ -246,25 +222,12 @@ figure{ /*Center most pictures('s containers)*/
 /*		END Global Styles?! 		*/
 /*		END Global Styles?! 		*/
 
-
-
-
-
-
-
-
-
-
-
 /*		DESKTOP STYLES		*/
 /*		DESKTOP STYLES		*/
 /*		DESKTOP STYLES		*/
 /*		DESKTOP STYLES		*/
-
 
 @media all and (orientation: landscape){
-
-
 
 	h1 { /*"Untouched Cocktails ~~ Celebrating Every Occasion"*/
 		display: flex;
@@ -290,9 +253,6 @@ figure{ /*Center most pictures('s containers)*/
 		
 	}
 
-
-
-
 				/*MATCH LINE SPACING (quoteTwo to match quoteOne)match line breaks from quoteTwo*/
 		/*Improved BUT 1st line still breaks for 'quoteOne' before 'quoteTwo' when narrowing screen*/ 
 		.quoteOne{ 
@@ -317,8 +277,7 @@ figure{ /*Center most pictures('s containers)*/
 			font-size: 1.4vw;
 			line-height: 1.2vw;
 			text-align: right;
-			
-			
+
 			font-weight: bold;
 			font-style: italic;
 			margin-right: 1em;
@@ -349,13 +308,11 @@ figure{ /*Center most pictures('s containers)*/
 			
 		}
 
-
 		img{
 			
 			width: 100%;
 			height: 100%;
-			
-			
+
 		}
 
 		.portrait{
@@ -372,8 +329,6 @@ figure{ /*Center most pictures('s containers)*/
 	
 		}	
 
-
-
 		/*NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
 /*NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
 /*Site Ribbon - Navigation "Bar" with links to other pages*/
@@ -384,8 +339,7 @@ figure{ /*Center most pictures('s containers)*/
 		
 		/*Allows hamburger and custom <p> to be placed with :absolute*/
 		position: relative;
-		
-		
+
 		/*BELOW from .siteRibbon*/
 		font-family: "Libre Baskerville",serif;
 		background-color: rgb(6, 16, 32);
@@ -408,8 +362,7 @@ figure{ /*Center most pictures('s containers)*/
 	  /* Style navigation menu links */
 	  .topnav a {
 		color: white;
-		
-		
+
 		padding: 0; /*to improve img spacing*/
 		
 		text-decoration: none;
@@ -417,15 +370,13 @@ figure{ /*Center most pictures('s containers)*/
 		
 		/*Make horizontal, not vertical.*/
 		display: inline;
-		  
-		
+
 	  }
 	  .topnav a:hover {
 		background-color: #ddd;
 		color: blue;
 	  }
-	  
-	  
+
 	  .write-over{
 		  
 		  display: none;
@@ -437,14 +388,12 @@ figure{ /*Center most pictures('s containers)*/
 		  right: 50px;
 		  
 		  line-height: 0.75;
-		  
-		  
+
 	  } #size-this{ 
 	  
 	  /*Hide the copyright (filler) info for Desktop layout*/
 	  font-size: 2.7vw;  display: none;}
-	  
-	  
+
 	  /* Style the hamburger menu */
 	  .topnav a.icon {
 		background: black;
@@ -468,8 +417,7 @@ figure{ /*Center most pictures('s containers)*/
 		  padding: 14px 16px;
 		  
 	  }
-	  
-	  
+
 	  /* Style the active link (!! home/logo) */
 	  .active {
 		background-color: rgb(6,16,32); /*CCCCFF*/
@@ -478,17 +426,14 @@ figure{ /*Center most pictures('s containers)*/
 		
 		max-height: fit-content;	
 		height: auto;
-		
-		
+
 		/*Fixes width to button*/
 		max-width: fit-content;
 		width: auto;
-		
-		
+
 		margin: 1%;
 		
 		display: inline;
-		
 
 	  } 
 	  
@@ -500,9 +445,7 @@ figure{ /*Center most pictures('s containers)*/
 		  padding: 1.2vw; /*No effect*/
 		  
 	  }
-	  
-	  
-	  
+
 	  /*Style a p element to match <a> elements (for Current page)*/
 	  .topnav p{
 		  
@@ -516,8 +459,7 @@ figure{ /*Center most pictures('s containers)*/
 	  
 	  /*custom ID for <figure> logo in navbar*/
 	  #logo-to-home{
-		  
-		  
+
 		  max-height: 100%;
 		  width: 4vw;
 		  height: auto;
@@ -527,9 +469,7 @@ figure{ /*Center most pictures('s containers)*/
 		  display: flex;
 		  align-content: center; 
 		  justify-content: center;
-		  
-		  
-		  
+
 	  }
 	  
 	  .topnav img{
@@ -541,11 +481,9 @@ figure{ /*Center most pictures('s containers)*/
 		  
 	  }
 
-  
   /*//////NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
 /*//////NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
 /*///////NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
-	
 
 }
 
@@ -554,20 +492,10 @@ figure{ /*Center most pictures('s containers)*/
 /*		DESKTOP STYLES		*/
 /*		DESKTOP STYLES		*/
 
-
-
-
-
-
-
-
-
-
 /*		MOBILE STYLES		*/
 /*		MOBILE STYLES		*/
 /*		MOBILE STYLES		*/
 /*		MOBILE STYLES		*/
-
 
 @media all and (orientation:portrait){
 	h1 { /*"Untouched Cocktails ~~ Celebrating Every Occasion"*/
@@ -578,9 +506,7 @@ figure{ /*Center most pictures('s containers)*/
 		font-size: 2.8vh;
 		text-align: center;
 		text-shadow: 1px 3px 14px #CCCCFF;		}
-	
-	
-	
+
 	.quoteOne, .quoteTwo{	font-family: "Libre Baskerville", serif;
 		
 		line-height: 2.0vh;
@@ -620,14 +546,6 @@ figure{ /*Center most pictures('s containers)*/
 		text-align: center;
 					
 	}
-	
-
-
-
-
-
-
-
 
 		figure{
 			
@@ -671,22 +589,16 @@ figure{ /*Center most pictures('s containers)*/
 			background-color: rgba(250,250,250,0)
 		}
 
-		
-
-
 		img{
 			
 			width: 100%;
 			height: 100%;
-			
-			
-			
+
 		}
 
 		.portrait{
 				width: auto;
-				
-				
+
 				max-width: 85vw;
 				height: auto;
 				
@@ -699,23 +611,16 @@ figure{ /*Center most pictures('s containers)*/
 				height: auto;
 				
 		}	
-		
-		
-
-
-
 
 /*NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
 		/*NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
 			/*Site Ribbon - Navigation "Bar" with links to other pages*/
-		
-			
+
 			 /* Style the navigation menu */
 			 .topnav {
 				overflow: hidden;
 				position: relative;
-				
-				
+
 				/*BELOW from .siteRibbon*/
 				font-family: "Libre Baskerville",serif;
 				background-color: rgb(6, 16, 32);
@@ -724,14 +629,11 @@ figure{ /*Center most pictures('s containers)*/
 				
 				/*grid-column: 2 / span 1;*/
 				min-width: 95%; /*of <body>*/
-				
-				  
+
 				  margin: 2%; /*Top Right Bottom Left*/
 				  /*overflow-x: show; TO HELP DIAGNOSE Start-Overflow in SiteRibbon*/
 				  overflow-y: hidden;
-				  
-				
-				
+
 			  } 
 			  
 			  .write-over{
@@ -754,15 +656,13 @@ figure{ /*Center most pictures('s containers)*/
 				  
 				  margin: 4px 0 0 auto;
 				  display: block;			}  #size-this{ font-size: 2.7vw; }
-  
-  
+
 			  /* Hide the links inside the navigation menu (except for logo/home) */
 			  .topnav #tierOne {
 				display: none;
 				
 			  }
-			  
-	  
+
 			  /* Style navigation menu links */
 			  .topnav a {
 				color: white;
@@ -770,11 +670,9 @@ figure{ /*Center most pictures('s containers)*/
 				text-decoration: none;
 				font-size: 2.7vh;
 				display: block;
-				
-				  
+
 			  }
-			  
-			  
+
 			  /* Add a grey background color on mouse-over */
 			  .topnav a:hover {
 				background-color: #ddd;
@@ -793,13 +691,10 @@ figure{ /*Center most pictures('s containers)*/
 				
 				/*display: inline;*/
 				} 
-  
-			  
-				
+
 			  /*Style a p element to match <a> elements (for Current page)*/
 			  .topnav p{
-	  
-				  
+
 				  background-color: #aaaae3; 
 				  color: white;
 				  padding: 14px 16px;
@@ -820,27 +715,20 @@ figure{ /*Center most pictures('s containers)*/
 				width: auto;
 				padding: 7px 8px;
 			  }
-			  
-			  
+
 			  .topnav img{
 				  
 				  display: inline;
 				  max-height: 50px;
 				  width: auto;
 				  max-width: 10vw;
-				   
-				  
+
 			  }
-			  
-		  
-  
-			  
-								  
+
 				  /*NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
 			  /*NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
 		  /*NEW HAMBURGER MENU EXPANDS VERTICALLY HEREIN//////////////*/
-		  
-		  
+
 			  .footRibbon{
 			  
 			  grid-column: 2 / span 1;
@@ -862,8 +750,7 @@ figure{ /*Center most pictures('s containers)*/
 		  #pied{ /*PIED is an ID Selector meant to act as a fig caption for the logo img (one appearance per page)*/
 	  
 			  font-family: "Gill Sans MT", sans-serif; /*font works! Similar to domain.com*/
-	  
-	  
+
 			  vertical-align: bottom; 
 			  /*"The vertical-align CSS property sets vertical alignment of an inline, 
 			  inline-block or table-cell box."*/
@@ -878,9 +765,7 @@ figure{ /*Center most pictures('s containers)*/
 			  display: inline;
 			  float: right;
 			  margin: auto;
-	  
-	  
-	  
+
 		  }
   
 		  .footRibbon figure img{
@@ -897,24 +782,13 @@ figure{ /*Center most pictures('s containers)*/
 		  margin: 2vw auto;
 		  text-align: left;		
 		  font-size: 1.6vh;
-			  
-			  
-			  
+
 	  }
 		  /*/////////END footRibbon pieces/////////////////////*/
 	  /*/////////END footRibbon pieces/////////////////////*/
   /*/////////END footRibbon pieces/////////////////////*/
 
-
-
-
-
-
-
-
-	
 }
-
 
 /*		MOBILE STYLES		*/
 /*		MOBILE STYLES		*/

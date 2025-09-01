@@ -17,11 +17,6 @@ html, body{
 	font-family: Libre Baskerville; 
 }
 
-
-
-
-
-
 /*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
 /*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
 /*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
@@ -32,51 +27,6 @@ html, body{
 /*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
 /*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
 /*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-
-@media screen and (orientation: landscape){
-	
-	
-	
-}
-
-
-
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-/*////////////    DESKTOP / LANDSCAPE LAYOUT   ////////////*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*////////////    MOBILE  /  PORTRAIT LAYOUT   ////////////*/
 /*////////////    MOBILE  /  PORTRAIT LAYOUT   ////////////*/
@@ -101,14 +51,10 @@ html, body{
 			/*padding: 2%;*/
 			gap: 0;
 			box-sizing: border-box;
-			
-			
+
 		    color: white; 
 			max-width: 100vw; /*1vw = 1% of viewport width*/
-			
-			
-		
-		
+
 			font-family: "Libre Baskerville";
 		
 			/*Set Grid with right-side buffer for scroll bar*/
@@ -117,14 +63,9 @@ html, body{
 				grid-template-rows: auto auto auto auto 1fr auto;
 					/*ANS: auto-sizing vs. fixed- sizing parameters (1fr is auto, 10px is fixed)*/
 			/*grid: auto-flow dense / 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr;*/
-		
-		
-	  
+
 		}
-		
-		
-		
-		
+
 		.portrait{ /*REMAIN identical to .landscape (behavior traits) EXCEPT for max-dimensions*/
 	
 			float: left;
@@ -134,13 +75,10 @@ html, body{
 
 			max-width: 100%;
 			max-height: fit-content;
-			
 
 			height: auto;
 			width: auto;
-			
-			
-			
+
 			margin-left: 1%;
 			margin-right: 1%;
 			
@@ -158,7 +96,6 @@ html, body{
 
 			max-width: fit-content;
 			max-height: 100%;
-			
 
 			height: auto;
 			width: auto;
@@ -170,8 +107,7 @@ html, body{
 			padding: 8px;
 			
 			display: none;
-			
-			
+
 		}
 		
 		/*Pop-out Caption ID*/
@@ -208,11 +144,7 @@ html, body{
 			float: right;
 			
 		}
-		
-		
-		
-		
-			
+
 		/*#pane p{
 			
 			color: blue;
@@ -229,8 +161,7 @@ html, body{
 			
 			display: flex;
 			justify-content: space-between;
-			
-			
+
 		}
 		
 		/*TO CLEAR floated items (Add background color to "tagged"*/
@@ -239,8 +170,7 @@ html, body{
 			display: table;
 			clear: both;
 		}
-		
-		
+
 		/*
 		.tagged ul li{
 			
@@ -248,11 +178,7 @@ html, body{
 			
 		}
 		*/
-		
-		
-		
-		
-		
+
 		figcaption{
 			font-family: "Gill Sans MT", sans-serif; /*font works! Similar to domain.com*/
 			
@@ -264,18 +190,13 @@ html, body{
 			text-align: center;
 		}
 
-
 		img{	
 		/*These two lines adjust width to container, height to match aspect ratio [defined by HTML img size]*/
 			width: 100%;
 			height: auto;
 		/*These two lines adjust width to container, height to match aspect ratio [defined by HTML img size]*/
 		}
-		
-		
-		
-		
-		
+
 } /*END @media*/
 
 /*////////////    MOBILE  /  PORTRAIT LAYOUT   ////////////*/

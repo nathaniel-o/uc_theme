@@ -122,44 +122,77 @@
 
 	function ucColorH1(){
 
-					//console.log("test again");
-
-					var highlight = 'var(--';
-					highlight = highlight.concat(pageID);
-					highlight = highlight.concat("-shadow)");
-
-					//console.log(highlight);
-
-					//document.getElementsByTagName("h1")[0].style.textShadow = highlight;
-
-					//console.log(document.querySelectorAll("h1"));
+					console.log("Applying H1 styling for pageID:", pageID);
 
 					var headings = document.querySelectorAll("h1");
 
 					// Where more than one h1 exists...
 					for (let i = 0; i < headings.length; i++){
-
-						headings[i].style.textShadow = highlight; 
-
-						// Work around an_gallery slug being weird. 
-						if(pageID.includes("gallery")){
-
-							headings[i].style.textShadow = "var(--std-text-shadow)";
-
+						var heading = headings[i];
+						
+						// Reset any existing inline styles
+						heading.style.cssText = '';
+						
+						// Apply page-specific styling based on pageID
+						if(pageID.includes("everyday")){
+							heading.style.color = "var(--everyday-font-color)";
+							heading.style.textShadow = "var(--everyday-shadow)";
+							heading.style.fontFamily = "var(--std-baskerville-font)";
+							heading.style.backgroundColor = "transparent";
+							heading.style.accentColor = "var(--everyday-accent-color)";
 						}
-
-						if(pageID.includes("fireplace")){
-
-							//headings[i].style.color = "#b6b6b6";
-
-
+						else if(pageID.includes("romantic")){
+							heading.style.color = "var(--romantic-font-color)";
+							heading.style.textShadow = "var(--romantic-shadow)";
+							heading.style.fontFamily = "var(--romantic-caption-font)";
+							heading.style.backgroundColor = "transparent";
+							heading.style.accentColor = "var(--romantic-accent-color)";
 						}
-
-
-
+						else if(pageID.includes("summertime")){
+							heading.style.textShadow = "var(--summertime-shadow)";
+							heading.style.backgroundColor = "transparent";
+							heading.style.color = "var(--summertime-accent-color)";
+							heading.style.accentColor = "var(--summertime-accent-color)";
+						}
+						else if(pageID.includes("fireplace")){
+							heading.style.color = "var(--fireplace-font)";
+							heading.style.textShadow = "var(--fireplace-shadow)";
+							heading.style.backgroundColor = "transparent";
+						}
+						else if(pageID.includes("special-occasion")){
+							heading.style.fontFamily = "var(--special-occasion-header-font)";
+							heading.style.backgroundColor = "transparent";
+							heading.style.color = "var(--special-occasion-accent-color)";
+						}
+						else if(pageID.includes("gallery")){
+							heading.style.color = "var(--gallery-font-color)";
+							heading.style.textShadow = "var(--std-text-shadow)";
+							heading.style.backgroundColor = "transparent";
+						}
+						else if(pageID.includes("home")){
+							heading.style.color = "var(--original-pink)";
+							heading.style.textShadow = "var(--std-text-shadow)";
+							heading.style.backgroundColor = "transparent";
+						}
+						else {
+							// Default styling for other pages
+							heading.style.color = "var(--std-font-color)";
+							heading.style.textShadow = "var(--std-text-shadow)";
+							heading.style.fontFamily = "var(--std-baskerville-font)";
+							heading.style.backgroundColor = "transparent";
+						}
+						
+						// Apply common styling to all headings
+						heading.style.padding = "0.5rem 1rem";
+						heading.style.margin = "1rem 0";
+						heading.style.textAlign = "center";
+						heading.style.borderRadius = "4px";
+						heading.style.transition = "var(--std-transition)";
+						
+						console.log("Applied styling to H1:", heading.textContent);
 					}
 
-					//console.log(headings);
+					console.log("H1 styling complete for", headings.length, "headings");
 
 
 	}

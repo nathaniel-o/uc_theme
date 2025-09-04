@@ -128,7 +128,7 @@ function handle_filter_carousel() {
 
 add_action('wp_head', function() {
     # FOR DEBUG //error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
-    echo dom_content_loaded(testing_backgrounds(), 'styleImagesByPageID(pageID)', 0);    //    Pass JS backgrounds function into DOMContent Evt Lstnr
+    echo dom_content_loaded(testing_backgrounds(), 'styleImagesByPageID(pageID);', 'ucColorH1();');    //    Pass JS backgrounds function into DOMContent Evt Lstnr
 
 });
 
@@ -256,43 +256,6 @@ function uc_clear_all_drink_excerpts() {
 
 
 
-# This Function is Not in Use. 
-function uc_dynamic_h1($uc_page_id){
-
-	//Begin string so concatenation works
-	$dynamic_h1 = "<h1>";
-
-
-	#  If title follows "____ Cocktails, one line format... 
-	if ($uc_page_id !== "home" && str_contains($uc_page_id, "gallery") == false && str_contains($uc_page_id, "contact") == false ){
-		//$dynamic_h1 .= "&#8203;~&nbsp; " . ucfirst($uc_page_id) . " ~ &#8203; " . "Cocktails </h1>";	
-		//$dynamic_h1 .=  ucfirst($uc_page_id) . " Cocktails</h1>" ;
-
-
-		if (str_contains($uc_page_id, "-cocktails")){
-
-			$page_bits = explode("-", $uc_page_id);  
-	
-			for($i = 0; $i < count($page_bits) ; $i++){
-				//echo "<pre>" . $i . $page_bits[$i] . "</pre>" ;
-				$dynamic_h1 .= " ";
-				$dynamic_h1 .= ucfirst($page_bits[$i]) ; 
-				
-			}
-			//echo "<pre> HELP:" . $dynamic_h1 . ": HELP</pre>" ;
-			
-	
-		}
-
-		$dynamic_h1 .= "</h1>";
-	} 
-
-	else {  #otherwise, complete first line
-		$dynamic_h1 .= " Untouched Cocktails</h1>";
-	}
-	
-	return $dynamic_h1;
-}
 
 function uc_dynamic_tagline($uc_page_id){
 

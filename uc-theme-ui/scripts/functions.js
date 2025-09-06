@@ -49,30 +49,10 @@
 	}
 
 	/*
-		MODIFIES <div="wp-site-blocks".style.backgroundImage using 
-		scoped pageID
+		Simple background function that works for all page types
+		Now that pageID is set to drinks taxonomy for single posts, we can use one function
 	*/
-	function ucInsertTierOneBg(){
-
-					let anPage = document.querySelector("body");
-					
-					/* WORKS with single quotes in CSS URL variables!! &&
-						ALSO with String.concat() NOT string += approach 
-					*/
-					let bgVar = 'var(--';
-					//bgVar.concat('var(--');
-					bgVar = bgVar.concat(pageID);
-					bgVar = bgVar.concat("-bg-img)");
-					console.log(bgVar);  
-					
-					//anPage[0].style.backgroundImage = "var(--romantic-bg-img)";
-					anPage.style.backgroundImage =  bgVar  ;
-					//document.body.style.background = bgVar;
-					//console.log(anPage);
-	}
-	function ucInsertDrinkPostsBg(bgVar){
-
-
+	function ucInsertBackground(){
 		let anPage = document.querySelector("body");
 		
 		if (!anPage) {  // Check DOM is loaded
@@ -80,42 +60,18 @@
 			document.addEventListener("DOMContentLoaded", () => {
 				anPage = document.querySelector("body");
 				if (anPage) {
-					//console.log(bgVar);
-					//console.log(anPage);
-					anPage.style.backgroundImage = bgVar;
+					ucInsertBackground();
 				}
 			});
 			return;
 		}
 		
-		//anPage.style.backgroundImage = bgVar;
-
+		// Build CSS variable using pageID (which is now drinks taxonomy for single posts)
+		let bgVar = 'var(--' + pageID + '-bg-img)';
+		console.log("Setting background: " + bgVar);
 		
-
-		if (bgVar) {
-			document.body.style.backgroundImage = bgVar;
-		}
-		//console.log(bgVar);
-		//console.log(anPage);
-
-
-	
-	}
-
-	function ucInsertBackgrounds() {  // Combine both above.
-		//  Handle background for tier one pages 
-		if (!document.body.classList.contains('single-post')) {
-			console.log("not single-post");
-			ucInsertTierOneBg();
-		}
-		// Handle background for single post pages
-		if (document.body.classList.contains('single-post')) {
-
-			console.log("single-post");
-			ucInsertDrinkPostsBg(); // Probably not working due bgVar undefined 
-			
-		}
-		
+		// Apply background to body
+		anPage.style.backgroundImage = bgVar;
 	}
 
 

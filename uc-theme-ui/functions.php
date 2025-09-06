@@ -73,6 +73,27 @@ function uc_page_id() {
     }
 
     add_action('wp_head', function() {
+        // Check if this is a single post page
+        if (is_single()) {
+            $post_id = get_the_ID();
+            
+            // Get the drinks taxonomy terms for this post
+            $terms = wp_get_post_terms($post_id, 'drinks');
+            
+            if (!empty($terms) && !is_wp_error($terms)) {
+                // Use the first drinks category as the pageID
+                $slug = $terms[0]->slug;
+                
+                // Remove the trailing -cocktails if exists (due simplified CSS vars)
+                $slug = preg_replace('/-cocktails$/', '', $slug);
+                
+                echo '<script> var pageID = "' . esc_js($slug) . '"</script>';
+                echo '<script> console.log("Single Post - Drinks Category Slug: ' . esc_js($slug) . '");</script>';
+                return;
+            }
+        }
+        
+        // Default behavior for non-single posts or posts without drinks taxonomy
         // Get current URL path and remove leading/trailing slashes
         $slug = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
         
@@ -128,7 +149,7 @@ function handle_filter_carousel() {
 
 add_action('wp_head', function() {
     # FOR DEBUG //error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
-    echo dom_content_loaded(testing_backgrounds(), 'styleImagesByPageID(pageID);', 'ucColorH1();');    //    Pass JS backgrounds function into DOMContent Evt Lstnr
+    echo dom_content_loaded('ucInsertBackground();', 'styleImagesByPageID(pageID);', 'ucColorH1();');    //    Pass JS backgrounds function into DOMContent Evt Lstnr
 
 });
 
@@ -156,60 +177,13 @@ function dom_content_loaded($your_function, $another, $more) {
 }
 
 /*
-*    Based on page type, 
+*    Simple background function that works for all page types
+*    Now that pageID is set to drinks taxonomy for single posts, we can use one function
+*
+*function ucInsertBackground(){
+*    return 'ucInsertBackground();';
+*}
 */
-function testing_backgrounds(){
-    $script_output = '';
-
-    if(is_single() ){    //    If the page is a single post 
-        $post_id = get_the_ID();    //    Get the ID #### of the post
-        echo '<script>console.log("Current Post ID: ' . esc_js($post_id) . '");</script>';
-
-        // Check if post has drinks taxonomy
-        $taxonomies = get_object_taxonomies('post');
-        if (in_array('drinks', $taxonomies)) {
-            $terms = wp_get_post_terms($post_id, 'drinks');    //    Get the Drink Categor(ies) 
-            if (!empty($terms) && !is_wp_error($terms)) {
-                echo '<script>console.log("Post has Drinks taxonomy terms: ' . esc_js(implode(', ', wp_list_pluck($terms, 'name'))) . '");</script>';
-            }
-
-            // Map taxonomy terms to background image variables
-            $term_to_bg_map = array(
-                'Everyday Cocktails' => 'everyday-cocktails-bg-img',
-                'Romantic Cocktails' => 'romantic-cocktails-bg-img', 
-                'Special Occasion Cocktails' => 'special-occasion-cocktails-bg-img',
-                'Summertime Cocktails' => 'summertime-cocktails-bg-img',
-                'Springtime Cocktails' => 'springtime-cocktails-bg-img',
-                'Fireplace Cocktails' => 'fireplace-cocktails-bg-img',
-                'Wintertime Cocktails' => 'winter-cocktails-bg-img',
-                'Autumnal Cocktails' => 'autumnal-cocktails-bg-img'
-            );
-
-            foreach ($terms as $term) {
-                if (isset($term_to_bg_map[$term->name])) {
-                    $bg_var = $term_to_bg_map[$term->name];
-                     echo '<script>console.log("Background variable for ' . esc_js($term->name) . ': var(--' . esc_js($bg_var) . ')");</script>';
-                    
-                    //  Output for Single Posts 
-                    $script_output =  'var drinkBg = "var(--' . esc_js($bg_var) . ')"; ucInsertDrinkPostsBg(drinkBg);';
-                }
-                /* else {
-                    echo '<script>console.log("No background variable found for ' . esc_js($term->name) . '");</script>';
-                } */
-            }
-        }
-    } /*  end IF is_single()  */
-    
-    else {
-        /* DOM Listener here, whereas for posts it's contained in JS function ucInsertDrinkPostsBg()s */ 
-        $script_output = 'ucInsertTierOneBg();';
-    }
-    
-
-    return $script_output;
-    
-}
-
 
 
 

@@ -642,6 +642,17 @@ a.fp-button-link:hover{
 		background-repeat: repeat;
 /* 		background-size: contain;
  */	}
+
+ 	
+	/* Winter background image specific sizing */
+	body[style*="var(--winter-bg-img)"] {
+		background-size: 50% !important;
+	}
+	
+	/* Alternative: If winter background is applied via CSS class */
+	body.winter-bg {
+		background-size: 50% !important;
+	}
 	
 	.wp-block-media-text{
 		display: flex;
@@ -742,17 +753,7 @@ a.fp-button-link:hover{
 	The containing elements need to be explicitly declared as size query containers.
 	*/
 
-	.portrait-old{
 
-		max-width: 22.5vw; /*    one fourth of 90, due margins sum 8% of .image-gallery    */
-		height: auto;
-
-	}
-
-	.landscape-old{
-		height: auto;
-		max-width: 30vw;	/*    one third of 90, due margins sum 8% of .image-gallery    */
-	}
 
 	.contains{ display: flex; 
 		/*to test whether display properties cannot cross styles @imports, seems unimportant    */

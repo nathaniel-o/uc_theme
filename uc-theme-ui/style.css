@@ -58,8 +58,17 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	/*  Home Page & Gallery  */
     --gallery-border: 2em;
     --gallery-font-color: #ccccff;
-    --original-pink: #dc699a;
+    --original-pink-accent-color: #dc699a;
     --original-pink-border: 0.12em solid var(--original-pink);
+	/*  Why are these two different?  */ 
+	--std-white-font: #dddddd;
+	--std-font-color: rgb(255,255,255);
+	--std-bg-color: #241547;
+	--std-transition: var(--std-transition);
+    --std-border: 4px ridge rgb(1, 1, 1, 1);
+	--std-baskerville-font: "Libre Baskerville";
+    --std-text-shadow: 1px 3px 14px var(--gallery-font-color);
+
 
 	/*  Romantic  */
     --romantic-bg-color:#980a4e; /* #120b24; */
@@ -74,20 +83,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--special-occasion-accent-color: #FFD700;
     --special-occasion-border: medium solid var(--special-occasion-accent-color);
     --special-occasion-header-font: "Palatino", serif;
-
-	/* Defaults */
-	--std-transition: var(--std-transition);
-
-    --std-border: 4px ridge rgb(1, 1, 1, 1);
-	--std-baskerville-font: "Libre Baskerville";
-
-    --std-text-shadow: 1px 3px 14px var(--gallery-font-color);
    
-	/*  Why are these two different?  */ 
-	--std-white-font: #dddddd;
-	--std-font-color: rgb(255,255,255);
-
-	--std-bg-color: #241547;
 
 	/*  Summertime  */
     --summertime-bg-color: #452987;

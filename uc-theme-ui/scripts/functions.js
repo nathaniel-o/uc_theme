@@ -110,6 +110,12 @@
 							heading.style.color = "var(--summertime-accent-color)";
 							heading.style.accentColor = "var(--summertime-accent-color)";
 						}
+						else if(pageID.includes("springtime")){
+							heading.style.color = "var(--summertime-font-color)";
+							heading.style.textShadow = "var(--summertime-shadow)";
+							heading.style.backgroundColor = "transparent";
+							heading.style.color = "var(--summertime-accent-color)";
+						}
 						else if(pageID.includes("fireplace")){
 							heading.style.color = "var(--fireplace-font)";
 							heading.style.textShadow = "var(--fireplace-shadow)";
@@ -126,9 +132,10 @@
 							heading.style.backgroundColor = "transparent";
 						}
 						else if(pageID.includes("home")){
-							heading.style.color = "var(--original-pink)";
+							heading.style.color = "var(--std-font-color)";
 							heading.style.textShadow = "var(--std-text-shadow)";
 							heading.style.backgroundColor = "transparent";
+							
 						}
 						else {
 							// Default styling for other pages
@@ -152,17 +159,6 @@
 
 
 	}
-
-
-
-		/*    MISC. HELPER FUNCTIONS    
-		    ////    ////    ////    ////    */ 
-			
-		//  Image orientation detection moved to drinks-plugin
-		//  Function ucPortraitLandscape has been refactored and moved to the drinks plugin
-		//  for better integration with WordPress Image blocks
-
-
 
 
 

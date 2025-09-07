@@ -123,7 +123,7 @@ add_action('init', 'uc_page_id');
 
 
 
-// Add AJAX handler for filter_carousel
+/* // Add AJAX handler for filter_carousel
 add_action('wp_ajax_filter_carousel', 'handle_filter_carousel');
 add_action('wp_ajax_nopriv_filter_carousel', 'handle_filter_carousel');
 
@@ -139,7 +139,7 @@ function handle_filter_carousel() {
 
    # //error_log($filtered_carousel);
     wp_die(); // Required for proper AJAX response
-}
+} */
 
 
 
@@ -206,7 +206,7 @@ add_action('after_setup_theme', function() {
 //add_action('init', 'uc_update_all_drink_excerpts');
 
 // Clear all drink post excerpts
-function uc_clear_all_drink_excerpts() {
+/* function uc_clear_all_drink_excerpts() {
     $drinks_query = uc_drink_query();
 
     if ($drinks_query->have_posts()) {
@@ -221,7 +221,7 @@ function uc_clear_all_drink_excerpts() {
         }
         wp_reset_postdata();
     }
-}
+} */
 
 // Uncomment the following line to run once, then comment it out again
 //add_action('init', 'uc_clear_all_drink_excerpts');

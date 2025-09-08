@@ -105,16 +105,14 @@
 							heading.style.accentColor = "var(--romantic-accent-color)";
 						}
 						else if(pageID.includes("summertime")){
+							heading.style.color = "var(--summertime-font-color)";
 							heading.style.textShadow = "var(--summertime-shadow)";
 							heading.style.backgroundColor = "transparent";
-							heading.style.color = "var(--summertime-accent-color)";
-							heading.style.accentColor = "var(--summertime-accent-color)";
 						}
 						else if(pageID.includes("springtime")){
 							heading.style.color = "var(--summertime-font-color)";
 							heading.style.textShadow = "var(--summertime-shadow)";
 							heading.style.backgroundColor = "transparent";
-							heading.style.color = "var(--summertime-accent-color)";
 						}
 						else if(pageID.includes("fireplace")){
 							heading.style.color = "var(--fireplace-font)";
@@ -124,7 +122,8 @@
 						else if(pageID.includes("special-occasion")){
 							heading.style.fontFamily = "var(--special-occasion-header-font)";
 							heading.style.backgroundColor = "transparent";
-							heading.style.color = "var(--special-occasion-accent-color)";
+							heading.style.color = "var(--special-occasion-font-color)";
+							heading.style.textShadow = "var(--special-occasion-shadow)";
 						}
 						else if(pageID.includes("gallery")){
 							heading.style.color = "var(--gallery-font-color)";
@@ -136,6 +135,16 @@
 							heading.style.textShadow = "var(--std-text-shadow)";
 							heading.style.backgroundColor = "transparent";
 							
+						}
+						else if(pageID.includes("winter")){
+							heading.style.color = "var(--winter-font-color)";
+							heading.style.textShadow = "var(--winter-shadow)";
+							heading.style.backgroundColor = "transparent";
+						}
+						else if(pageID.includes("autumnal")){
+							heading.style.color = "var(--autumnal-font-color)";
+							heading.style.textShadow = "var(--autumnal-shadow)";
+							heading.style.backgroundColor = "transparent";
 						}
 						else {
 							// Default styling for other pages

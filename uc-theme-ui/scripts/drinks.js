@@ -1053,6 +1053,151 @@ if(carousels){
 
 const DRINK_ARRAY = new Array();
 
+// Enhanced styling function copied from functions.js with category detection
+function styleImagesByPageID(variableID, targetContainer) {
+	
+	if(!targetContainer){
+		targetContainer = '.entry-content';
+	}
+
+	// Get all images within target container
+	const imageContainer = document.querySelector(targetContainer);
+	if (!imageContainer) {    //  If no target, no action. 
+		return;
+	}
+
+	const images = imageContainer.querySelectorAll('img');
+
+	images.forEach(img => {
+		// Extract category code from image title/alt
+		const categoryCode = extractCategoryFromImage(img);
+		let currentVariableID = variableID;
+		
+		// Override variableID with category-based styling if category detected
+		if (categoryCode) {
+			currentVariableID = mapCategoryCodeToVariable(categoryCode);
+		}
+
+		if(currentVariableID.includes("springtime")){
+			currentVariableID = "summertime";
+		}  //  (Else currentVariableID = currentVariableID as passed)
+
+		// Compose variable names
+		const borderVar = `var(--${currentVariableID}-border)`;
+		const fontColorVar = `var(--${currentVariableID}-font-color)`;
+		const shadowVar = `var(--${currentVariableID}-shadow)`;
+
+		// 1. Apply border variable
+		img.style.border = borderVar;
+
+		// 2 & 3. If image is in a figure with figcaption, style the caption
+		const figure = img.closest('figure');
+		if (figure) {
+			const caption = figure.querySelector('figcaption');
+			if (caption) {
+				caption.style.color = fontColorVar;
+				caption.style.textShadow = shadowVar;
+			}
+		}
+	});
+}
+
+// Function to extract category code from image title/alt
+function extractCategoryFromImage(img) {
+	const title = img.title || img.alt || '';
+	
+	// Look for pattern like "_AU_T" or "_RO_T" in the title
+	const categoryMatch = title.match(/_([A-Z]{2})_/);
+	if (categoryMatch) {
+		return categoryMatch[1]; // Returns "AU", "RO", etc.
+	}
+	
+	return null;
+}
+
+// Function to map category codes to variable names
+function mapCategoryCodeToVariable(categoryCode) {
+	const categoryMap = {
+		'AU': 'autumnal',
+		'RO': 'romantic', 
+		'EV': 'everyday',
+		'SU': 'summertime',
+		'SP': 'summertime', // springtime maps to summertime
+		'FP': 'fireplace',
+		'SO': 'special-occasion',
+		'WI': 'winter'
+	};
+	
+	return categoryMap[categoryCode] || 'std';
+}
+
+// Function to style pop-out dynamically based on drink category
+function ucStylePopoutDynamic(){
+	// Get all pop-out elements
+	const popoutBodies = document.querySelectorAll('.drinks-lightbox-body, .drinks-popout-body, .drinks-content-popout, .pop-off');
+	
+	popoutBodies.forEach(popoutBody => {
+		// Find ul elements within the pop-out
+		const ulElements = popoutBody.querySelectorAll('ul');
+		
+		ulElements.forEach(ul => {
+			// Find the image in this pop-out to determine category
+			const img = popoutBody.querySelector('img');
+			let categoryVariable = 'std';
+			
+			if (img) {
+				const categoryCode = extractCategoryFromImage(img);
+				if (categoryCode) {
+					categoryVariable = mapCategoryCodeToVariable(categoryCode);
+				}
+			}
+			
+			// Style the ul with the appropriate font color
+			ul.style.color = `var(--${categoryVariable}-font-color)`;
+			
+			// Style em elements within the ul to be black
+			const emElements = ul.querySelectorAll('em');
+			emElements.forEach(em => {
+				em.style.color = "black";
+				em.style.fontWeight = "bold";
+				em.style.fontStyle = "normal";
+				em.style.marginRight = "0.25em";
+			});
+		});
+	});
+}
+
+// Function to style carousel slides per drink category
+function ucStyleCarouselSlides() {
+	const carouselSlides = document.querySelectorAll('.carousel__slide, .carousel__snapper figure');
+	
+	carouselSlides.forEach(slide => {
+		const img = slide.querySelector('img');
+		if (img) {
+			const categoryCode = extractCategoryFromImage(img);
+			if (categoryCode) {
+				const categoryVariable = mapCategoryCodeToVariable(categoryCode);
+				
+				// Apply styling to the slide
+				styleImagesByPageID(categoryVariable, slide);
+				
+				// Style any ul elements in the slide
+				const ulElements = slide.querySelectorAll('ul');
+				ulElements.forEach(ul => {
+					ul.style.color = `var(--${categoryVariable}-font-color)`;
+					
+					const emElements = ul.querySelectorAll('em');
+					emElements.forEach(em => {
+						em.style.color = "black";
+						em.style.fontWeight = "bold";
+						em.style.fontStyle = "normal";
+						em.style.marginRight = "0.25em";
+					});
+				});
+			}
+		}
+	});
+}
 
 /*    ACTIONS : WHERE THE FUNCTIONS ARE CALLED     */
 ////    ////    ////    ////

@@ -87,6 +87,23 @@ function uc_page_id() {
                 // Remove the trailing -cocktails if exists (due simplified CSS vars)
                 $slug = preg_replace('/-cocktails$/', '', $slug);
                 
+                // Map specific category codes to their CSS variable names
+                $category_mapping = array(
+                    'fp-fireplace' => 'fireplace',
+                    'ev-everyday' => 'everyday',
+                    'ro-romantic' => 'romantic',
+                    'su-summertime' => 'summertime',
+                    'sp-springtime' => 'summertime', // springtime uses summertime CSS vars
+                    'so-special-occasion' => 'special-occasion',
+                    'wi-winter' => 'winter',
+                    'au-autumnal' => 'autumnal'
+                );
+                
+                // Apply mapping if exists, otherwise use original slug
+                if (isset($category_mapping[$slug])) {
+                    $slug = $category_mapping[$slug];
+                }
+                
                 echo '<script> var pageID = "' . esc_js($slug) . '"</script>';
                 echo '<script> console.log("Single Post - Drinks Category Slug: ' . esc_js($slug) . '");</script>';
                 return;
@@ -150,7 +167,7 @@ function handle_filter_carousel() {
 add_action('wp_head', function() {
     # FOR DEBUG //error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
     echo dom_content_loaded('ucInsertBackground();', 'styleImagesByPageID(pageID);', 'ucColorH1();');    //    Pass JS backgrounds function into DOMContent Evt Lstnr
-
+    echo dom_content_loaded(0,0,0);
 });
 
 /*

@@ -6,7 +6,7 @@
 *
 */
 
-	function styleImagesByPageID(variableID) {
+	function styleImagesByPageID(variableID, targetContainer) {
 		
 		if(pageID.includes("springtime")){
 			variableID = "summertime";
@@ -22,13 +22,17 @@
 		console.log(fontColorVar);
 		console.log(shadowVar); */
 
+		if(!targetContainer){
+			targetContainer = '.entry-content';
+		}
+
 		// Get all images within .entry-content
-		const entryContent = document.querySelector('.entry-content');
-		if (!entryContent) {    //  If no entry-content, no action. 
+		const imageContainer = document.querySelector(targetContainer);
+		if (!imageContainer) {    //  If no target, no action. 
 			return;
 		}
 	
-		const images = entryContent.querySelectorAll('img');
+		const images = imageContainer.querySelectorAll('img');
 
 		images.forEach(img => {
 			// 1. Apply border variable
@@ -508,7 +512,8 @@
 
 
 
-		const links = Array.from(document.querySelectorAll(".wp-block-navigation-link"));
+		// Only target anchors to avoid removing nested markup or hrefs
+		const links = Array.from(document.querySelectorAll("a.wp-block-navigation-item__content"));
 		//console.log(links);
 
 		// Array of seasonal cocktail names to match
@@ -527,9 +532,16 @@
 			return acc;
 		}, []);
 
-		// Replace the .innerText of the links at the indexes with "Seasonal Cocktails"
+		// Replace only the visible label text; preserve anchor and attributes
 		matchingIndexes.forEach(index => {
-			links[index].innerText = "Seasonal Cocktails";
+			const anchor = links[index];
+			if (!anchor) return;
+			const label = anchor.querySelector('.wp-block-navigation-item__label');
+			if (label) {
+				label.textContent = "Seasonal Cocktails";
+			} else {
+				anchor.textContent = "Seasonal Cocktails";
+			}
 		});
 
 		console.log("Indexes of seasonal cocktail links:", matchingIndexes);

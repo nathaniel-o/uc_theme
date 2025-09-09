@@ -217,10 +217,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	/*  Fix Weird Spacing on Springtime Query Loop. Not sure why this div exists w/i Post Template.  */
 	.wp-block-spacer{ display: none; }
 
-	img {
-		max-width: 100%;
-		height: auto;
-	}
+
 
 	/* Make sure <figure> in Query Preview (Gallery Page) is not cut off */
 	/*  Really, this effect is corrected by making each entry, height: auto in the home.html template */
@@ -491,6 +488,7 @@ img{
 	width: auto;
 	height: auto;
 	max-width: 100%; /*this helps fill parent containers. */
+	max-height: 100%;
 	margin: auto;  /*	center <img in <figure	*/
 	display:block; /*eliminates trailing whitespace*/
 }
@@ -924,11 +922,9 @@ a.fp-button-link:hover{
 		display: flex;
 		justify-content: center;
 		grid-column: 2 / -2;
-		font-size: 2.8em;
 		/*text-shadow: 1px 3px 14px #CCCCFF;*/
 		/* All below to center h1 after made dynamic  */
 		text-align: center;
-		margin: 0 auto;
 
 	}
 
@@ -1546,6 +1542,34 @@ a.fp-button-link:hover{
 
 		}
 
+}
+
+/* === Drinks - Harmonize single post with pop-out === */
+/* Single post drink details: match pop-out typography and spacing */
+.single-post .wp-block-media-text__content ul.wp-block-list{
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	padding-left: 0 !important;
+	margin-left: 0 !important;
+	font-size: clamp(1rem, 2.5vw, 1.2rem);
+	line-height: 1.6;
+}
+
+.single-post .wp-block-media-text__content ul.wp-block-list li{
+	margin-bottom: 8px;
+	padding-left: 0 !important;
+}
+
+.single-post .wp-block-media-text__content ul.wp-block-list em{
+	font-weight: bold;
+	font-style: normal;
+	margin-right: .25em;
+	color: black;
+}
+
+.single-post .wp-block-media-text__content ul.wp-block-list{
+	color: var(--autumnal-font-color);
 }
 
 @media screen and (max-width: 440px){
@@ -2432,3 +2456,77 @@ left: 4%;
 }
 
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
+
+/* Shared Drink Styling Variables - Single Source of Truth */
+:root {
+  --drink-image-max-height: 70vh;
+  --drink-image-max-height-tablet: 60vh;
+  --drink-image-max-height-mobile: 50vh;
+  --drink-content-padding: 3%;
+  --drink-content-padding-tablet: 2%;
+  --drink-content-padding-mobile: 1%;
+  --drink-list-line-height: 1.6;
+  --drink-list-item-margin: 8px;
+  --drink-em-margin-right: 0.25em;
+}
+
+/* Single Post Pages - Match Pop-out Styles */
+.single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__media img {
+    max-width: 100%;
+    max-height: var(--drink-image-max-height);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__content {
+    padding: var(--drink-content-padding);
+}
+
+.single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__content ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--drink-content-padding);
+    line-height: var(--drink-list-line-height);
+}
+
+.single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__content li {
+    margin-bottom: var(--drink-list-item-margin);
+}
+
+.single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__content em {
+    font-weight: bold;
+    color: #000;
+    font-style: normal;
+    margin-right: var(--drink-em-margin-right);
+}
+
+/* Responsive sizing for single post pages */
+@media (max-width: 768px) {
+    .single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__media img {
+        max-height: var(--drink-image-max-height-tablet);
+    }
+    
+    .single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__content {
+        padding: var(--drink-content-padding-tablet);
+    }
+    
+    .single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__content ul {
+        padding: var(--drink-content-padding-tablet);
+    }
+}
+
+@media (max-width: 480px) {
+    .single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__media img {
+        max-height: var(--drink-image-max-height-mobile);
+    }
+    
+    .single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__content {
+        padding: var(--drink-content-padding-mobile);
+    }
+    
+    .single .wp-block-media-text.alignwide.is-stacked-on-mobile .wp-block-media-text__content ul {
+        padding: var(--drink-content-padding-mobile);
+    }
+}

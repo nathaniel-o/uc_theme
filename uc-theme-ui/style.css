@@ -35,17 +35,15 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	/*  Everyday  */
     --everyday-bg-color: #12355c;
 	--everyday-accent-color: #30c5f2;
-	--everyday-font-color: #FCE205;
-
+	--everyday-font-color: #FCE205; /* pale yellow */
 	--everyday-border: medium solid var(--everyday-accent-color);
     --everyday-btn-font: "Gill Sans MT", sans-serif;
 	--everyday-shadow: 4px 1px 4px #1f1f1f;
 
 	/*  Fireplace  */
-    --fireplace-border: medium solid black;
-    --fireplace-font: #f2993a;
-    --fireplace-font-color: #f2993a;
-    --fireplace-shadow: 4px 1px 4px #1f1f1f;
+    --fireplace-border: medium solid #000000;
+    --fireplace-font-color: #ffffffbd; /* formerly #f2993a */
+    --fireplace-shadow: 4px 4px 4px #1f1f1f;
 
 	/*  Home Page & Gallery  */
     --gallery-border: 2em;
@@ -54,7 +52,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
     --original-pink-border: 0.12em solid var(--original-pink);
 	/*  Why are these two different?  */ 
 	--std-white-font: #dddddd;
-	--std-font-color: rgb(255,255,255);
+	--std-font-color: #ffffff;
 	--std-bg-color: #241547;
 	--std-transition: var(--std-transition);
     --std-border: 4px ridge rgb(1, 1, 1, 1);
@@ -75,30 +73,35 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--special-occasion-accent-color: #FFD700;
     --special-occasion-font-color: #FFD700;
     --special-occasion-border: medium solid var(--special-occasion-accent-color);
-    --special-occasion-header-font: "Palatino", serif;
-    --special-occasion-shadow: 4px 1px 4px #1f1f1f;
+    --special-occasion-shadow: var(--std-text-shadow);
    
 
 	/*  Summertime  */
-    --summertime-bg-color: #452987;
-    --summertime-border: medium solid var(--summertime-accent-color);
-    --summertime-accent-color: #1bf54e;
-    --summertime-font-color: #1bf54e;
-    --summertime-shadow: 4px 1px 4px #1f1f1f;
+    --summertime-bg-color: #452987; /* more purple than home */
+    --summertime-border: medium solid rgba(var(--summertime-accent-color), 1.0);
+    --summertime-accent-color: #1BF54E; /* light green */
+    --summertime-font-color: #F9F6EE; /* formerly #1bf54e */
+    --summertime-shadow: 1px 3px 7px var(--summertime-accent-color);
+
+	/*  Springtime  */
+	--springtime-bg-color:#1bf54e;
+	--springtime-shadow: #452987; 
+	
+
 
 	/*  Winter  */
-	--winter-bg-color: #ddd;
-	--winter-border: medium dotted var(--winter-accent-color);
-	--winter-accent-color: grey;
-	--winter-font-color: #333333;
-	--winter-shadow: 4px 1px 4px #1f1f1f;
+	--winter-bg-color: #FFF7E0; /* blush white */
+	--winter-border: medium solid var(--winter-accent-color);
+	--winter-accent-color: #26453E; /* grey-green */
+	--winter-font-color: #FFFFFF; /* bright white */
+	--winter-shadow: var(--std-text-shadow);
 
 	/*  Autumnal  */
 	--autumnal-bg-color: #8B4513;
 	--autumnal-border: medium solid var(--autumnal-accent-color);
 	--autumnal-accent-color: #FF8C00;
 	--autumnal-font-color: #FF8C00;
-	--autumnal-shadow: 4px 1px 4px #1f1f1f;
+	--autumnal-shadow: var(--std-text-shadow);
 
     /* Background Images */
     --everyday-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Everyday-cocktail-with-shadow-shapes-mockup.pptx.png');

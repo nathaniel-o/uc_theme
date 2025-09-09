@@ -119,7 +119,7 @@
 							heading.style.backgroundColor = "transparent";
 						}
 						else if(pageID.includes("fireplace")){
-							heading.style.color = "var(--fireplace-font)";
+							heading.style.color = "var(--fireplace-font-color)";
 							heading.style.textShadow = "var(--fireplace-shadow)";
 							heading.style.backgroundColor = "transparent";
 						}

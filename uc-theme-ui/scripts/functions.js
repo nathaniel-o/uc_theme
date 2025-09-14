@@ -6,6 +6,7 @@
 *
 */
 
+
 	function styleImagesByPageID(variableID, targetContainer) {
 		
 		if(pageID.includes("springtime")){
@@ -56,26 +57,78 @@
 		Simple background function that works for all page types
 		Now that pageID is set to drinks taxonomy for single posts, we can use one function
 	*/
-	function ucInsertBackground(){
+	function ucStyleBackground(){
 		let anPage = document.querySelector("body");
+
+		let bgImgVar;
+		// Build CSS variables using pageID (which is now drinks taxonomy for single posts)
+		let bgColorVar = 'var(--' + pageID + '-bg-color)';
+		//console.log("Setting background color: " + bgColorVar);
 		
-		if (!anPage) {  // Check DOM is loaded
-			console.warn("Body element not found, retrying after DOM load");
-			document.addEventListener("DOMContentLoaded", () => {
-				anPage = document.querySelector("body");
-				if (anPage) {
-					ucInsertBackground();
-				}
-			});
-			return;
+
+		if(!pageID.includes('autumnal') && !pageID.includes('springtime') && !pageID.includes('winter')){
+			bgImgVar = 'var(--' + pageID + '-bg-img)';
+			console.log("Setting background image: " + bgImgVar);
+			// Apply background color and image for non-autumnal/non-springtime/non-winter pages
+			anPage.style.backgroundColor = bgColorVar;
+			anPage.style.backgroundImage = bgImgVar;
+		} else {
+			// For autumnal, springtime, and winter pages, only apply background color
+			anPage.style.backgroundColor = bgColorVar;
+			console.log("Setting background color for " + pageID + ": " + bgColorVar);
+			
+			// Create repeating pattern for springtime and winter
+			if(pageID.includes('springtime') || pageID.includes('winter')){
+				ucCreateRepeatingPattern(pageID);
+			}
+		}
+	}
+
+	function ucCreateRepeatingPattern(pageType) {
+		const containerId = pageType + '-svg-container';
+		const container = document.getElementById(containerId);
+		
+		if (!container) return;
+		
+		const originalSvg = container.querySelector('svg');
+		if (!originalSvg) return;
+		
+		// Clear existing content
+		container.innerHTML = '';
+		
+		// Get container dimensions
+		const containerRect = container.getBoundingClientRect();
+		const containerWidth = containerRect.width;
+		const containerHeight = containerRect.height;
+		
+		// Set pattern size based on page type
+		let patternWidth, patternHeight;
+		if (pageType.includes('springtime')) {     /*  height ratio? somehow affects spacing  */
+			patternWidth = 600;
+			patternHeight = 800; 
+		} else if (pageType.includes('winter')) {
+			patternWidth = 600;
+			patternHeight = 800 ;
 		}
 		
-		// Build CSS variable using pageID (which is now drinks taxonomy for single posts)
-		let bgVar = 'var(--' + pageID + '-bg-img)';
-		console.log("Setting background: " + bgVar);
+		// Calculate how many repetitions we need
+		const cols = Math.ceil(containerWidth / patternWidth) + 1;
+		const rows = Math.ceil(containerHeight / patternHeight) + 1;
 		
-		// Apply background to body
-		anPage.style.backgroundImage = bgVar;
+		// Create repeating pattern
+		for (let row = 0; row < rows; row++) {
+			for (let col = 0; col < cols; col++) {
+				const svgClone = originalSvg.cloneNode(true);
+				svgClone.style.position = 'absolute';
+				svgClone.style.left = (col * patternWidth) + 'px';
+				svgClone.style.top = (row * patternHeight) + 'px';
+				svgClone.style.width = patternWidth + 'px';
+				svgClone.style.height = patternHeight + 'px';
+				container.appendChild(svgClone);
+			}
+		}
+		
+		console.log(`Created repeating pattern for ${pageType}: ${cols}x${rows} = ${cols * rows} SVGs`);
 	}
 
 
@@ -96,64 +149,63 @@
 						// Apply page-specific styling based on pageID
 						if(pageID.includes("everyday")){
 							heading.style.color = "var(--everyday-font-color)";
-							heading.style.textShadow = "var(--everyday-shadow)";
+							heading.style.textShadowColor = "var(--everyday-shadow)";
 							heading.style.fontFamily = "var(--std-baskerville-font)";
 							heading.style.backgroundColor = "transparent";
 							heading.style.accentColor = "var(--everyday-accent-color)";
 						}
 						else if(pageID.includes("romantic")){
 							heading.style.color = "var(--romantic-font-color)";
-							heading.style.textShadow = "var(--romantic-shadow)";
-							heading.style.fontFamily = "var(--romantic-caption-font)";
+							heading.style.textShadowColor = "var(--romantic-shadow)";
 							heading.style.backgroundColor = "transparent";
 							heading.style.accentColor = "var(--romantic-accent-color)";
 						}
 						else if(pageID.includes("summertime")){
 							heading.style.color = "var(--summertime-font-color)";
-							heading.style.textShadow = "var(--summertime-shadow)";
+							heading.style.textShadowColor = "var(--summertime-shadow)";
 							heading.style.backgroundColor = "transparent";
 						}
 						else if(pageID.includes("springtime")){
 							heading.style.color = "var(--summertime-font-color)";
-							heading.style.textShadow = "var(--summertime-shadow)";
+							heading.style.textShadowColor = "var(--summertime-shadow)";
 							heading.style.backgroundColor = "transparent";
 						}
 						else if(pageID.includes("fireplace")){
 							heading.style.color = "var(--fireplace-font-color)";
-							heading.style.textShadow = "var(--fireplace-shadow)";
+							heading.style.textShadowColor = "var(--fireplace-shadow)";
 							heading.style.backgroundColor = "transparent";
 						}
 						else if(pageID.includes("special-occasion")){
 							heading.style.fontFamily = "var(--special-occasion-header-font)";
 							heading.style.backgroundColor = "transparent";
 							heading.style.color = "var(--special-occasion-font-color)";
-							heading.style.textShadow = "var(--special-occasion-shadow)";
+							heading.style.textShadowColor = "var(--special-occasion-shadow)";
 						}
 						else if(pageID.includes("gallery")){
 							heading.style.color = "var(--gallery-font-color)";
-							heading.style.textShadow = "var(--std-text-shadow)";
+							heading.style.textShadowColor = "var(--std-text-shadow)";
 							heading.style.backgroundColor = "transparent";
 						}
 						else if(pageID.includes("home")){
 							heading.style.color = "var(--std-font-color)";
-							heading.style.textShadow = "var(--std-text-shadow)";
+							heading.style.textShadowColor = "var(--std-text-shadow)";
 							heading.style.backgroundColor = "transparent";
 							
 						}
 						else if(pageID.includes("winter")){
 							heading.style.color = "var(--winter-font-color)";
-							heading.style.textShadow = "var(--winter-shadow)";
+							heading.style.textShadowColor = "var(--winter-shadow)";
 							heading.style.backgroundColor = "transparent";
 						}
 						else if(pageID.includes("autumnal")){
 							heading.style.color = "var(--autumnal-font-color)";
-							heading.style.textShadow = "var(--autumnal-shadow)";
+							heading.style.textShadowColor = "var(--autumnal-shadow)";
 							heading.style.backgroundColor = "transparent";
 						}
 						else {
 							// Default styling for other pages
 							heading.style.color = "var(--std-font-color)";
-							heading.style.textShadow = "var(--std-text-shadow)";
+							heading.style.textShadowColor = "var(--std-text-shadow)";
 							heading.style.fontFamily = "var(--std-baskerville-font)";
 							heading.style.backgroundColor = "transparent";
 						}

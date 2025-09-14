@@ -57,23 +57,24 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--std-transition: var(--std-transition);
     --std-border: 4px ridge rgb(1, 1, 1, 1);
 	--std-baskerville-font: "Libre Baskerville";
-    --std-text-shadow: 4px 1px 4px #1f1f1f;
+    --std-text-shadow: 4px 1px 4px var(--std-text-shadow-color);
+	--std-text-shadow-color: #1f1f1f;
 
 
 	/*  Romantic  */
     --romantic-bg-color:#980a4e; /* #120b24; */
 	--romantic-accent-color: #cf3162;
     --romantic-border: medium solid var(--romantic-accent-color);
-    --romantic-caption-font: "Gill Sans MT", sans-serif;
-    --romantic-font-color: #fff7e0;
-    --romantic-shadow: 4px 1px 4px var(--romantic-bg-color);
+/*     --romantic-caption-font: "Gill Sans MT", sans-serif;
+ */ --romantic-font-color: #fff7e0;
+    --romantic-shadow: var(--romantic-bg-color);    /* color used for background svg */
 
 	/*  Special Occasion  */
     --special-occasion-bg-color: #241547; 
 	--special-occasion-accent-color: #FFD700;
     --special-occasion-font-color: #FFD700;
     --special-occasion-border: medium solid var(--special-occasion-accent-color);
-    --special-occasion-shadow: var(--std-text-shadow);
+    --special-occasion-shadow: var(--std-text-shadow-color);    /* color used for background svg */
    
 
 	/*  Summertime  */
@@ -81,35 +82,80 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
     --summertime-border: medium solid rgba(var(--summertime-accent-color), 1.0);
     --summertime-accent-color: #1BF54E; /* light green */
     --summertime-font-color: #F9F6EE; /* formerly #1bf54e */
-    --summertime-shadow: 1px 3px 7px var(--summertime-accent-color);
+    --summertime-shadow: var(--summertime-accent-color);    /* color used for background svg */
 
 	/*  Springtime  */
 	--springtime-bg-color:#1bf54e;
-	--springtime-shadow: #452987; 
+	--springtime-shadow: #452987B3;    /* color used for background svg */
+
+	/* SVG containers can be styled directly in CSS as needed */
+	#springtime-svg-container {
+		overflow: hidden; /* Hide any overflow from the repeating pattern */
+/* 		background-size: 400px 300px; */	
+ 		opacity: 0.3 ; 
+	}
+	#springtime-svg-container svg {
+		width: 40%; /* Scale down */
+		height: 40%;
+		position: absolute;
+	}
+	#springtime-svg-container svg path {
+		fill: var(--springtime-shadow) !important; /* Use the springtime shadow color */
+	} 
+	/* SVG containers now use background-image for pattern repetition */
+	#autumnal-svg-container{
+		/* Pattern repetition controlled by inline styles in PHP */
+		opacity: 1;
+		/* background-size: 200px 150px; */
+	}
+	#springtime-svg-container {
+		opacity: 0.3;
+		overflow: hidden; /* Hide any overflow from the repeating pattern */
+	}
+	#springtime-svg-container svg {
+		/* Size will be set by JavaScript */
+	}
+	#springtime-svg-container svg path {
+		fill: var(--springtime-shadow) !important; /* Use the springtime shadow color */
+	}
+	#winter-svg-container {
+		opacity: 1;
+		overflow: hidden; /* Hide any overflow from the repeating pattern */
+	}
+	#winter-svg-container svg {
+		/* Size will be set by JavaScript */
+	}
+	#winter-svg-container svg path {
+		fill: var(--winter-shadow) !important;
+	}
+
+	
 	
 
 
 	/*  Winter  */
-	--winter-bg-color: #FFF7E0; /* blush white */
+	--winter-bg-color: #FAD5BC; 
 	--winter-border: medium solid var(--winter-accent-color);
 	--winter-accent-color: #26453E; /* grey-green */
 	--winter-font-color: #FFFFFF; /* bright white */
-	--winter-shadow: var(--std-text-shadow);
+	--winter-shadow: #FFF7E0; /* blush white */    /* color used for background svg */
 
 	/*  Autumnal  */
 	--autumnal-bg-color: #8B4513;
 	--autumnal-border: medium solid var(--autumnal-accent-color);
 	--autumnal-accent-color: #FF8C00;
 	--autumnal-font-color: #FF8C00;
-	--autumnal-shadow: var(--std-text-shadow);
+	--autumnal-shadow: black; /* color used for background svg */
 
     /* Background Images */
     --everyday-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Everyday-cocktail-with-shadow-shapes-mockup.pptx.png');
     --romantic-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Romantic-cocktail-with-shadow-shapes-mockup.pptx.png');
     --special-occasion-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Special-Occasion-cocktail-with-shadow-shapes-mockup.pptx.png');
     --summertime-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
-    --springtime-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
-    --fireplace-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/New-Fireplace-Cocktails-Mockup-with-cluster-kinderblocks.pptx.png');
+/*     --springtime-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
+*    Springtime is now INLINE SVG handled by ucInsertBackground fn, so that it may be styled on the fly. 
+*/    
+  --fireplace-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/New-Fireplace-Cocktails-Mockup-with-cluster-kinderblocks.pptx.png');
 	--winter-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Winter-Cocktails-Pages-mockup.pptx-1.png');
     --autumnal-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Autumnal-Cocktails-Pages-mockup.pptx-1.png');
 
@@ -924,11 +970,10 @@ a.fp-button-link:hover{
 	h1 { /*"Untouched Cocktails ~~ Celebrating Every Occasion"*/
 		display: flex;
 		justify-content: center;
-		grid-column: 2 / -2;
-		/*text-shadow: 1px 3px 14px #CCCCFF;*/
-		/* All below to center h1 after made dynamic  */
 		text-align: center;
 
+		/* conrol h1 text shadow SHAPE here */
+		text-shadow: var(--std-text-shadow);
 	}
 
 	h3,h4,h5,h6{

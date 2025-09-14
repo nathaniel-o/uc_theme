@@ -32,10 +32,48 @@ function uc_enqueue_script(){
 	get_theme_file_uri('/scripts/functions.js'),
 	array( ),  /*  params: load strategy async/defer, in_footer t/f  */ 
   	time() );
+}
 
-        #prints only /wordpress/page-slug/
-	        //echo $_SERVER['REQUEST_URI'];     
-		#     is the same as WP's  $uc_page_id
+// Insert background based on page ID
+function uc_insert_background() {
+	$page_id = get_the_ID();
+	$page_slug = get_post_field('post_name', $page_id);
+	
+	// Get background color from CSS custom property
+	$bg_color = 'var(--bg-color)';
+	
+	if (strpos($page_slug, 'autumnal') !== false) {
+		// Load SVG file content 
+		$svg_path = get_template_directory() . '/images/New Autumnal background transparent.svg';
+		if (file_exists($svg_path)) {
+			$svg_content = file_get_contents($svg_path);
+			echo '<div id="autumnal-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;">';
+			echo $svg_content;
+			echo '</div>';
+		}
+	} else if (strpos($page_slug, 'springtime') !== false) {
+		// Load SVG file content 
+		$svg_path = get_template_directory() . '/images/New Springtime background transparent.svg';
+		if (file_exists($svg_path)) {
+			$svg_content = file_get_contents($svg_path);
+			echo '<div id="springtime-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;">';
+			echo $svg_content;
+			echo '</div>';
+		}
+	} else if (strpos($page_slug, 'winter') !== false) {
+		// Load SVG file content 
+		$svg_path = get_template_directory() . '/images/New Winter background transparent.svg';
+		if (file_exists($svg_path)) {
+			$svg_content = file_get_contents($svg_path);
+			echo '<div id="winter-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;">';
+			echo $svg_content;
+			echo '</div>';
+		}
+	} else {
+		// Apply background color and image for other pages
+		$bg_image = 'var(--bg-image)';
+		echo '<style>body { background-color: ' . $bg_color . '; background-image: ' . $bg_image . '; }</style>';
+	}
 }
 
 
@@ -93,7 +131,7 @@ function uc_page_id() {
                     'ev-everyday' => 'everyday',
                     'ro-romantic' => 'romantic',
                     'su-summertime' => 'summertime',
-                    'sp-springtime' => 'summertime', // springtime uses summertime CSS vars
+                    'sp-springtime' => 'springtime', // springtime uses summertime CSS vars
                     'so-special-occasion' => 'special-occasion',
                     'wi-winter' => 'winter',
                     'au-autumnal' => 'autumnal'
@@ -166,8 +204,11 @@ function handle_filter_carousel() {
 
 add_action('wp_head', function() {
     # FOR DEBUG //error_log('Registered patterns: ' . print_r(WP_Block_Patterns_Registry::get_instance()->get_all_registered(), true));
-    echo dom_content_loaded('ucInsertBackground();', 'styleImagesByPageID(pageID);', 'ucColorH1();');    //    Pass JS backgrounds function into DOMContent Evt Lstnr
+    echo dom_content_loaded('styleImagesByPageID(pageID);', 'ucColorH1();', 'ucStyleBackground();');    //    Pass JS backgrounds function into DOMContent Evt Lstnr
     echo dom_content_loaded(0,0,0);
+
+    uc_insert_background();
+
 });
 
 /*

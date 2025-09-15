@@ -63,24 +63,30 @@
 		let bgImgVar;
 		// Build CSS variables using pageID (which is now drinks taxonomy for single posts)
 		let bgColorVar = 'var(--' + pageID + '-bg-color)';
+		//console.log("DEBUG: pageID =", pageID);
 		//console.log("Setting background color: " + bgColorVar);
 		
 
-		if(!pageID.includes('autumnal') && !pageID.includes('springtime') && !pageID.includes('winter')){
+		if(!pageID.includes('autumnal') && !pageID.includes('springtime') && !pageID.includes('winter') && !pageID.includes('fireplace') && !pageID.includes('romantic') && !pageID.includes('summertime') && !pageID.includes('special-occasion')){
 			bgImgVar = 'var(--' + pageID + '-bg-img)';
 			console.log("Setting background image: " + bgImgVar);
-			// Apply background color and image for non-autumnal/non-springtime/non-winter pages
+			// Apply background color and image for non-autumnal/non-springtime/non-winter/non-fireplace/non-romantic pages
 			anPage.style.backgroundColor = bgColorVar;
 			anPage.style.backgroundImage = bgImgVar;
 		} else {
-			// For autumnal, springtime, and winter pages, only apply background color
+			// For autumnal, springtime, winter, fireplace, and romantic pages, only apply background color
 			anPage.style.backgroundColor = bgColorVar;
-			console.log("Setting background color for " + pageID + ": " + bgColorVar);
 			
-			// Create repeating pattern for springtime and winter
-			if(pageID.includes('springtime') || pageID.includes('winter')){
+			console.log("Setting background color for " + pageID + ": " + bgColorVar); 
+
+			// Create repeating pattern for springtime, summertime, winter, fireplace
+			if(pageID.includes('springtime') || pageID.includes('summertime') || pageID.includes('winter') || pageID.includes('fireplace') || pageID.includes('special-occasion')){
 				ucCreateRepeatingPattern(pageID);
 			}
+				// For romantic, create single full-coverage SVG with CSS object-fit
+				if(pageID.includes('romantic')){
+					ucCreateFullCoverageSvg(pageID);
+				}
 		}
 	}
 
@@ -100,15 +106,25 @@
 		const containerRect = container.getBoundingClientRect();
 		const containerWidth = containerRect.width;
 		const containerHeight = containerRect.height;
+		console.log(`[BG] ${pageType} container size:`, containerWidth, 'x', containerHeight);
 		
 		// Set pattern size based on page type
 		let patternWidth, patternHeight;
-		if (pageType.includes('springtime')) {     /*  height ratio? somehow affects spacing  */
+		if (pageType.includes('springtime') || pageType.includes('summertime')) {     /* summertime funnels to springtime logic */
 			patternWidth = 600;
-			patternHeight = 800; 
+			patternHeight = 900;  /* Increased from 800 to add vertical spacing */ 
+		} else if (pageType.includes('special-occasion')) {
+			patternWidth = 600;
+			patternHeight = 900;  /* Same as springtime/summertime */
 		} else if (pageType.includes('winter')) {
 			patternWidth = 600;
-			patternHeight = 800 ;
+			patternHeight = 800;
+		} else if (pageType.includes('fireplace')) {
+			patternWidth = 600;
+			patternHeight = 800;
+		} else if (pageType.includes('romantic')) {
+			patternWidth = 325;  // One complete SVG = one tile
+			patternHeight = 400;
 		}
 		
 		// Calculate how many repetitions we need
@@ -119,16 +135,70 @@
 		for (let row = 0; row < rows; row++) {
 			for (let col = 0; col < cols; col++) {
 				const svgClone = originalSvg.cloneNode(true);
+				// Ensure sizing is controlled by JS, not inline attributes from source
+				svgClone.removeAttribute('width');
+				svgClone.removeAttribute('height');
+				// Favor consistent aspect behavior
+				svgClone.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+				// Remove any embedded <style> tags inside the SVG that may override our CSS
+				try {
+					const embeddedStyles = svgClone.querySelectorAll('style');
+					embeddedStyles.forEach(s => s.remove());
+				} catch(e) { /* ignore */ }
 				svgClone.style.position = 'absolute';
 				svgClone.style.left = (col * patternWidth) + 'px';
 				svgClone.style.top = (row * patternHeight) + 'px';
 				svgClone.style.width = patternWidth + 'px';
 				svgClone.style.height = patternHeight + 'px';
+				
+
+				// Make Springtime, Summertime & Special Occasion glasses SVG fit better.
+				if(pageID.includes("summertime") || pageID.includes("springtime") || pageID.includes("special-occasion")){
+					svgClone.setAttribute('viewBox', '0 0 680 1200');  /*  MODIFY HERE TO CHANGE "FIT" of SHAPES  */ 
+					svgClone.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+				}
 				container.appendChild(svgClone);
 			}
 		}
 		
-		console.log(`Created repeating pattern for ${pageType}: ${cols}x${rows} = ${cols * rows} SVGs`);
+		console.log(`Created repeating pattern for ${pageType}: cols=${cols}, rows=${rows}, total=${cols * rows}`);
+	}
+
+	function ucCreateFullCoverageSvg(pageType) {
+		const containerId = pageType + '-svg-container';
+		const container = document.getElementById(containerId);
+		
+		if (!container) return;
+		
+		const originalSvg = container.querySelector('svg');
+		if (!originalSvg) return;
+		
+		// Clear existing content
+		container.innerHTML = '';
+		
+		// Get container dimensions
+		const containerRect = container.getBoundingClientRect();
+		const containerWidth = containerRect.width;
+		const containerHeight = containerRect.height;
+		
+		// Create single SVG - no repeats
+		const svgClone = originalSvg.cloneNode(true);
+		svgClone.style.position = 'absolute';
+		svgClone.style.left = '0px';
+		svgClone.style.top = '0px';
+		svgClone.style.width = '100%';
+		svgClone.style.height = '100%';
+		//svgClone.style.transform = 'scale(0.5)'; // Scale down to 50%
+		svgClone.style.transformOrigin = 'center'; // Scale from center
+		
+		// Set the correct viewBox to show all content
+		// The clipPath shows content area is 718.37489 x 1277.1528
+		svgClone.setAttribute('viewBox', '350 0 718.37489 1277.1528');  /*  MODIFY HERE TO CHANGE "FIT" of HEARTS  */ 
+		svgClone.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+		
+		container.appendChild(svgClone);
+		
+		console.log(`Created single SVG for ${pageType}: ${containerWidth}x${containerHeight}px`);
 	}
 
 

@@ -42,8 +42,11 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 
 	/*  Fireplace  */
     --fireplace-border: medium solid #000000;
+	--fireplace-bg-color: #700040 ;  /*  burgundy-black  */  
     --fireplace-font-color: #ffffffbd; /* formerly #f2993a */
-    --fireplace-shadow: 4px 4px 4px #1f1f1f;
+	--fireplace-accent-color: #f2993a;
+	--fireplace-shadow: var(--fireplace-accent-color);
+
 
 	/*  Home Page & Gallery  */
     --gallery-border: 2em;
@@ -62,19 +65,19 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 
 
 	/*  Romantic  */
-    --romantic-bg-color:#980a4e; /* #120b24; */
+    --romantic-bg-color: #120b24; 
 	--romantic-accent-color: #cf3162;
     --romantic-border: medium solid var(--romantic-accent-color);
 /*     --romantic-caption-font: "Gill Sans MT", sans-serif;
  */ --romantic-font-color: #fff7e0;
-    --romantic-shadow: var(--romantic-bg-color);    /* color used for background svg */
+    --romantic-shadow: #980a4e;    /* color used for background svg */
 
 	/*  Special Occasion  */
     --special-occasion-bg-color: #241547; 
 	--special-occasion-accent-color: #FFD700;
     --special-occasion-font-color: #FFD700;
     --special-occasion-border: medium solid var(--special-occasion-accent-color);
-    --special-occasion-shadow: var(--std-text-shadow-color);    /* color used for background svg */
+    --special-occasion-shadow: var(--special-occasion-accent-color);    /* color used for background svg */
    
 
 	/*  Summertime  */
@@ -102,22 +105,47 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	#springtime-svg-container svg path {
 		fill: var(--springtime-shadow) !important; /* Use the springtime shadow color */
 	} 
+
+	/* Summertime uses same inline SVG container behavior as Springtime, but summertime variables */
+	#summertime-svg-container {
+		overflow: hidden; /* Hide any overflow from the repeating pattern */
+		opacity: 0.5 ; 
+		
+	}
+	#summertime-svg-container svg {
+		width: 40%; /* Scale down */
+		height: 40%;
+		position: absolute;
+		/* no direct fill here; path rules below control color */
+	}
+	#summertime-svg-container svg path {
+		/* fill: var(--summertime-shadow) !important; */ /* Use the summertime shadow color */
+		fill: var(--summertime-shadow) !important; /* Use the springtime shadow color */
+	}
+	
+	/* Special Occasion uses same inline SVG container behavior as Springtime/Summertime */
+	#special-occasion-svg-container {
+		overflow: hidden; /* Hide any overflow from the repeating pattern */
+		opacity: 0.5 ; 
+	}
+	#special-occasion-svg-container svg {
+		width: 40%; /* Scale down */
+		height: 40%;
+		position: absolute;
+		/* no direct fill here; path rules below control color */
+	}
+	#special-occasion-svg-container svg path {
+		fill: var(--special-occasion-shadow) !important; /* Use the special occasion shadow color */
+	}
+
 	/* SVG containers now use background-image for pattern repetition */
 	#autumnal-svg-container{
 		/* Pattern repetition controlled by inline styles in PHP */
 		opacity: 1;
 		/* background-size: 200px 150px; */
 	}
-	#springtime-svg-container {
-		opacity: 0.3;
-		overflow: hidden; /* Hide any overflow from the repeating pattern */
-	}
-	#springtime-svg-container svg {
-		/* Size will be set by JavaScript */
-	}
-	#springtime-svg-container svg path {
-		fill: var(--springtime-shadow) !important; /* Use the springtime shadow color */
-	}
+	
+
 	#winter-svg-container {
 		opacity: 1;
 		overflow: hidden; /* Hide any overflow from the repeating pattern */
@@ -127,6 +155,27 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	}
 	#winter-svg-container svg path {
 		fill: var(--winter-shadow) !important;
+	}
+	#fireplace-svg-container {
+		opacity: 1;
+		overflow: hidden; /* Hide any overflow from the repeating pattern */
+	}
+	#fireplace-svg-container svg {
+		/* Size will be set by JavaScript */
+	}
+	#fireplace-svg-container svg path {
+		fill: var(--fireplace-shadow) !important;
+	}
+	#romantic-svg-container {
+		opacity: 1;
+		overflow: hidden; /* Hide any overflow from the repeating pattern */
+	}
+	#romantic-svg-container svg {
+		
+	}
+	#romantic-svg-container svg path {
+		fill: var(--romantic-shadow) !important;
+		
 	}
 
 	
@@ -151,14 +200,14 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
     --everyday-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Everyday-cocktail-with-shadow-shapes-mockup.pptx.png');
     --romantic-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Romantic-cocktail-with-shadow-shapes-mockup.pptx.png');
     --special-occasion-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Special-Occasion-cocktail-with-shadow-shapes-mockup.pptx.png');
-    --summertime-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
-/*     --springtime-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
-*    Springtime is now INLINE SVG handled by ucInsertBackground fn, so that it may be styled on the fly. 
-*/    
+/*     --summertime-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
+ *//*     --springtime-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/Summertime-cocktail-with-shadow-shapes-mockup.pptx.png');
+*    /* Springtime is now INLINE SVG handled by ucInsertBackground fn, so that it may be styled on the fly. 
+     * /
   --fireplace-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2025/02/New-Fireplace-Cocktails-Mockup-with-cluster-kinderblocks.pptx.png');
 	--winter-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Winter-Cocktails-Pages-mockup.pptx-1.png');
     --autumnal-bg-img: url('https://untouchedcocktails.com/wp-content/uploads/2024/12/Autumnal-Cocktails-Pages-mockup.pptx-1.png');
-
+ */
 }
 
 /* combine buttons with WP */
@@ -199,6 +248,9 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 
 	}
 
+	body > *:not([id$="-svg-container"]) {
+		z-index: 3;
+	}
 
 	.tagged {
 		width: 100%;

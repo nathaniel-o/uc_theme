@@ -60,12 +60,48 @@ function uc_insert_background() {
 			echo $svg_content;
 			echo '</div>';
 		}
+	} else if (strpos($page_slug, 'summertime') !== false) {
+		// Load SVG file content (reuse Springtime SVG as source)
+		$svg_path = get_template_directory() . '/images/New Springtime background transparent.svg';
+		if (file_exists($svg_path)) {
+			$svg_content = file_get_contents($svg_path);
+			echo '<div id="summertime-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;">';
+			echo $svg_content;
+			echo '</div>';
+		}
 	} else if (strpos($page_slug, 'winter') !== false) {
 		// Load SVG file content 
 		$svg_path = get_template_directory() . '/images/New Winter background transparent.svg';
 		if (file_exists($svg_path)) {
 			$svg_content = file_get_contents($svg_path);
 			echo '<div id="winter-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;">';
+			echo $svg_content;
+			echo '</div>';
+		}
+	} else if (strpos($page_slug, 'fireplace') !== false) {
+		// Load SVG file content 
+		$svg_path = get_template_directory() . '/images/New Fireplace background transparent.svg';
+		if (file_exists($svg_path)) {
+			$svg_content = file_get_contents($svg_path);
+			echo '<div id="fireplace-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;">';
+			echo $svg_content;
+			echo '</div>';
+		}
+	} else if (strpos($page_slug, 'special-occasion') !== false) {
+		// Load SVG file content 
+		$svg_path = get_template_directory() . '/images/New Special Occasion background transparent.svg';
+		if (file_exists($svg_path)) {
+			$svg_content = file_get_contents($svg_path);
+			echo '<div id="special-occasion-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;">';
+			echo $svg_content;
+			echo '</div>';
+		}
+	} else if (strpos($page_slug, 'romantic') !== false) {
+		// Load SVG file content 
+		$svg_path = get_template_directory() . '/images/New Romantic background transparent.svg';
+		if (file_exists($svg_path)) {
+			$svg_content = file_get_contents($svg_path);
+			echo '<div id="romantic-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;">';
 			echo $svg_content;
 			echo '</div>';
 		}

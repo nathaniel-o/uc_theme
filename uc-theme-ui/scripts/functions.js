@@ -71,24 +71,20 @@
 			bgImgVar = 'var(--' + pageID + '-bg-img)';
 			console.log("Setting background image: " + bgImgVar);
 			// Apply background color and image for non-autumnal/non-springtime/non-winter/non-fireplace/non-romantic pages
-			anPage.style.backgroundColor = bgColorVar;
-			anPage.style.backgroundImage = bgImgVar;
-		} else {
-			// For autumnal, springtime, winter, fireplace, and romantic pages, only apply background color
-			anPage.style.backgroundColor = bgColorVar;
 			
-			console.log("Setting background color for " + pageID + ": " + bgColorVar); 
+			anPage.style.backgroundImage = bgImgVar;
 
-			// Create repeating pattern for springtime, summertime, winter, fireplace
-			if(pageID.includes('springtime') || pageID.includes('summertime') || pageID.includes('winter') || pageID.includes('fireplace') || pageID.includes('special-occasion')){
-				ucCreateRepeatingPattern(pageID);
-			}
-				// For romantic, create single full-coverage SVG with CSS object-fit
-				if(pageID.includes('romantic')){
+		} else if(pageID.includes('springtime') || pageID.includes('summertime') || pageID.includes('winter') || pageID.includes('autumnal') || pageID.includes('fireplace') || pageID.includes('special-occasion')){
+			// Create repeating pattern for springtime, summertime, winter, fireplace	
+			ucCreateRepeatingPattern(pageID);
+		}else if(pageID.includes('romantic')){
+				// For romantic, create single full-coverage SVG with CSS object-fit	
 					ucCreateFullCoverageSvg(pageID);
-				}
 		}
+				anPage.style.backgroundColor = bgColorVar;
 	}
+		
+	
 
 	function ucCreateRepeatingPattern(pageType) {
 		const containerId = pageType + '-svg-container';
@@ -111,10 +107,10 @@
 		// Set pattern size based on page type
 		let patternWidth, patternHeight;
 		if (pageType.includes('springtime') || pageType.includes('summertime')) {     /* summertime funnels to springtime logic */
-			patternWidth = 600;
-			patternHeight = 900;  /* Increased from 800 to add vertical spacing */ 
+			patternWidth = 500;
+			patternHeight = 1200;  /* Increased from 800 to add vertical spacing */ 
 		} else if (pageType.includes('special-occasion')) {
-			patternWidth = 600;
+			patternWidth = 500;
 			patternHeight = 900;  /* Same as springtime/summertime */
 		} else if (pageType.includes('winter')) {
 			patternWidth = 600;
@@ -154,8 +150,8 @@
 
 				// Make Springtime, Summertime & Special Occasion glasses SVG fit better.
 				if(pageID.includes("summertime") || pageID.includes("springtime") || pageID.includes("special-occasion")){
-					svgClone.setAttribute('viewBox', '0 0 680 1200');  /*  MODIFY HERE TO CHANGE "FIT" of SHAPES  */ 
-					svgClone.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+					svgClone.setAttribute('viewBox', '0 0 500 1200');  /*  MODIFY HERE TO CHANGE "FIT" of SHAPES?   */ 
+					svgClone.setAttribute('preserveAspectRatio', 'xMidYMid meet');  /*  close to actual content size = better "fit"  */ 
 				}
 				container.appendChild(svgClone);
 			}
@@ -217,67 +213,56 @@
 						heading.style.cssText = '';
 						
 						// Apply page-specific styling based on pageID
-						if(pageID.includes("everyday")){
-							heading.style.color = "var(--everyday-font-color)";
-							heading.style.textShadowColor = "var(--everyday-shadow)";
+							if(pageID.includes("everyday")){
+								heading.style.color = "var(--everyday-font-color)";
+								heading.style.textShadow = "var(--everyday-text-shadow)";
 							heading.style.fontFamily = "var(--std-baskerville-font)";
-							heading.style.backgroundColor = "transparent";
 							heading.style.accentColor = "var(--everyday-accent-color)";
 						}
-						else if(pageID.includes("romantic")){
-							heading.style.color = "var(--romantic-font-color)";
-							heading.style.textShadowColor = "var(--romantic-shadow)";
-							heading.style.backgroundColor = "transparent";
+							else if(pageID.includes("romantic")){
+								heading.style.color = "var(--romantic-font-color)";
+								heading.style.textShadow = "var(--romantic-text-shadow)";
 							heading.style.accentColor = "var(--romantic-accent-color)";
 						}
-						else if(pageID.includes("summertime")){
-							heading.style.color = "var(--summertime-font-color)";
-							heading.style.textShadowColor = "var(--summertime-shadow)";
-							heading.style.backgroundColor = "transparent";
+							else if(pageID.includes("summertime")){
+								heading.style.color = "var(--summertime-font-color)";
+								heading.style.textShadow = "var(--summertime-text-shadow)";
 						}
-						else if(pageID.includes("springtime")){
-							heading.style.color = "var(--summertime-font-color)";
-							heading.style.textShadowColor = "var(--summertime-shadow)";
-							heading.style.backgroundColor = "transparent";
+							else if(pageID.includes("springtime")){
+								heading.style.color = "var(--summertime-font-color)";
+								heading.style.textShadow = "var(--summertime-text-shadow)";
 						}
-						else if(pageID.includes("fireplace")){
-							heading.style.color = "var(--fireplace-font-color)";
-							heading.style.textShadowColor = "var(--fireplace-shadow)";
-							heading.style.backgroundColor = "transparent";
+							else if(pageID.includes("fireplace")){
+								heading.style.color = "var(--fireplace-font-color)";
+								heading.style.textShadow = "var(--fireplace-text-shadow)";
 						}
-						else if(pageID.includes("special-occasion")){
-							heading.style.fontFamily = "var(--special-occasion-header-font)";
-							heading.style.backgroundColor = "transparent";
-							heading.style.color = "var(--special-occasion-font-color)";
-							heading.style.textShadowColor = "var(--special-occasion-shadow)";
+							else if(pageID.includes("special-occasion")){
+								heading.style.fontFamily = "var(--special-occasion-header-font)";
+								heading.style.color = "var(--special-occasion-font-color)";
+								heading.style.textShadow = "var(--special-occasion-text-shadow)";
 						}
 						else if(pageID.includes("gallery")){
 							heading.style.color = "var(--gallery-font-color)";
 							heading.style.textShadowColor = "var(--std-text-shadow)";
-							heading.style.backgroundColor = "transparent";
 						}
 						else if(pageID.includes("home")){
 							heading.style.color = "var(--std-font-color)";
 							heading.style.textShadowColor = "var(--std-text-shadow)";
-							heading.style.backgroundColor = "transparent";
 							
 						}
-						else if(pageID.includes("winter")){
-							heading.style.color = "var(--winter-font-color)";
-							heading.style.textShadowColor = "var(--winter-shadow)";
-							heading.style.backgroundColor = "transparent";
+							else if(pageID.includes("winter")){
+								heading.style.color = "var(--winter-font-color)";
+								heading.style.textShadow = "var(--winter-text-shadow)";
 						}
-						else if(pageID.includes("autumnal")){
-							heading.style.color = "var(--autumnal-font-color)";
-							heading.style.textShadowColor = "var(--autumnal-shadow)";
-							heading.style.backgroundColor = "transparent";
+							else if(pageID.includes("autumnal")){
+								heading.style.color = "var(--autumnal-font-color)";
+								heading.style.textShadow = "var(--std-text-shadow)";
 						}
 						else {
 							// Default styling for other pages
 							heading.style.color = "var(--std-font-color)";
 							heading.style.textShadowColor = "var(--std-text-shadow)";
 							heading.style.fontFamily = "var(--std-baskerville-font)";
-							heading.style.backgroundColor = "transparent";
 						}
 						
 						// Apply common styling to all headings

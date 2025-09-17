@@ -101,7 +101,7 @@ function uc_insert_background() {
 		$svg_path = get_template_directory() . '/images/New Romantic background transparent.svg';
 		if (file_exists($svg_path)) {
 			$svg_content = file_get_contents($svg_path);
-			echo '<div id="romantic-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;">';
+			echo '<div id="romantic-svg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;">';
 			echo $svg_content;
 			echo '</div>';
 		}

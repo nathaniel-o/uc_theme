@@ -38,14 +38,17 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--everyday-font-color: #FCE205; /* pale yellow */
 	--everyday-border: medium solid var(--everyday-accent-color);
     --everyday-btn-font: "Gill Sans MT", sans-serif;
-	--everyday-shadow: 4px 1px 4px #1f1f1f;
+
+	--everyday-text-shadow: 4px 1px 4px #1f1f1f;
+	--everyday-shadow-color: #1f1f1f;
 
 	/*  Fireplace  */
     --fireplace-border: medium solid #000000;
 	--fireplace-bg-color: #700040 ;  /*  burgundy-black  */  
     --fireplace-font-color: #ffffffbd; /* formerly #f2993a */
 	--fireplace-accent-color: #f2993a;
-	--fireplace-shadow: var(--fireplace-accent-color);
+	--fireplace-text-shadow: 4px 1px 4px var(--fireplace-accent-color); /* colors bg svg */
+	--fireplace-shadow-color: var(--fireplace-accent-color);
 
 
 	/*  Home Page & Gallery  */
@@ -60,56 +63,64 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--std-transition: var(--std-transition);
     --std-border: 4px ridge rgb(1, 1, 1, 1);
 	--std-baskerville-font: "Libre Baskerville";
-    --std-text-shadow: 4px 1px 4px var(--std-text-shadow-color);
-	--std-text-shadow-color: #1f1f1f;
+    --std-text-shadow: 4px 1px 4px #1f1f1f;
+
 
 
 	/*  Romantic  */
     --romantic-bg-color: #120b24; 
 	--romantic-accent-color: #cf3162;
     --romantic-border: medium solid var(--romantic-accent-color);
-/*     --romantic-caption-font: "Gill Sans MT", sans-serif;
- */ --romantic-font-color: #fff7e0;
-    --romantic-shadow: #980a4e;    /* color used for background svg */
+/*  --romantic-caption-font: "Gill Sans MT", sans-serif; */ 
+	--romantic-font-color: #fff7e0;
+	--romantic-text-shadow: 4px 1px 4px #980a4e;    /* color used for background svg */
+	--romantic-shadow-color: #980a4e;
 
 	/*  Special Occasion  */
     --special-occasion-bg-color: #241547; 
 	--special-occasion-accent-color: #FFD700;
     --special-occasion-font-color: #FFD700;
     --special-occasion-border: medium solid var(--special-occasion-accent-color);
-    --special-occasion-shadow: var(--special-occasion-accent-color);    /* color used for background svg */
+	--special-occasion-text-shadow: 4px 1px 4px var(--special-occasion-accent-color);    /* color used for background svg */
+	--special-occasion-shadow-color: #F9F6EE; /*  white  */
    
 
 	/*  Summertime  */
     --summertime-bg-color: #452987; /* more purple than home */
     --summertime-border: medium solid rgba(var(--summertime-accent-color), 1.0);
-    --summertime-accent-color: #1BF54E; /* light green */
+    --summertime-accent-color: rgb(27, 245, 78); /* light green 7*/
     --summertime-font-color: #F9F6EE; /* formerly #1bf54e */
-    --summertime-shadow: var(--summertime-accent-color);    /* color used for background svg */
+	--summertime-text-shadow: 4px 1px 4px rgba(27,245,78);    /* color used for background svg */
+	--summertime-shadow-color: rgba(27,245,78, 0.3);
 
 	/*  Springtime  */
-	--springtime-bg-color:#1bf54e;
-	--springtime-shadow: #452987B3;    /* color used for background svg */
+	--springtime-bg-color:#1bf54e;    /*    pale green?    */
+	--springtime-text-shadow: 4px 1px 4px #452987B3;    /* color used for background svg */
+	--springtime-shadow-color: #452987B3;
+	--springtime-font-color: var(--summertime-font-color);
+	--springtime-accent-color: var(--summertime-accent-color);
+
+	
 
 	/* SVG containers can be styled directly in CSS as needed */
 	#springtime-svg-container {
-		overflow: hidden; /* Hide any overflow from the repeating pattern */
-/* 		background-size: 400px 300px; */	
+		overflow: hidden; 
  		opacity: 0.3 ; 
 	}
+
 	#springtime-svg-container svg {
-		width: 40%; /* Scale down */
-		height: 40%;
+		width: 100%; /* Scale down */
+		height: 100%;
 		position: absolute;
 	}
 	#springtime-svg-container svg path {
-		fill: var(--springtime-shadow) !important; /* Use the springtime shadow color */
+		fill: var(--springtime-shadow-color) !important; /* Use the springtime shadow color */
 	} 
 
 	/* Summertime uses same inline SVG container behavior as Springtime, but summertime variables */
 	#summertime-svg-container {
 		overflow: hidden; /* Hide any overflow from the repeating pattern */
-		opacity: 0.5 ; 
+		opacity: 0.3 ; /* affects shapes, not background color. */ 
 		
 	}
 	#summertime-svg-container svg {
@@ -119,8 +130,8 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		/* no direct fill here; path rules below control color */
 	}
 	#summertime-svg-container svg path {
-		/* fill: var(--summertime-shadow) !important; */ /* Use the summertime shadow color */
-		fill: var(--summertime-shadow) !important; /* Use the springtime shadow color */
+		/* fill: var(--summertime-shadow-color) !important; */ /* Use the summertime shadow color */
+		fill: var(--summertime-shadow-color) !important; /* Use the springtime shadow color */
 	}
 	
 	/* Special Occasion uses same inline SVG container behavior as Springtime/Summertime */
@@ -135,7 +146,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		/* no direct fill here; path rules below control color */
 	}
 	#special-occasion-svg-container svg path {
-		fill: var(--special-occasion-shadow) !important; /* Use the special occasion shadow color */
+		fill: var(--special-occasion-shadow-color) !important; /* Use the special occasion shadow color */
 	}
 
 	/* SVG containers now use background-image for pattern repetition */
@@ -154,7 +165,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		/* Size will be set by JavaScript */
 	}
 	#winter-svg-container svg path {
-		fill: var(--winter-shadow) !important;
+		fill: var(--winter-shadow-color) !important;
 	}
 	#fireplace-svg-container {
 		opacity: 1;
@@ -164,7 +175,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		/* Size will be set by JavaScript */
 	}
 	#fireplace-svg-container svg path {
-		fill: var(--fireplace-shadow) !important;
+		fill: var(--fireplace-shadow-color) !important;
 	}
 	#romantic-svg-container {
 		opacity: 1;
@@ -174,7 +185,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 		
 	}
 	#romantic-svg-container svg path {
-		fill: var(--romantic-shadow) !important;
+		fill: var(--romantic-shadow-color) !important;
 		
 	}
 
@@ -187,7 +198,8 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	--winter-border: medium solid var(--winter-accent-color);
 	--winter-accent-color: #26453E; /* grey-green */
 	--winter-font-color: #FFFFFF; /* bright white */
-	--winter-shadow: #FFF7E0; /* blush white */    /* color used for background svg */
+	--winter-text-shadow: 4px 1px 4px #FFF7E0; /* blush white */    /* color used for background svg */
+	--winter-shadow-color: #FFF7E0;
 
 	/*  Autumnal  */
 	--autumnal-bg-color: #8B4513;
@@ -251,6 +263,7 @@ Twenty Twenty-Two is distributed under the terms of ___________ //DUE EDIT :
 	body > *:not([id$="-svg-container"]) {
 		z-index: 3;
 	}
+	
 
 	.tagged {
 		width: 100%;
@@ -1023,30 +1036,20 @@ a.fp-button-link:hover{
 		display: flex;
 		justify-content: center;
 		text-align: center;
+		background-color: transparent;
 
-		/* conrol h1 text shadow SHAPE here */
-		text-shadow: var(--std-text-shadow);
-	}
-
-	h3,h4,h5,h6{
-		text-align: center;
-
-	}
+		
+		
+	}     h3,h4,h5,h6  {    text-align: center;    }
 
 	figcaption{
-
-		padding: 1em;
 		/*Prevent multi-line captions*/
 		white-space: wrap;
 		overflow: hidden;
-
 		/*color: #CCCCFF; /*formerly #dc699a;*/
-
 		text-align: center;
-		padding: 6% 2% 2% 2%;
-		margin: auto;
-
-	}
+		padding: 0 5% 5% 5%;
+	}    .wp-block-image :where(figcaption) {    margin: 0;    }
 
 	.about-container{
 		box-sizing: border-box;
@@ -1261,7 +1264,7 @@ a.fp-button-link:hover{
 
 			font-size: 2.8vh;
 			text-align: center;
-			text-shadow: var(--gallery-border-shadow);
+			text-shadow: var(--std-text-shadow);
 		}
 
 	.ghost-wrapper{
@@ -1529,6 +1532,7 @@ a.fp-button-link:hover{
 		h1 { /*"Untouched Cocktails ~~ Celebrating Every Occasion"*/
 			display: flex;
 			justify-content: center;
+			background-color: transparent;
 
 			/* removed 17 Sep 24
 			font-size: 2.4em;
@@ -2342,42 +2346,9 @@ left: 4%;
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
 
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-@container (orientation: portrait){
 
-	#foto-une{ grid-row: 3 ; grid-column: 2; transform: rotate(3deg);}
-		
-	#foto-deux{	transform: rotate(-5deg); }
-	#foto-trois{	transform:rotate(4deg);		}
-	#foto-quatre{	transform: rotate(-3deg);	}
-	#foto-cinq{	transform:rotate(5deg);		}
-	#foto-sixieme{	transform:rotate(-4deg);	}
-	#foto-sept{ transform: rotate(3deg); }
-	#foto-huit{ transform: rotate(4deg);	}
 
-}
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
-/*////////////	MOBILE / PORTRAIT LAYOUT	///////////////*/
 
-/* ===== FIREPLACE.CSS CONTENT ===== */
-
-/*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
-/*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
-/*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
-
-@media (orientation: portrait){ 	
-
-	.fp-vertUne{	grid-row: 3 / span 1; grid-column: 2;	} 
-	.fp-vertDeux{	grid-row: 4 / span 1; grid-column: 2;	}
-	.fp-vertTrois{	grid-row: 5 / span 1; grid-column: 2;	}*/
-
-}
-
-/*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
-/*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
-/*//////// MOBILE / PORTRAIT LAYOUT ////////////////*/
 
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
 /*////////////// DESKTOP / LANDSCAPE LAYOUT //////////////*/
